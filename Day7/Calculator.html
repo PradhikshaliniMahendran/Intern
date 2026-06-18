@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator App</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="calculator.css">
+</head>
+<body class="bg-[#1c1c1e] min-h-screen flex items-center justify-center p-4 md:p-8 font-sans select-none">
+    <main class="w-full max-w-sm">
+        <div class="bg-black border border-[#2c2c2e] rounded-[2rem] p-6 shadow-2xl flex flex-col gap-5">
+            <section class="p-4 flex flex-col justify-end min-h-[110px] text-right">
+                <div id="expressionDisplay" class="text-neutral-500 text-sm font-semibold tracking-wide h-6 truncate leading-none"></div>
+
+                <div id="primaryDisplay" class="text-white text-6xl md:text-7xl font-light tracking-tight truncate leading-none mt-2 select-all">0</div>
+            </section>
+
+            <section class="grid grid-cols-4 gap-x-3 gap-y-4">
+                <button data-action="clear" class="btn-orange text-black py-4 rounded-xl text-lg font-bold flex items-center justify-center select-none">AC</button>
+                <button data-action="backspace" class="btn-orange text-black py-4 rounded-xl text-lg font-bold flex items-center justify-center select-none">DEL</button>
+                <button data-action="percent" class="btn-orange text-black py-4 rounded-xl text-lg font-bold flex items-center justify-center select-none">%</button>
+                <button data-val="+" class="btn-orange text-black py-4 rounded-xl text-lg font-bold flex items-center justify-center select-none">+</button>
+
+                <button data-val="7" class="btn-num text-white py-4 rounded-xl text-lg font-bold flex items-center justify-center select-none">7</button>
+                <button data-val="8" class="btn-num text-white py-4 rounded-xl text-lg font-bold flex items-center justify-center select-none">8</button>
+                <button data-val="9" class="btn-num text-white py-4 rounded-xl text-lg font-bold flex items-center justify-center select-none">9</button>
+                <button data-val="-" class="btn-orange text-black py-4 rounded-xl text-lg font-bold flex items-center justify-center select-none">-</button>
+
+                <button data-val="4" class="btn-num text-white py-4 rounded-xl text-lg font-bold flex items-center justify-center select-none">4</button>
+                <button data-val="5" class="btn-num text-white py-4 rounded-xl text-lg font-bold flex items-center justify-center select-none">5</button>
+                <button data-val="6" class="btn-num text-white py-4 rounded-xl text-lg font-bold flex items-center justify-center select-none">6</button>
+                <button data-val="*" class="btn-orange text-black py-4 rounded-xl text-lg font-bold flex items-center justify-center select-none">×</button>
+
+                <button data-val="3" class="btn-num text-white py-4 rounded-xl text-lg font-bold flex items-center justify-center select-none">3</button>
+                <button data-val="2" class="btn-num text-white py-4 rounded-xl text-lg font-bold flex items-center justify-center select-none">2</button>
+                <button data-val="1" class="btn-num text-white py-4 rounded-xl text-lg font-bold flex items-center justify-center select-none">1</button>
+                <button data-val="/" class="btn-orange text-black py-4 rounded-xl text-lg font-bold flex items-center justify-center select-none">÷</button>
+
+                <button data-val="0" class="btn-num text-white py-4 rounded-xl text-lg font-bold flex items-center justify-center select-none">0</button>
+                <button data-val="." class="btn-num text-white py-4 rounded-xl text-lg font-bold flex items-center justify-center select-none">.</button>
+                <button data-action="evaluate" class="btn-orange text-black py-4 rounded-xl text-lg font-bold col-span-2 flex items-center justify-center select-none">=</button>
+            </section> 
+        </div>
+    </main>
+
+    <script src="calculator.js"></script>
+</body>
+</html>

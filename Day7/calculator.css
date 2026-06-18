@@ -1,0 +1,48 @@
+.btn-orange {
+    background-color: orange;
+    border: 1px solid #e77d04;
+    box-shadow: 0 4px 0 0 #d57303;
+    transition: all 0.05s ease;
+    cursor: pointer;
+}
+
+.btn-orange:hover {
+    background-color: orange;
+}
+
+.btn-orange:active,
+.btn-orange.btn-active-simulated {
+    transform:translate(3px);
+    box-shadow: 0 1px 0 0 #d57303;
+}
+
+.btn-num {
+    background-color: black;
+    border: 2px solid orange;
+    box-shadow: 0 4px 0 0 #e77d04;
+    transition: all 0.05s ease;
+    cursor: pointer;
+}
+
+.btn-num:hover {
+    background-color: rgb(24, 23, 23);
+}
+
+.btn-num:active,
+.btn-num.btn-active-simulated {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 0 #e77d04;
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2c2c2e;
+    border-radius: 9999px;
+}
