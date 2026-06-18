@@ -1,37 +1,37 @@
 .btn-orange {
-    background-color: orange;
-    border: 1px solid #e77d04;
-    box-shadow: 0 4px 0 0 #d57303;
+    background-color: rgb(201, 7, 249);
+    border: 1px solid #870190;
+    box-shadow: 0 4px 0 0 #f917f5;
     transition: all 0.05s ease;
     cursor: pointer;
 }
 
 .btn-orange:hover {
-    background-color: orange;
+    background-color: rgb(201, 7, 249);
 }
 
 .btn-orange:active,
 .btn-orange.btn-active-simulated {
     transform:translate(3px);
-    box-shadow: 0 1px 0 0 #d57303;
+    box-shadow: 0 1px 0 0 #f917f5;
 }
 
 .btn-num {
-    background-color: black;
-    border: 2px solid orange;
-    box-shadow: 0 4px 0 0 #e77d04;
+    background-color: rgb(229, 55, 229);
+    border: 2px solid rgb(201, 7, 249);
+    box-shadow: 0 4px 0 0 #870190;
     transition: all 0.05s ease;
     cursor: pointer;
 }
 
 .btn-num:hover {
-    background-color: rgb(24, 23, 23);
+    background-color: rgb(238, 35, 163);
 }
 
 .btn-num:active,
 .btn-num.btn-active-simulated {
     transform: translateY(3px);
-    box-shadow: 0 1px 0 0 #e77d04;
+    box-shadow: 0 1px 0 0 #870190;
 }
 
 ::-webkit-scrollbar {
