@@ -19,7 +19,7 @@
                         },
                         colors: {
                             slateDark: '#0b0f19',
-                            cardDark: 'rba(22, 30, 49, 0.6)',
+                            cardDark: 'rgba(22, 30, 49, 0.6)',
                             accentIndigo: '#6366f1',
                         }
                     }
@@ -27,7 +27,7 @@
             }
         </script>
     </head>
-    <body class="bg-stateDark text-gray-100 flex flex-col min-h-full">
+    <body class="bg-slateDark text-gray-100 flex flex-col min-h-full">
         <header class="sticky top-0 z-40 w-full glass-panel border-b border-gray-800">
             <div class = "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
                 <a href="#" class="flex items-center space-x-3 group">
@@ -39,7 +39,7 @@
                     </span>
                 </a>
 
-                <button id="cart-trigger" class="relative p-2.5 rounded-xl bg-gray-900/60 border border-gray-800 text-gray-350 hover:text-white hover:border-gray-700 hover:gray-900/80 transition-all duration-200 group flex items-center gap-2">
+                <button id="cart-trigger" class="relative p-2.5 rounded-xl bg-gray-900/60 border border-gray-800 text-gray-350 hover:text-white hover:border-gray-700 hover:bg-gray-900/80 transition-all duration-200 group flex items-center gap-2">
                     <div class="relative">
                         <i data-lucide="shopping-cart" class="h-5 w-5 group-hover:scale-105 transition-transform duration-200"> </i>
                         <span id="cart-badge" class="absolute -top-3.5 -right-3.5 bg-gradient-rose text-white text-[10px] font-bold h-5 w-5 rounded-full items-center justify-center border-2 border-slateDark hidden animate-cart-bounce">
@@ -63,7 +63,7 @@
                             Discover the future of digital hardware.
                         </h1>
                         <p class="text-indigo-150 text-sm sm:text-base leading-relaxed text-gray-200/90">
-                            Handpicked premium gear, custom peripherals, and high-performance audio systems. built for creators and developers who dwmand visual and operational excellance.
+                            Handpicked premium gear, custom peripherals, and high-performance audio systems. built for creators and developers who demand visual and operational excellence.
                         </p>
                     </div>
                 </div>
@@ -82,28 +82,28 @@
                             <button data-category="all" class="px-4 py-2.5 rounded-xl text-xs font-semibold bg-indigo-600 text-white shadow-sm border border-indigo-500 transition-all duration-200">
                                 All
                             </button>
-                            <button data-category="audio" class="px-4 py-2.5 rounded-xl text-xs font-semibold bg-indigo-600 text-white shadow-sm border border-indigo-500 transition-all duration-200">
-                                Aaudio
+                            <button data-category="audio" class="px-4 py-2.5 rounded-xl text-xs font-semibold bg-gray-900/60 border border-gray-800 text-gray-400 hover:text-white hover:border-gray-700 transition-all duration-200">
+                                Audio
                             </button>
-                            <button data-category="wearables" class="px-4 py-2.5 rounded-xl text-xs font-semibold bg-indigo-600 text-white shadow-sm border border-indigo-500 transition-all duration-200">
-                                earables
+                            <button data-category="wearables" class="px-4 py-2.5 rounded-xl text-xs font-semibold bg-gray-900/60 border border-gray-800 text-gray-400 hover:text-white hover:border-gray-700 transition-all duration-200">
+                                Wearables
                             </button>
-                            <button data-category="accessories" class="px-4 py-2.5 rounded-xl text-xs font-semibold bg-indigo-600 text-white shadow-sm border border-indigo-500 transition-all duration-200">
-                                accessories
+                            <button data-category="accessories" class="px-4 py-2.5 rounded-xl text-xs font-semibold  bg-gray-900/60 border border-gray-800 text-gray-400 hover:text-white hover:border-gray-700 transition-all duration-200">
+                                Accessories
                             </button>
                         </div>
 
                         <div class="hidden sm:block h-6 w-px bg-gray-800"></div>
 
                         <div class="relative w-full sm:w-auto">
-                            <select id="sort-select" class="w-full sm:w-48 appeatance-none pl-4 pr-10 py-2.5 rounded-xl bg-gray-900/60 border border-gray-800 text-xs font-semiboldtext-gray-300 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all duration-200 cursor-pointer">
+                            <select id="sort-select" class="w-full sm:w-48 appearance-none pl-4 pr-10 py-2.5 rounded-xl bg-gray-900/60 border border-gray-800 text-xs font-semibold text-gray-300 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all duration-200 cursor-pointer">
                                 <option value="featured">Featured</option>
                                 <option value="price-low">Price: Low to High</option>
                                 <option value="price-high">Price: High to Low</option>
                                 <option value="rating">Top Rated</option>
                             </select>
                             <span class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-gray-400">
-                                <i data-lucide="chervon-down" class="h-4 w-4"></i>
+                                <i data-lucide="chevron-down" class="h-4 w-4"></i>
                             </span>
                         </div>
                     </div>
@@ -130,7 +130,7 @@
                             <i data-lucide="info" class="h-8 w-8"></i>
                         </div>
                         <h3 class="text-xl font-bold text-white">No products found</h3>
-                        <p class="text-gray-400 max-w-xs text-sm">We couldn't fint any products matching your search terms. Try refining your query or resetting filters.</p>
+                        <p class="text-gray-400 max-w-xs text-sm">We couldn't find any products matching your search terms. Try refining your query or resetting filters.</p>
                         <button id="reset-search-btn" class="px-5 py-2.5 bg-gray-800 text-white rounded-xl text-sm font-semibold hover:bg-gray-700 transition-colors">
                             Reset Filters
                         </button> 
@@ -141,7 +141,7 @@
         </main>
 
         <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
-            <div class="absoluteinset-0 overflow-hidden">
+            <div class="absolute inset-0 overflow-hidden">
                 <div id="cart-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity opacity-0 duration-300"></div>
 
                 <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
@@ -150,7 +150,7 @@
 
                             <div class="px-6 py-5 border-b border-gray-800 flex items-center justify-between">
                                 <h2 class="text-lg font-bold text-white flex items-center gap-2" id="slide-over-title">
-                                    <i data-lucide="shopping-cart" class="text-xs bg-indigo-400"></i> Your Cart
+                                    <i data-lucide="shopping-cart" class="h-5 w-5 text-indigo-400"></i> Your Cart
                                     <span id="cart-drawer-count" class="text-xs bg-indigo-950 text-indigo-300 font-semibold px-2 py-0.5 rounded-full border border-indigo-900">0 items</span>
                                 </h2>
                                 <button id="cart-close" class="p-2 rounded-lg hover:bg-gray-800 text-gray-400 hover:text-white transition-colors">
@@ -197,7 +197,7 @@
         <div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 pointer-events-none max-w-md w-full"></div>
 
         <footer class="mt-auto border-t border-gray-850 bg-gray-950/30 py-6">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-x-6 text-sm text-gray-450 mb-2">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-x-6 text-sm text-gray-400 mb-2">
                 <a href="#" class="hover:text-white transition-colors">Shop</a>
                 <a href="#" class="hover:text-white transition-colors">Support</a>
                 <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
