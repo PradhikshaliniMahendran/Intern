@@ -68,7 +68,7 @@ const checkoutBtn = document.getElementById("checkout-btn");
 const toastContainer = document.getElementById("toast-container");
 
 function saveCartState() {
-    localStorage.setItem("miniso_cart",JSON.stringify(cart));
+    localStorage.setItem("minisocart_cart",JSON.stringify(cart));
 }
 
 function showToast(message, type = 'success') {
@@ -82,17 +82,17 @@ function showToast(message, type = 'success') {
 
     if (type === 'error') {
         borderClass = 'border-red-500/30';
-        iconHtml = '<i data-lucid= "x-circle" class= "h-5 w-5 text-red-400 flex-shrink-0"></i>';
+        iconHtml = '<i data-lucide= "x-circle" class= "h-5 w-5 text-red-400 flex-shrink-0"></i>';
     } else if (type === 'info') {
         borderClass = 'border-blue-500/30';
-        iconHtml = '<i data-lucid= "info" class= "h-5 w-5 text-blue-400 flex-shrink-0"></i>';
+        iconHtml = '<i data-lucide= "info" class= "h-5 w-5 text-blue-400 flex-shrink-0"></i>';
     }
 
     toast.classList.add(borderClass);
     toast.innerHTML = `
     ${iconHtml}
-    <div class= "flex-grow text-sm font-medium text-gray-200>${message}</div>
-    <button class="text-gray-500 hover:text-white transition-colors" onClick="this.parentElement.remove()">
+    <div class= "flex-grow text-sm font-medium text-gray-200">${message}</div>
+    <button class="text-gray-500 hover:text-white transition-colors" onclick="this.parentElement.remove()">
         <i data-lucide="x" class="h-4 w-4"></i>
     `;
 
@@ -101,7 +101,7 @@ function showToast(message, type = 'success') {
 
     setTimeout (() => {
         toast.style.opacity = '0';
-        toast.style.transform = 'translateY(-10x) scale(0.95)';
+        toast.style.transform = 'translateY(-10px) scale(0.95)';
         toast.style.transition = 'all 0.3s ease-in-out';
         setTimeout(() => toast.remove(), 300);
     }, 3500);
@@ -112,7 +112,7 @@ function buildRatingStars(rating) {
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 >= 0.4;
 
-    for (let i = 1; 1 < 5; i++) {
+    for (let i = 1; 1 <= 5; i++) {
         if (i <= fullStars) {
             starsHtml += '<i data-lucide="star" class="h-3.5 w-3.5 fill-amber-400 text-amber-400"></i>';
         } else if (i === fullStars + 1 && hasHalfStar) {
@@ -161,14 +161,14 @@ function renderProducts() {
     }
 
     filteredProducts.forEach(product => {
-        const isAdded = cart.some(item.productId === product.id);
+        const isAdded = cart.some(item => item.productId === product.id);
         const cartQty = isAdded ? cart.find(item => item.productId === product.id).quantity : 0;
 
         const card = document.createElement("div");
         card.className = "glass-card rounded-2xl overflow-hidden p-4 flex flex-col justify-between group";
         card.innerHTML = `
-            <div class = "relative rounded-xl overflow-hidden bg-gray-900/40 border border-gray-800/40 aspect-[4/3] flex items-center justify-center p-4"
-                <img src = "${productimage}" alt="${product.title}" onerror="this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&auto=format&fit=crop&q=60'" class="max-h-full max-w-full object-contain transform group-hover:scale-105 transition-transform duration-300">
+            <div class = "relative rounded-xl overflow-hidden bg-gray-900/40 border border-gray-800/40 aspect-[4/3] flex items-center justify-center p-4">
+                <img src = "${product.image}" alt="${product.title}" onerror="this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&auto=format&fit=crop&q=60'" class="max-h-full max-w-full object-contain transform group-hover:scale-105 transition-transform duration-300">
                 <span class="absolute top-3 left-3 bg-gray-950/80 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold tracking-wider text-indigo-300 border border-indigo-900/60 uppercase">
                     ${product.category}
                 </span>
@@ -188,14 +188,14 @@ function renderProducts() {
                         ${product.title}
                     </h3>
 
-                    <p class="text-xs text-gray-400 leading-relaxed line-champ-2">
+                    <p class="text-xs text-gray-400 leading-relaxed line-clamp-2">
                         ${product.description}
                     </p>
                 </div>
 
                 <div class="flex items-center justify-between pt-4 mt-4 border-t border-gray-850">
                     <span class="text-lg font-extrabold text-white">
-                        $${product.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                        Rs${product.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2})}
                     </span>
 
                     ${isAdded ? `
@@ -203,7 +203,7 @@ function renderProducts() {
                             <button onclick= "updateCartQuantity('${product.id}', -1)" class="px-2.5 py-2 hover:bg-indigo-900/60 text-indigo-300 hover:text-white transition-colors">
                                 <i data-lucide="minus" class="h-3.5 w-3.5"></i>
                             </button>
-                            <span class="px-2 text-xs font-boldtext-white min-w-5 text-center">${cartQty}</span>
+                            <span class="px-2 text-xs font-bold text-white min-w-5 text-center">${cartQty}</span>
                             <button onclick="updateCartQuantity('${product.id}', 1)" class="px-2.5 py-2 hover:bg-indigo-900/60 text-indigo-300 hover:text-white transition-colors">
                                 <i data-lucide="plus" class="h-3.5 w-3.5"></i>
                             </button>
@@ -221,3 +221,159 @@ function renderProducts() {
 
     lucide.createIcons();
 }
+
+function renderCart() {
+    cartItemsContainer.innerHTML = "";
+
+    let itemsCount = 0;
+    let subtotal = 0;
+
+    if (cart.length === 0) {
+        cartItemsContainer.innerHTML = `
+            <div class="h-full flex flex-col items-center justify-center text-center space-y-4 py-16">
+                <div class="h-16 w-16 rounded-full bg-gray-900 border border-gray-850 flex items-center justify-center text-gray-500">
+                    <i data-lucide="shopping-cart" class="h-7 w-7"></i>
+                </div>
+                <div>
+                    <h4 class="text-base font-bold text-white">Your cart is empty</h4>
+                    <p class="text-gray-400 text-xs mt-1 max-w-[200px]">Add some products from our catalog to get started.</p>
+                </div>
+            </div>
+            `;
+
+            cartSubTotal.textContent = "Rs0.00";
+            cartTax.textContent = "Rs0.00";
+            cartTotal.textContent = "Rs0.00";
+            cartTotalNav.textContent = "Rs0.00";
+
+            cartBadge.textContent = "0";
+            cartBadge.classList.add("hidden");
+
+            checkoutBtn.disabled = true;
+            checkoutBtn.classList.add("opacity-50", "cursor-not-allowed");
+            clearCartBtn.classList.add("hidden");
+
+            lucide.createIcons();
+            return;
+    }
+
+    checkoutBtn.disabled = false;
+    checkoutBtn.classList.remove("opacity-50", "cursor-not-allowed");
+    clearCartBtn.classList.remove("hidden");
+
+    cart.forEach(item => {
+        const product = PRODUCTS.find(p => p.id === item.productId);
+        if (!product) return;
+
+        itemsCount += item.quantity;
+        const itemSubtotal = product.price * item.quantity;
+        subtotal += itemSubtotal;
+
+        const cartCard = document.createElement("div");
+        cartCard.className = "flex items-center gap-4 bg-gray-900/40 border border-850 p-3 rounded-xl";
+        cartCard.innerHTML = `
+            <div class= "h-16 w-16 bg-gray-950/60 border border-gray-800 rounded-lg flex-shrink-0 flex items-center justify-center p-2">
+                <img src = "${product.image}" alt="${product.title}" onerror="this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&auto=format&fit=crop&q=60'" class="max-h-full max-w-full object-contain">
+            </div>
+            
+            <div class="flex-grow min-w-0">
+                <div class="flex justify-between items-start">
+                    <h4 class="text-xs font-bold text-white truncate pr-2">${product.title}</h4>
+                    <button onclick="removeFromCart('${product.id}')" class="text-gray-500 hover:text-red-400 transition-colors p-0.5">
+                        <i data-lucide="trash-2" class="h-3.5 w-3.5"></i>
+                    </button>
+                </div>
+                
+                <p class="text-xs text-indigo-400 font-medium mt-0.5">
+                    Rs${product.price.toFixed(2)}
+                </p>
+                
+                <div class="flex items-center justify-between mt-2">
+                    <!-- Quantity buttons -->
+                    <div class="flex items-center bg-gray-950 border border-gray-850 rounded-lg overflow-hidden">
+                        <button onclick="updateCartQuantity('${product.id}', -1)" class="px-2 py-1 text-gray-400  hover:text-white hover:bg-gray-850 transition-all">
+                            <i data-lucide="minus" class="h-3 w-3"></i>
+                        </button>
+                        <span class="px-2 text-xs font-bold text-gray-200 text-center min-w-4">${item.quantity}</span>
+                        <button onclick="updateCartQuantity('${product.id}', 1)" class="px-2 py-1 text-gray-400  hover:text-white hover:bg-gray-850 transition-all">
+                            <i data-lucide="plus" class="h-3 w-3"></i>
+                        </button>
+                    </div>
+                    
+                    <span class="text-xs font-extrabold text-white">
+                        $${itemSubtotal.toFixed(2)}
+                    </span>
+                </div>
+            </div>
+        `;
+        cartItemsContainer.appendChild(cartCard);
+
+    });
+
+    let discountAmount = 0;
+    if (applidePromoCode === "MINISOCART10") {
+        discountAmount = subtotal * 0.10;
+        cartDiscount.textContent = `-$${discountAmount.toFixed(2)}`;
+        cartDrawerCount.classList.remove("hidden");
+    } else {
+        cartDrawerCount.classList.add("hidden");
+    }
+
+    const taxableSubtotal = Math.max(0, subtotal - discountAmount);
+    const taxAmount = taxableSubtotal * 0.08;
+    const finalTotal = taxableSubtotal + taxAmount;
+
+    cartSubTotal.textContent = `$${subtotal.toFixed(2)}`;
+    cartTax.textContent = `$${taxAmount.toFixed(2)}`;
+    cartTotal.textContent = `$${finalTotal.toFixed(2)}`;
+    cartTotalNav.textContent = `$${finalTotal.toFixed(2)}`;
+    cartDrawerCount.textContent = `${itemsCount} item${itemsCount !== 1 ? 's' : ''}`;
+
+    cartBadge.textContent = itemsCount;
+    cartBadge.classList.remove("hidden");
+
+    cartBadge.classList.remove("animate-cart-bounce");
+    void cartBadge.offsetWidth;
+    cartBadge.classList.add("animate-cart-bounce");
+
+    lucide.createIcons();
+}
+
+function addToCart(productId) {
+    const existingIndex = cart.findIndex(item => item.productId === productId);
+    const product = PRODUCTS.find(p => p.id === productId);
+
+    if (!product) return;
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += 1;
+    } else {
+        cart.push({productId, quantity: 1});
+    }
+
+    saveCartState();
+    renderProducts();
+    renderCart();
+
+    showToast(`Added <storage>${product.title}</storage> to cart!`, "success");
+ 
+}
+
+function updateCartQuantity(productId, delta) {
+    const itemIndex = cart.findIndex(item => item.productId === productId);
+    if (itemIndex === -1) return;
+
+    const newQty = cart[itemIndex].quantity + delta;
+
+    if (newQty <= 0) {
+        removeFromCart(productId);
+    } else {
+        cart[itemIndex].quantity = newQty;
+        saveCartState();
+        renderProducts();
+        renderCart();
+    }
+}
+
+
+
