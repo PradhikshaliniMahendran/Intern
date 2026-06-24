@@ -5,7 +5,7 @@ const PRODUCTS = [
         category: "audio",
         price: 4599.00,
         rating:4.5,
-        image:"images/headphone.jpg",
+        image:"images/headphone.png",
         description: "Experience studio-grade active noise cancelling, plush memory foam earcups, and up to 40 hours of high-fidelity wireless audio playback."
     },
     {
@@ -14,7 +14,7 @@ const PRODUCTS = [
         category: "wearables",
         price: 9999.00,
         rating:4.9,
-        image:"images/watch.jpg",
+        image:"images/watch.png",
         description: "Track your health with an advanced biosensor, high-resolution AMOLED display, customized workout modes, and a 14-day battery life."
     },
     {
@@ -23,7 +23,7 @@ const PRODUCTS = [
         category: "accessories",
         price: 7850.00,
         rating:4.1,
-        image:"images/keyboard.jpg",
+        image:"images/keyboard.png",
         description: "Premium hot-swappable mechanical switches, double-shot PBT keycaps, fully customizable RGB backlighting, and solid aluminium casing."
     },
     {
@@ -32,12 +32,12 @@ const PRODUCTS = [
         category: "audio",
         price: 12700.00,
         rating:4.0,
-        image:"images/speaker.jpg",
+        image:"images/speaker.png",
         description: "Rugged waterproof fabric mesh body, deep passive bass radiators, 360-degree room-filling sound, and an interactive glowing neon RGB light ring."
     }
 ];
 
-let cart = JSON.parse(localStorage.getItem("minisocart-cart")) || [];
+let cart = JSON.parse(localStorage.getItem("minisocart_cart")) || [];
 
 let currentCategoryFilter = "all";
 let currentSearchQuery = "";
@@ -66,6 +66,11 @@ const clearCartBtn = document.getElementById("clear-cart-btn");
 const checkoutBtn = document.getElementById("checkout-btn");
 
 const toastContainer = document.getElementById("toast-container");
+
+let applidePromoCode = "";
+const cartDiscount = document.getElementById("cart-discount") || {textContent: "", 
+    classList: {add: () => {}, remove: () => {}}
+};
 
 function saveCartState() {
     localStorage.setItem("minisocart_cart",JSON.stringify(cart));
@@ -112,7 +117,7 @@ function buildRatingStars(rating) {
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 >= 0.4;
 
-    for (let i = 1; 1 <= 5; i++) {
+    for (let i = 1; i <= 5; i++) {
         if (i <= fullStars) {
             starsHtml += '<i data-lucide="star" class="h-3.5 w-3.5 fill-amber-400 text-amber-400"></i>';
         } else if (i === fullStars + 1 && hasHalfStar) {
@@ -167,8 +172,8 @@ function renderProducts() {
         const card = document.createElement("div");
         card.className = "glass-card rounded-2xl overflow-hidden p-4 flex flex-col justify-between group";
         card.innerHTML = `
-            <div class = "relative rounded-xl overflow-hidden bg-gray-900/40 border border-gray-800/40 aspect-[4/3] flex items-center justify-center p-4">
-                <img src = "${product.image}" alt="${product.title}" onerror="this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&auto=format&fit=crop&q=60'" class="max-h-full max-w-full object-contain transform group-hover:scale-105 transition-transform duration-300">
+            <div class = "relative rounded-xl overflow-hidden bg-gray-900/40 border border-gray-800/40 aspect-[1/1] flex items-center justify-center ">
+                <img src = "${product.image}" alt="${product.title}" onerror="this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&auto=format&fit=crop&q=60'" class="h-full w-full object-cover transform group-hover:scale-105 transition-transform duration-300">
                 <span class="absolute top-3 left-3 bg-gray-950/80 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold tracking-wider text-indigo-300 border border-indigo-900/60 uppercase">
                     ${product.category}
                 </span>
@@ -301,7 +306,7 @@ function renderCart() {
                     </div>
                     
                     <span class="text-xs font-extrabold text-white">
-                        $${itemSubtotal.toFixed(2)}
+                        Rs${itemSubtotal.toFixed(2)}
                     </span>
                 </div>
             </div>
@@ -313,7 +318,7 @@ function renderCart() {
     let discountAmount = 0;
     if (applidePromoCode === "MINISOCART10") {
         discountAmount = subtotal * 0.10;
-        cartDiscount.textContent = `-$${discountAmount.toFixed(2)}`;
+        cartDiscount.textContent = `-Rs${discountAmount.toFixed(2)}`;
         cartDrawerCount.classList.remove("hidden");
     } else {
         cartDrawerCount.classList.add("hidden");
@@ -323,10 +328,10 @@ function renderCart() {
     const taxAmount = taxableSubtotal * 0.08;
     const finalTotal = taxableSubtotal + taxAmount;
 
-    cartSubTotal.textContent = `$${subtotal.toFixed(2)}`;
-    cartTax.textContent = `$${taxAmount.toFixed(2)}`;
-    cartTotal.textContent = `$${finalTotal.toFixed(2)}`;
-    cartTotalNav.textContent = `$${finalTotal.toFixed(2)}`;
+    cartSubTotal.textContent = `Rs${subtotal.toFixed(2)}`;
+    cartTax.textContent = `Rs${taxAmount.toFixed(2)}`;
+    cartTotal.textContent = `Rs${finalTotal.toFixed(2)}`;
+    cartTotalNav.textContent = `Rs${finalTotal.toFixed(2)}`;
     cartDrawerCount.textContent = `${itemsCount} item${itemsCount !== 1 ? 's' : ''}`;
 
     cartBadge.textContent = itemsCount;
@@ -355,7 +360,7 @@ function addToCart(productId) {
     renderProducts();
     renderCart();
 
-    showToast(`Added <storage>${product.title}</storage> to cart!`, "success");
+    showToast(`Added <strong>${product.title}</strong> to cart!`, "success");
  
 }
 
@@ -374,6 +379,125 @@ function updateCartQuantity(productId, delta) {
         renderCart();
     }
 }
+
+function removeFromCart(productId) {
+    const product = PRODUCTS.find(p => p.id === productId);
+    cart = cart.filter(item => item.productId !== productId);
+
+    saveCartState();
+    renderProducts();
+    renderCart();
+
+    if (product) {
+        showToast(`Removed <strong>${product.title}</strong> from cart`, "info");
+
+    }
+
+}
+
+function clearCart() {
+    if (cart.length === 0) return;
+    cart = [];
+    saveCartState();
+    renderProducts();
+    renderCart();
+    showToast("Cleared your shopping cart", "info");
+}
+
+function handleCheckout() {
+    if (cart.length === 0) return;
+
+    const checkoutSum = cartTotal.textContent;
+
+    cart = [];
+    saveCartState();
+
+    toggleCartDrawer(false);
+    renderProducts();
+    renderCart();
+
+    showToast(`Checkout successful! Thank you for purchasing. paid: ${checkoutSum}`, "success");
+}
+
+function toggleCartDrawer(isOpen) {
+    if (isOpen) {
+        cartDrawer.classList.remove("hidden");
+        setTimeout(() => {
+            cartBackdrop.classList.remove("opacity-0");
+            cartBackdrop.classList.add("opacity-100");
+            cartPanel.classList.remove("translate-x-full");
+            cartPanel.classList.add("translate-x-0");
+        }, 50);
+    } else {
+        cartBackdrop.classList.remove("opacity-100");
+        cartBackdrop.classList.add("opacity-0");
+        cartPanel.classList.remove("translate-x-0");
+        cartPanel.classList.add("translate-x-full");
+
+        setTimeout(() => {
+            cartDrawer.classList.add("hidden");
+        }, 300);
+    }
+}
+
+window.addToCart = addToCart;
+window.updateCartQuantity = updateCartQuantity;
+window.removeFromCart = removeFromCart;
+
+document.addEventListener("DOMContentLoaded", () => {
+    renderProducts();
+    renderCart();
+
+    cartTrigger.addEventListener("click", () => toggleCartDrawer(true));
+    cartClose.addEventListener("click", () => toggleCartDrawer(false));
+    cartBackdrop.addEventListener("click", () => toggleCartDrawer(false));
+
+    searchInput.addEventListener("input", (e) => {
+        currentSearchQuery = e.target.value;
+        renderProducts();
+    });
+
+    categoryFilters.addEventListener("click", (e) => {
+        const btn = e.target.closest("button");
+        if (!btn) return;
+
+        const buttons = categoryFilters.querySelectorAll("button");
+        buttons.forEach(b => {
+            b.className = "px-4 py-2.5 rounded-xl text-xs font-semibold bg-gray-900/60 border border-gray-800 text-gray-400 hover:text-white hover:border-gray-700 transition-all duration-200";
+        });
+
+        btn.className = "px-4 py-2.5 rounded-xl text-xs font-semibold bg-indigo-600 text-white shadow-sm border border-indigo-500 transition-all duration-200";
+
+        currentCategoryFilter = btn.dataset.category;
+        renderProducts();
+
+    });
+
+    sortSelect.addEventListener("change", (e) => {
+        currentSortOption = e.target.value;
+        renderProducts();
+    });
+
+    resetSearchBtn.addEventListener("click", () => {
+        searchInput.value = "";
+        currentSearchQuery = "";
+
+        const buttons = categoryFilters.querySelectorAll("button");
+        buttons.forEach(b => {
+            if (b.dataset.category === "all") {
+                b.className = "px-4 py-2.5 rounded-xl text-xs font-semibold bg-indigo-600 text-white shadow-sm border border-indigo-500 transition-all duration-200";
+            } else {
+                b.className = "px-4 py-2.5 rounded-xl text-xs font-semibold bg-gray-900/60 border border-gray-800 text-gray-400 hover:text-white hover:border-gray-700 transition-all duration-200";
+            }
+        });
+
+        currentCategoryFilter = "all";
+        renderProducts();
+    });
+
+    clearCartBtn.addEventListener("click", clearCart);
+    checkoutBtn.addEventListener("click", handleCheckout);
+});
 
 
 

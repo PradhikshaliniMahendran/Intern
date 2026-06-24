@@ -42,7 +42,7 @@
                 <button id="cart-trigger" class="relative p-2.5 rounded-xl bg-gray-900/60 border border-gray-800 text-gray-350 hover:text-white hover:border-gray-700 hover:bg-gray-900/80 transition-all duration-200 group flex items-center gap-2">
                     <div class="relative">
                         <i data-lucide="shopping-cart" class="h-5 w-5 group-hover:scale-105 transition-transform duration-200"> </i>
-                        <span id="cart-badge" class="absolute -top-3.5 -right-3.5 bg-gradient-rose text-white text-[10px] font-bold h-5 w-5 rounded-full items-center justify-center border-2 border-slateDark hidden animate-cart-bounce">
+                        <span id="cart-badge" class="absolute -top-3.5 -right-3.5 bg-gradient-rose text-white text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center border-2 border-slateDark hidden animate-cart-bounce">
                             0
                         </span>
                     </div>
@@ -54,7 +54,7 @@
         <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <section id="view-shop" class="space-y-8 animate-scale-up">
                 <div class="relative rounded-3xl overflow-hidden bg-gradient-indigo p-8 sm:p-12 shadow-2xl flex flex-col md:flex-row justify-between items-center gap-8">
-                    <div class="absolute inset-0 bg-[radial-gradient(ellipse-at-top-right, _var(--tw-gradient-stops))] from-indigo-400/20 via-indigo-900/10 to-transparent"></div>
+                    <div class="absolute inset-0 bg-[radial-gradient(ellipse-at-top-right,_var(--tw-gradient-stops))] from-indigo-400/20 via-indigo-900/10 to-transparent"></div>
                     <div class="relative z-10 max-w-xl space-y-4">
                         <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-white/10 text-indigo-200 border border-white/15">
                             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>Live Catalog
@@ -182,6 +182,10 @@
                                         <span id="cart-total" class="font-medium text-gray-200">Rs0.00</span>
                                     </div>
                                 </div>
+
+                                <button id="checkout-btn" class="w-full py-3.5 bg-gradient-indigo hover:opacity-95 text-white font-semibold text-sm rounded-xl shadow-lg shadow-indigo-500/20 flex items-center justify-center gap-2 transition-all">
+                                    <i data-lucide="credit-card" class="h-4 w-4"></i>Checkout
+                                </button>
 
                                 <button id="clear-cart-btn" class="w-full py-2.5 bg-gray-900/60 border border-gray-850 text-gray-400 hover:text-red-400 hover:border-red-900/40 hover:bg-red-950/10 text-xs font-semibold rounded-lg transition-all">
                                     Clear Cart
