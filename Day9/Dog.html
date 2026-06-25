@@ -28,21 +28,21 @@
         </script>
     </head>
     <body class="bg-slateDark text-gray-100 flex flex-col min-h-full">
-        <header class="sticky top-0 z-40 w-full glass-panel border-b border-gray-800">
+        <header class="sticky top-0 z-40 w-full glass-panel border-b border-orange-900/20">
             <div class = "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
                 <a href="#" class="flex items-center space-x-3 group">
                     <div class="h-10 w-10 rounded-xl bg-gradient-amber flex items-center justify-center shadow-lg shadow-amber-500/20 group-hover:scale-105 transition-transform duration-300">
-                        <i data-lucide="shopping-bag" class="h-5 w-5 text-white"></i>
+                        <i data-lucide="heart-handshake" class="h-5 w-5 text-white"></i>
                     </div>
                     <span class="text-2xl font-bold tracking-tight text-white">
                         Pet<span class="text-gradient">Cart</span>
                     </span>
                 </a>
 
-                <button id="cart-trigger" class="relative p-2.5 rounded-xl bg-gray-900/60 border border-gray-800 text-gray-350 hover:text-white hover:border-gray-700 hover:bg-gray-900/80 transition-all duration-200 group flex items-center gap-2">
+                <button id="cart-trigger" class="relative p-2.5 rounded-xl bg-gray-900/60 border border-amber-900/30 text-amber-200/80 hover:text-white hover:border-gray-700 hover:bg-gray-900/80 transition-all duration-200 group flex items-center gap-2">
                     <div class="relative">
-                        <i data-lucide="shopping-cart" class="h-5 w-5 group-hover:scale-105 transition-transform duration-200"> </i>
-                        <span id="cart-badge" class="absolute -top-3.5 -right-3.5 bg-gradient-rose text-white text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center border-2 border-slateDark animate-cart-bounce">
+                        <i data-lucide="heart-handshake" class="h-5 w-5 group-hover:scale-105 transition-transform duration-200"> </i>
+                        <span id="cart-badge" class="absolute -top-3.5 -right-3.5 bg-gradient-rose text-white text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center border-2 border-slateDark hidden animate-cart-bounce">
                             0
                         </span>
                     </div>
@@ -64,7 +64,7 @@
                         <h1 class="text-4xl sm:text-5xl font-extrabold text-white leading-tight">
                             Find your perfect canine companion.
                         </h1>
-                        <p class="text-amber-100/90 text-sm sm:text-base leading-relaxed text-gray-200/90">
+                        <p class="text-amber-100 text-sm sm:text-base leading-relaxed text-gray-200/90">
                             Find loyal breeds, puppies, and active companions looking for a loving home. Fully vaccinated and ready for adoption request.
                         </p>
                     </div>
@@ -73,10 +73,10 @@
                 <div class="glass-panel p-6 rounded-2xl flex flex-col lg:flex-row gap-4 justify-between items-stretch lg:items-center">
 
                     <div class="relative flex-grow max-w-md">
-                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-amber-400">
                             <i data-lucide="search" class="h-5 w-5"></i>
                         </span>
-                        <input type="text" id="search-input" placeholder="search breeds, size, temperament..." class="w-full pl-11 pr-4 py-3 rounded-xl bg-gray-900/60 border border-gray-800 text-sm text-white placeholder-gray-500 focus:border-amber-500 focus:ring-1 focus:ring-amber-500/80 transition-all duration-200">
+                        <input type="text" id="search-input" placeholder="search breeds, size, temperament..." class="w-full pl-11 pr-4 py-3 rounded-xl bg-gray-900/60 border border-amber-950/20 text-sm text-white placeholder-gray-500 focus:border-amber-500 focus:ring-1 focus:ring-amber-500/80 transition-all duration-200">
                     </div>
 
                     <div class="flex flex-wrap items-center gap-3">
@@ -84,13 +84,13 @@
                             <button data-category="all" class="px-4 py-2.5 rounded-xl text-xs font-semibold bg-amber-650 text-white shadow-sm border border-amber-500 transition-all duration-200">
                                 All Sizes
                             </button>
-                            <button data-category="small" class="px-4 py-2.5 rounded-xl text-xs font-semibold bg-gray-900/60 border border-gray-800 text-gray-400 hover:text-white hover:border-gray-700 transition-all duration-200">
+                            <button data-category="small" class="px-4 py-2.5 rounded-xl text-xs font-semibold bg-gray-900/60 border border-amber-900/30 text-amber-400 hover:text-white hover:border-gray-700 transition-all duration-200">
                                 Small
                             </button>
-                            <button data-category="medium" class="px-4 py-2.5 rounded-xl text-xs font-semibold bg-gray-900/60 border border-gray-800 text-gray-400 hover:text-white hover:border-gray-700 transition-all duration-200">
+                            <button data-category="medium" class="px-4 py-2.5 rounded-xl text-xs font-semibold bg-gray-900/60 border border-amber-900/30 text-amber-400 hover:text-white hover:border-gray-700 transition-all duration-200">
                                 Medium
                             </button>
-                            <button data-category="large" class="px-4 py-2.5 rounded-xl text-xs font-semibold  bg-gray-900/60 border border-gray-800 text-gray-400 hover:text-white hover:border-gray-700 transition-all duration-200">
+                            <button data-category="large" class="px-4 py-2.5 rounded-xl text-xs font-semibold  bg-gray-900/60 border border-amber-900/30 text-amber-400 hover:text-white hover:border-gray-700 transition-all duration-200">
                                 Large
                             </button>
                         </div>
@@ -104,7 +104,7 @@
                                 <option value="price-high">Price: High to Low</option>
                                 <option value="rating">Top Rated</option>
                             </select>
-                            <span class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-gray-400">
+                            <span class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-amber-400">
                                 <i data-lucide="chevron-down" class="h-4 w-4"></i>
                             </span>
                         </div>
@@ -132,8 +132,8 @@
                             <i data-lucide="info" class="h-8 w-8"></i>
                         </div>
                         <h3 class="text-xl font-bold text-white">No dogs found</h3>
-                        <p class="text-gray-400 max-w-xs text-sm">We couldn't find any dogs matching your search terms. Try refining your query or resetting filters.</p>
-                        <button id="reset-search-btn" class="px-5 py-2.5 bg-gray-800 text-white rounded-xl text-sm font-semibold hover:bg-gray-700 transition-colors">
+                        <p class="text-amber-400 max-w-xs text-sm">We couldn't find any dogs matching your search terms. Try refining your query or resetting filters.</p>
+                        <button id="reset-search-btn" class="px-5 py-2.5 bg-gray-800 text-white rounded-xl text-sm font-semibold hover:bg-amber-600 transition-colors">
                             Reset Filters
                         </button> 
                     </div>
@@ -150,12 +150,12 @@
                     <div id="cart-panel" class="pointer-events-auto w-screen max-w-md transform translate-x-full transition-transform duration-300 ease-in-out">
                         <div class="flex h-full flex-col bg-slateDark border-l border-gray-800 shadow-2xl">
 
-                            <div class="px-6 py-5 border-b border-gray-800 flex items-center justify-between">
+                            <div class="px-6 py-5 border-b border-orange-900/20 flex items-center justify-between">
                                 <h2 class="text-lg font-bold text-white flex items-center gap-2" id="slide-over-title">
                                     <i data-lucide="shopping-cart" class="h-5 w-5 text-amber-200"></i> Adoption Basket
                                     <span id="cart-drawer-count" class="text-xs bg-amber-950 text-amber-200 font-semibold px-2 py-0.5 rounded-full border border-amber-900">0 dogs</span>
                                 </h2>
-                                <button id="cart-close" class="p-2 rounded-lg hover:bg-gray-800 text-gray-400 hover:text-white transition-colors">
+                                <button id="cart-close" class="p-2 rounded-lg hover:bg-gray-800 text-amber-400 hover:text-white transition-colors">
                                     <i data-lucide="x" class="h-5 w-5"></i>
                                 </button>
                             </div>
@@ -166,7 +166,7 @@
 
                             <div class="border-t border-gray-800 bg-gray-950/40 p-6 space-y-4">
 
-                                <div class="space-y-2 text-xs text-gray-400">
+                                <div class="space-y-2 text-xs text-amber-400">
                                     <div class="flex justify-between">
                                         <span>Adoption Fee Subtotal</span>
                                         <span id="cart-subtotal" class="font-medium text-gray-200">Rs0.00</span>
@@ -177,9 +177,9 @@
                                     </div>
                                     <div class="flex justify-between">
                                         <span>Delivery/Pick up</span>
-                                        <span id="cart-shipping" class="font-medium text-gray-200">Free</span>
+                                        <span id="cart-shipping" class="font-medium text-gray-200">Free Pickup</span>
                                     </div>
-                                    <div class="flex justify-between text-base font-bold text-white pt-2 border-t border-gray-850">
+                                    <div class="flex justify-between text-base font-bold text-white pt-2 border-t border-amber-900/30">
                                         <span>Total Adoption Fee</span>
                                         <span id="cart-total" class="font-medium text-gray-200">Rs0.00</span>
                                     </div>
@@ -189,8 +189,8 @@
                                     <i data-lucide="heart-handshake" class="h-4 w-4"></i> Submit Request
                                 </button>
 
-                                <button id="clear-cart-btn" class="w-full py-2.5 bg-gray-900/60 border border-gray-850 text-gray-400 hover:text-red-400 hover:border-red-900/40 hover:bg-red-950/10 text-xs font-semibold rounded-lg transition-all">
-                                    Clear Cart
+                                <button id="clear-cart-btn" class="w-full py-2.5 bg-gray-900/60 border border-amber-900/30 text-amber-400 hover:text-red-400 hover:border-red-900/40 hover:bg-red-950/10 text-xs font-semibold rounded-lg transition-all">
+                                    Clear Request
                                 </button>
                             </div>
 
@@ -202,8 +202,8 @@
 
         <div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 pointer-events-none max-w-md w-full"></div>
 
-        <footer class="mt-auto border-t border-gray-850 bg-gray-950/30 py-6">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-x-6 text-sm text-gray-400 mb-2">
+        <footer class="mt-auto border-t border-amber-900/30 bg-gray-950/30 py-6">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-x-6 text-sm text-amber-400 mb-2">
                 <a href="#" class="hover:text-white transition-colors">Find Pets</a>
                 <a href="#" class="hover:text-white transition-colors">Guidelines</a>
                 <a href="#" class="hover:text-white transition-colors">Adoption Terms</a>

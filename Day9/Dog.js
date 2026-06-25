@@ -7,7 +7,7 @@ function saveCatalogState() {
 let cart = JSON.parse(localStorage.getItem("petcart_cart")) || [];
 
 let selectedProducts = [];
-let favouriteProducts = JSON.parse(localStorage.getItem("petcart-favourites")) || [];
+let favouriteProducts = JSON.parse(localStorage.getItem("petcart_favourites")) || [];
 
 let currentCategoryFilter = "all";
 let currentSearchQuery = "";
@@ -43,7 +43,11 @@ const cartDiscount = document.getElementById("cart-discount") || {textContent: "
 };
 
 function saveCartState() {
-    localStorage.setItem("minisocart_cart",JSON.stringify(cart));
+    localStorage.setItem("petcart_cart",JSON.stringify(cart));
+}
+
+function saveFavouritesState() {
+    localStorage.setItem("petcart_favourites", JSON.stringify(favouriteProducts));
 }
 
 function toggleSelectProduct(productId) {
@@ -55,7 +59,7 @@ function toggleSelectProduct(productId) {
         selectedProducts.push(productId);
         showToast("Dog breed selected", "success");
     }
-    renderProducts
+    renderProducts();
 }
 
 function toggleFavourite(productId) {
@@ -70,8 +74,8 @@ function toggleFavourite(productId) {
         favouriteProducts.push(productId);
         showToast(`Added <strong>${product.title}</strong> to favourites`, "success"); 
     }
-    saveCartState();
-    renderCart();
+    saveFavouritesState();
+    renderProducts();
 }
 
 function showToast(message, type = 'success') {
@@ -79,16 +83,16 @@ function showToast(message, type = 'success') {
     toast.className = `toast-enter flex items-center gap-3 p-4 rounded-xl shadow-xl border bg-gray-900 pointer-events-auto max-w-sm w-full`;
 
 
-    let borderClass = 'border-indigo-500/30';
-    let iconHtml = '<i data-lucide = "check-circle" class= "h-5 w-5 text-indigo-400 flex-shrink-0"></i>';
+    let borderClass = 'border-amber-500/30';
+    let iconHtml = '<i data-lucide = "check-circle" class= "h-5 w-5 text-amber-400 flex-shrink-0"></i>';
 
 
     if (type === 'error') {
         borderClass = 'border-red-500/30';
         iconHtml = '<i data-lucide= "x-circle" class= "h-5 w-5 text-red-400 flex-shrink-0"></i>';
     } else if (type === 'info') {
-        borderClass = 'border-blue-500/30';
-        iconHtml = '<i data-lucide= "info" class= "h-5 w-5 text-blue-400 flex-shrink-0"></i>';
+        borderClass = 'border-orange-500/30';
+        iconHtml = '<i data-lucide= "info" class= "h-5 w-5 text-orange-400 flex-shrink-0"></i>';
     }
 
     toast.classList.add(borderClass);
@@ -167,27 +171,54 @@ function renderProducts() {
         const isAdded = cart.some(item => item.productId === product.id);
         const cartQty = isAdded ? cart.find(item => item.productId === product.id).quantity : 0;
 
+        const isSelected = selectedProducts.includes(product.id);
+        const isFavourite = favouriteProducts.includes(product.id);
+        
         const card = document.createElement("div");
-        card.className = "glass-card rounded-2xl overflow-hidden p-4 flex flex-col justify-between group";
+        card.className = `glass-card rounded-2xl overflow-hidden p-4 flex flex-col justify-between group transition-all duration-300 ${isSelected ? 'ring-2 ring-amber-500/80 bg-amber-950/10' : '' }`;
         card.innerHTML = `
             <div class = "relative rounded-xl overflow-hidden bg-gray-900/40 border border-gray-800/40 aspect-[1/1] flex items-center justify-center ">
-                <img src = "${product.image}" alt="${product.title}" onerror="this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&auto=format&fit=crop&q=60'" class="h-full w-full object-cover transform group-hover:scale-105 transition-transform duration-300">
-                <span class="absolute top-3 left-3 bg-gray-950/80 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold tracking-wider text-indigo-300 border border-indigo-900/60 uppercase">
-                    ${product.category}
+                <div class= "absolute top-3 left-3 z-10 flex items-center justify-center">
+                    <input type= "checkbox" ${isSelected ? 'checked' : ''} onclick= "toggleSelectProduct('${product.id}')" class= "h-4.5 w-4.5 rounded border-gray-700 bg-gray-900 text-amber-600 focus:ring-amber-500 focus:ring-offset-gray-900 cursor-pointer accent-amber-550 transition-all duration-200">
+                </div>
+
+                <button onclick= "toggleFavourite('${product.id}')" class= "absolute top-3 right-3 p-2 rounded-xl bg-gray-950/80 backdrop-blur-md border border-gray-800/60  text-gray-400 hover:text-red-500 hover:scale-110 active:scale-95 transition-all duration-200 shadow-md">
+                    <i data-lucide= "heart" class="h-4 w-4 ${isFavourite ? 'fill-red-500 text-red-500' : ''}"></i>
+                </button>
+
+                <img src= "${product.image}" alt="${product.title}" onerror="this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&auto=format&fit=crop&q=60'" class= "w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+
+                <span class = "absolute bottom-3 left-3 bg-gray-950/80 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold tracking-wider text-amber-300 border border-amber-900/60 uppercase">
+                    ${product.category} Breed
                 </span>
             </div>
 
             <div class="mt-4 flex-grow flex flex-col justify-between">
                 <div class="space-y-2">
-                    <!-- Rating stars -->
-                    <div class="flex items-center gap-1.5 text-amber-400">
-                        <div class="flex items-center">
-                            ${buildRatingStars(product.rating)}
+                    <div class = "flex items-center justify-between">
+                        <!-- Rating stars -->
+                        <div class="flex items-center gap-1.5 text-amber-400">
+                            <div class="flex items-center">
+                                ${buildRatingStars(product.rating)}
+                            </div>
+                            <span class="text-xs text-gray-500 font-semibold">${product.rating.toFixed(1)}</span>
                         </div>
-                        <span class="text-xs text-gray-500 font-semibold">${product.rating.toFixed(1)}</span>
-                    </div>
 
-                    <h3 class="text-basr font-bold text-white group-hover:text-indigo-300 transition-colors line-clamp-1">
+                        <div>
+                            ${product.inStock ? `
+                                <span class = "inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-medium bg-emerald-950/60 text-emerald-400 border border-emerald-900/50">
+                                    <span class= "w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Available
+                                </span>
+                            ` : `
+                                <span class = "inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-medium bg-red-950/60 text-red-400 border border-red-900/50">
+                                    <span class= "w-1.5 h-1.5 rounded-full bg-red-400"></span>Adopted
+                                </span>
+                            `}
+                        </div>
+                    </div>
+                
+
+                    <h3 class="text-base font-bold text-white group-hover:text-amber-300 transition-colors line-clamp-1">
                         ${product.title}
                     </h3>
 
@@ -201,19 +232,24 @@ function renderProducts() {
                         Rs${product.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2})}
                     </span>
 
-                    ${isAdded ? `
-                        <div class="flex items-center bg-indigo-950/65 border border-indigo-900 rounded-xl overflow-hidden">
-                            <button onclick= "updateCartQuantity('${product.id}', -1)" class="px-2.5 py-2 hover:bg-indigo-900/60 text-indigo-300 hover:text-white transition-colors">
+                    ${!product.inStock ? `
+                        <button disabled class= " px-4 py-2.5 rounded-xl bg-gray-900/40 border border-gray-850 text-xs font-semibold text-gray-500 cursor-not-allowed opacity-50 flex items-center gap-1.5">
+                            Adopted
+                        </button>
+
+                    ` : isAdded ? `
+                        <div class="flex items-center bg-amber-950/65 border border-amber-900 rounded-xl overflow-hidden">
+                            <button onclick= "updateCartQuantity('${product.id}', -1)" class="px-2.5 py-2 hover:bg-amber-900/60 text-amber-300 hover:text-white transition-colors">
                                 <i data-lucide="minus" class="h-3.5 w-3.5"></i>
                             </button>
                             <span class="px-2 text-xs font-bold text-white min-w-5 text-center">${cartQty}</span>
-                            <button onclick="updateCartQuantity('${product.id}', 1)" class="px-2.5 py-2 hover:bg-indigo-900/60 text-indigo-300 hover:text-white transition-colors">
+                            <button onclick="updateCartQuantity('${product.id}', 1)" class="px-2.5 py-2 hover:bg-amber-900/60 text-amber-300 hover:text-white transition-colors">
                                 <i data-lucide="plus" class="h-3.5 w-3.5"></i>
                             </button>
                         </div>
                     ` : `
-                       <button onclick="addToCart('${product.id}')" class="px-4 py-2.5 rounded-xl bg-gray-900 border border-gray-800 text-xs font-semibold text-white hover:bg-indigo-600 hover:border-indigo-500 hover:shadow-lg hover:shadow-indigo-500/20 transition-all duration-200 flex items-center gap-1.5">
-                        <i data-lucide="plus" class="h-3.5 w-3.5"></i> Add to Cart
+                       <button onclick="addToCart('${product.id}')" class="px-4 py-2.5 rounded-xl bg-gray-900 border border-gray-800 text-xs font-semibold text-white hover:bg-amber-600 hover:border-amber-500 hover:shadow-lg hover:shadow-amber-500/20 transition-all duration-200 flex items-center gap-1.5">
+                        <i data-lucide="heart" class="h-3.5 w-3.5"></i> Adopt Me
                     </button>
                     `}
                 </div>
@@ -235,10 +271,10 @@ function renderCart() {
         cartItemsContainer.innerHTML = `
             <div class="h-full flex flex-col items-center justify-center text-center space-y-4 py-16">
                 <div class="h-16 w-16 rounded-full bg-gray-900 border border-gray-850 flex items-center justify-center text-gray-500">
-                    <i data-lucide="shopping-cart" class="h-7 w-7"></i>
+                    <i data-lucide="heart-handshake" class="h-7 w-7"></i>
                 </div>
                 <div>
-                    <h4 class="text-base font-bold text-white">Your cart is empty</h4>
+                    <h4 class="text-base font-bold text-white">Adoption basket is empty</h4>
                     <p class="text-gray-400 text-xs mt-1 max-w-[200px]">Add some products from our catalog to get started.</p>
                 </div>
             </div>
@@ -287,7 +323,7 @@ function renderCart() {
                     </button>
                 </div>
                 
-                <p class="text-xs text-indigo-400 font-medium mt-0.5">
+                <p class="text-xs text-amber-400 font-medium mt-0.5">
                     Rs${product.price.toFixed(2)}
                 </p>
                 
@@ -314,7 +350,7 @@ function renderCart() {
     });
 
     let discountAmount = 0;
-    if (applidePromoCode === "MINISOCART10") {
+    if (applidePromoCode === "PETCART10") {
         discountAmount = subtotal * 0.10;
         cartDiscount.textContent = `-Rs${discountAmount.toFixed(2)}`;
         cartDrawerCount.classList.remove("hidden");
@@ -358,7 +394,7 @@ function addToCart(productId) {
     renderProducts();
     renderCart();
 
-    showToast(`Added <strong>${product.title}</strong> to cart!`, "success");
+    showToast(`Added <strong>${product.title}</strong> to adoption basket!`, "success");
  
 }
 
@@ -387,7 +423,7 @@ function removeFromCart(productId) {
     renderCart();
 
     if (product) {
-        showToast(`Removed <strong>${product.title}</strong> from cart`, "info");
+        showToast(`Removed <strong>${product.title}</strong> from adoption basket`, "info");
 
     }
 
@@ -399,7 +435,7 @@ function clearCart() {
     saveCartState();
     renderProducts();
     renderCart();
-    showToast("Cleared your shopping cart", "info");
+    showToast("Cleared your adoption request list", "info");
 }
 
 function handleCheckout() {
@@ -414,7 +450,7 @@ function handleCheckout() {
     renderProducts();
     renderCart();
 
-    showToast(`Checkout successful! Thank you for purchasing. paid: ${checkoutSum}`, "success");
+    showToast(`Adoption request submitted successfully! Total pledge: ${checkoutSum}`, "success");
 }
 
 function toggleCartDrawer(isOpen) {
@@ -441,6 +477,8 @@ function toggleCartDrawer(isOpen) {
 window.addToCart = addToCart;
 window.updateCartQuantity = updateCartQuantity;
 window.removeFromCart = removeFromCart;
+window.toggleFavourite = toggleFavourite;
+window.toggleSelectProduct = toggleSelectProduct;
 
 document.addEventListener("DOMContentLoaded", () => {
     renderProducts();
@@ -464,7 +502,7 @@ document.addEventListener("DOMContentLoaded", () => {
             b.className = "px-4 py-2.5 rounded-xl text-xs font-semibold bg-gray-900/60 border border-gray-800 text-gray-400 hover:text-white hover:border-gray-700 transition-all duration-200";
         });
 
-        btn.className = "px-4 py-2.5 rounded-xl text-xs font-semibold bg-indigo-600 text-white shadow-sm border border-indigo-500 transition-all duration-200";
+        btn.className = "px-4 py-2.5 rounded-xl text-xs font-semibold bg-amber-600 text-white shadow-sm border border-amber-500 transition-all duration-200";
 
         currentCategoryFilter = btn.dataset.category;
         renderProducts();
@@ -483,7 +521,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const buttons = categoryFilters.querySelectorAll("button");
         buttons.forEach(b => {
             if (b.dataset.category === "all") {
-                b.className = "px-4 py-2.5 rounded-xl text-xs font-semibold bg-indigo-600 text-white shadow-sm border border-indigo-500 transition-all duration-200";
+                b.className = "px-4 py-2.5 rounded-xl text-xs font-semibold bg-amber-600 text-white shadow-sm border border-amber-500 transition-all duration-200";
             } else {
                 b.className = "px-4 py-2.5 rounded-xl text-xs font-semibold bg-gray-900/60 border border-gray-800 text-gray-400 hover:text-white hover:border-gray-700 transition-all duration-200";
             }
