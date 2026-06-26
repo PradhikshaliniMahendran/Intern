@@ -189,7 +189,7 @@ function renderProducts() {
                         <span class="text-xs text-gray-500 font-semibold">${product.rating.toFixed(1)}</span>
                     </div>
 
-                    <h3 class="text-basr font-bold text-white group-hover:text-indigo-300 transition-colors line-clamp-1">
+                    <h3 class="text-base font-bold text-white group-hover:text-indigo-300 transition-colors line-clamp-1">
                         ${product.title}
                     </h3>
 
@@ -202,22 +202,10 @@ function renderProducts() {
                     <span class="text-lg font-extrabold text-white">
                         Rs${product.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2})}
                     </span>
-
-                    ${isAdded ? `
-                        <div class="flex items-center bg-indigo-950/65 border border-indigo-900 rounded-xl overflow-hidden">
-                            <button onclick= "updateCartQuantity('${product.id}', -1)" class="px-2.5 py-2 hover:bg-indigo-900/60 text-indigo-300 hover:text-white transition-colors">
-                                <i data-lucide="minus" class="h-3.5 w-3.5"></i>
-                            </button>
-                            <span class="px-2 text-xs font-bold text-white min-w-5 text-center">${cartQty}</span>
-                            <button onclick="updateCartQuantity('${product.id}', 1)" class="px-2.5 py-2 hover:bg-indigo-900/60 text-indigo-300 hover:text-white transition-colors">
-                                <i data-lucide="plus" class="h-3.5 w-3.5"></i>
-                            </button>
-                        </div>
-                    ` : `
-                       <button onclick="addToCart('${product.id}')" class="px-4 py-2.5 rounded-xl bg-gray-900 border border-gray-800 text-xs font-semibold text-white hover:bg-indigo-600 hover:border-indigo-500 hover:shadow-lg hover:shadow-indigo-500/20 transition-all duration-200 flex items-center gap-1.5">
+                    <button onclick="addToCart('${product.id}')" class="px-4 py-2.5 rounded-xl bg-gray-900 border border-gray-800 text-xs font-semibold text-white hover:bg-indigo-600 hover:border-indigo-500 hover:shadow-lg hover:shadow-indigo-500/20 transition-all duration-200 flex items-center gap-1.5">
                         <i data-lucide="plus" class="h-3.5 w-3.5"></i> Add to Cart
                     </button>
-                    `}
+                    
                 </div>
             </div>
         `;
