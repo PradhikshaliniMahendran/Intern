@@ -7,7 +7,7 @@ function saveCatalogState() {
 let cart = JSON.parse(localStorage.getItem("petcart_cart")) || [];
 
 let selectedProducts = [];
-let favouriteProducts = JSON.parse(localStorage.getItem("petcart_favourites")) || [];
+let favoriteProducts = JSON.parse(localStorage.getItem("petcart_favorites")) || [];
 
 let currentCategoryFilter = "all";
 let currentSearchQuery = "";
@@ -46,8 +46,8 @@ function saveCartState() {
     localStorage.setItem("petcart_cart",JSON.stringify(cart));
 }
 
-function saveFavouritesState() {
-    localStorage.setItem("petcart_favourites", JSON.stringify(favouriteProducts));
+function saveFavoriteState() {
+    localStorage.setItem("petcart_favorites", JSON.stringify(favoriteProducts));
 }
 
 function toggleSelectProduct(productId) {
@@ -62,19 +62,19 @@ function toggleSelectProduct(productId) {
     renderProducts();
 }
 
-function toggleFavourite(productId) {
-    const index = favouriteProducts.indexOf(productId);
+function toggleFavorite(productId) {
+    const index = favoriteProducts.indexOf(productId);
     const product = PRODUCTS.find(p => p.id === productId);
     if (!product) return;
 
     if (index > -1) {
-        favouriteProducts.splice(index, 1);
-        showToast(`Removed <strong>${product.title}</strong> from favourites`, "info");
+        favoriteProducts.splice(index, 1);
+        showToast(`Removed <strong>${product.title}</strong> from favorites`, "info");
     } else {
-        favouriteProducts.push(productId);
-        showToast(`Added <strong>${product.title}</strong> to favourites`, "success"); 
+        favoriteProducts.push(productId);
+        showToast(`Added <strong>${product.title}</strong> to favorites`, "success"); 
     }
-    saveFavouritesState();
+    saveFavoriteState();
     renderProducts();
 }
 
@@ -101,6 +101,7 @@ function showToast(message, type = 'success') {
     <div class= "flex-grow text-sm font-medium text-gray-200">${message}</div>
     <button class="text-gray-500 hover:text-white transition-colors" onclick="this.parentElement.remove()">
         <i data-lucide="x" class="h-4 w-4"></i>
+    </button>
     `;
 
     toastContainer.appendChild(toast);
@@ -172,7 +173,7 @@ function renderProducts() {
         const cartQty = isAdded ? cart.find(item => item.productId === product.id).quantity : 0;
 
         const isSelected = selectedProducts.includes(product.id);
-        const isFavourite = favouriteProducts.includes(product.id);
+        const isFavorite = favoriteProducts.includes(product.id);
         
         const card = document.createElement("div");
         card.className = `glass-card rounded-2xl overflow-hidden p-4 flex flex-col justify-between group transition-all duration-300 ${isSelected ? 'ring-2 ring-amber-500/80 bg-amber-950/10' : '' }`;
@@ -182,8 +183,8 @@ function renderProducts() {
                     <input type= "checkbox" ${isSelected ? 'checked' : ''} onclick= "toggleSelectProduct('${product.id}')" class= "h-4.5 w-4.5 rounded border-gray-700 bg-gray-900 text-amber-600 focus:ring-amber-500 focus:ring-offset-gray-900 cursor-pointer accent-amber-550 transition-all duration-200">
                 </div>
 
-                <button onclick= "toggleFavourite('${product.id}')" class= "absolute top-3 right-3 p-2 rounded-xl bg-gray-950/80 backdrop-blur-md border border-gray-800/60  text-gray-400 hover:text-red-500 hover:scale-110 active:scale-95 transition-all duration-200 shadow-md">
-                    <i data-lucide= "heart" class="h-4 w-4 ${isFavourite ? 'fill-red-500 text-red-500' : ''}"></i>
+                <button onclick= "toggleFavorite('${product.id}')" class= "absolute top-3 right-3 z-10 p-2 rounded-xl bg-gray-950/80 backdrop-blur-md border border-gray-800/60  text-gray-400 hover:text-red-500 hover:scale-110 active:scale-95 transition-all duration-200 shadow-md">
+                    <i data-lucide= "heart" class="h-4 w-4 ${isFavorite ? 'fill-red-500 text-red-500' : ''}"></i>
                 </button>
 
                 <img src= "${product.image}" alt="${product.title}" onerror="this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&auto=format&fit=crop&q=60'" class= "w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
@@ -236,19 +237,9 @@ function renderProducts() {
                         <button disabled class= " px-4 py-2.5 rounded-xl bg-gray-900/40 border border-gray-850 text-xs font-semibold text-gray-500 cursor-not-allowed opacity-50 flex items-center gap-1.5">
                             Adopted
                         </button>
-
-                    ` : isAdded ? `
-                        <div class="flex items-center bg-amber-950/65 border border-amber-900 rounded-xl overflow-hidden">
-                            <button onclick= "updateCartQuantity('${product.id}', -1)" class="px-2.5 py-2 hover:bg-amber-900/60 text-amber-300 hover:text-white transition-colors">
-                                <i data-lucide="minus" class="h-3.5 w-3.5"></i>
-                            </button>
-                            <span class="px-2 text-xs font-bold text-white min-w-5 text-center">${cartQty}</span>
-                            <button onclick="updateCartQuantity('${product.id}', 1)" class="px-2.5 py-2 hover:bg-amber-900/60 text-amber-300 hover:text-white transition-colors">
-                                <i data-lucide="plus" class="h-3.5 w-3.5"></i>
-                            </button>
-                        </div>
                     ` : `
-                       <button onclick="addToCart('${product.id}')" class="px-4 py-2.5 rounded-xl bg-gray-900 border border-gray-800 text-xs font-semibold text-white hover:bg-amber-600 hover:border-amber-500 hover:shadow-lg hover:shadow-amber-500/20 transition-all duration-200 flex items-center gap-1.5">
+
+                    <button onclick="addToCart('${product.id}')" class="px-4 py-2.5 rounded-xl bg-gray-900 border border-gray-800 text-xs font-semibold text-white hover:bg-amber-600 hover:border-amber-500 hover:shadow-lg hover:shadow-amber-500/20 transition-all duration-200 flex items-center gap-1.5">
                         <i data-lucide="heart" class="h-3.5 w-3.5"></i> Adopt Me
                     </button>
                     `}
@@ -477,7 +468,7 @@ function toggleCartDrawer(isOpen) {
 window.addToCart = addToCart;
 window.updateCartQuantity = updateCartQuantity;
 window.removeFromCart = removeFromCart;
-window.toggleFavourite = toggleFavourite;
+window.toggleFavorite = toggleFavorite;
 window.toggleSelectProduct = toggleSelectProduct;
 
 document.addEventListener("DOMContentLoaded", () => {
