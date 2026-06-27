@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>LifeRed - Blood Donation Network</title>
+
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://unpkg.com/lucide@latest"></script>
+
+        <link rel="stylesheet" href="style.css">
+
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            brandRed: {
+                                50: '#fef2f2',
+                                100: '#fee2e2',
+                                200: '#fecaca',
+                                500: '#ef4444',
+                                600: '#dc2626',
+                                700: '#b91c1c',
+                            }
+                        }
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body class="bg-slate-50 text-slatw-900 flex flex-col min-h-full">
+
+        <header class="sticky top-0 z-40 w-full bg-white/80 backdrop-blur-md border-b border-slate-100 shadow-sm">
+            <div class = "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+                <a href="index.html" class="flex items-center space-x-3 group">
+                    <div class="h-10 w-10 rounded-xl bg-gradient-gradient-br from-brandRed-500 to-brandRed-700 flex items-center justify-center shadow-md shadow-brandRed-600/20">
+                        <i data-lucide="droplet" class="h-5 w-5 text-white fill-white"></i>
+                    </div>
+                    <span class="text-xl font-bold tracking-tight text-slate-900">
+                        Life<span class="text-gradient">Red</span>
+                    </span>
+                </a>
+
+                <nav class="flex space-x-3 sm:space-x-6 md:space-x-8 text-xs sm:text-sm font-medium text-slate-600">
+                    <a href="index.html" class="nav-link active text-branRed-600">Home</a>
+                    <a href="Donors.html" class="nav-link hover:text-slate-900">Find Donors</a>
+                    <a href="Register.html" class="nav-link  hover:text-slate-900">Register</a>
+                    <a href="Request.html" class="nav-link  hover:text-slate-900">Request</a>
+                </nav>
+            </div>
+        </header>
+
+        <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+            <section class="relative rounded-3xl overflow-hidden p-8 sm:p-16 bg-white border border-slate-100 shadow-sm flex flex-col md:flex-row items-center justify-between gap-8">
+                <div class="space-y-6 max-w-xl animate-fade-in">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brandRed-50 text-brandRed-600 border border-brandRed-100">
+                        <span class="w-2 h-2 rounded-full bg-brandRed-600 animate-ping"></span>Active Network
+                    </span>
+                    <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 leading-tight">
+                        Every Blood Donor is a <span class="text-brandRed-600">Life Save</span>
+                    </h1>
+                    <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                        Connect with real-time blood donors near your location, register yourself to save a life, or request blood for medical emergencies immediately.
+                    </p>
+                    <div class="flex flex-wrap gap-3 pt-2">
+                        <a href="Register.html" class="px-6 py-3 bg-brandRed-600 text-white rounded-xl text-sm font-semibold hover:bg-brandRed-700 shadow-lg shadow-brandRed-600/20 transition-all flex items-center gap-2">
+                            <i data-lucide="user-plus" class="h-4 w-4"></i>Become a Donor
+                        </a>
+                        <a href="Donors.html" class="px-6 py-3 bg-white border border-slate-200 text-slate-700 rounded-xl text-sm font-semibold hover:bg-brandRed-50 transition-all flex items-center gap-2">
+                            <i data-lucide="search" class="h-4 w-4"></i>Find Donors
+                        </a>
+                    </div>
+                </div>
+
+                <div class="w-full md:w-1/2 max-w-sm aspect-[4/3] bg-gradient-to-br from-brandRed-50 to-brandRed-100/50 rounded-2xl flex items-center justify-center border border-slate-100 relative overflow-hidden p-6">
+                    <div class="absolute inset-0 bg-[radial-gradient(circle-at-center,_var(--tw-gradient-stops))] from-white/40 via-transparent to-transparent"></div>
+                    <div class="text-center space-y-4 z-10">
+                        <div class="h-10 w-20 rounded-full bg-white flex items-center justify-center shadow-lg mx-auto text-brandRed-600">
+                            <i data-lucide="heart" class="h-10 w-10 fill-brandRed-500 animate-pulse"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg text-slate-900">Immediate Matchmaking</h4>
+                            <p class="text-xs text-slate-500 max-w-[240px] mx-auto mt-1">Connecting donors directly with patients without middlemen or agencies.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-2">
+                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Donors Registered</p>
+                    <h3 class="text-3xl font-extrabold text-slate-900">4,280+</h3>
+                    <p class="text-xs text-emerald-600 font-medium flex items-center gap-1">
+                        <i data-lucide="trending-up" class="h-3 w-3"></i>+12% this week
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-2">
+                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Active Requests</p>
+                    <h3 class="text-3xl font-extrabold text-brandRed-600">18</h3>
+                    <p class="text-xs text-emerald-600 font-medium flex items-center gap-1">
+                        <i data-lucide="trending-up" class="h-3 w-3"></i> Across 14 Districts
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-2">
+                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Partner Hospitals</p>
+                    <h3 class="text-3xl font-extrabold text-slate-900">85+</h3>
+                    <p class="text-xs text-slate-500">Emergency tie-ups</p>
+                </div>
+            </section>
+
+            <section class="space-y-6">
+                <div class="text-center max-w-lg mx-auto space-y-2">
+                    <h2 class="text-2xl font-bold text-slate-900">Compatible Blood Groups</h2>
+                    <p class="text-xs text-slate-500">Select your blood group to see who can receive from or donate to.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
+                    <div class="grid grid-cols-4 sm:grid-cols-8 gap-3" id="blood-selector">
+                        <button onclick="selectBloodCompatibility('O+')" class="py-4 text-center border border-slate-200 rounded-slate-200 rounded-xl hover:border-brandRed-500 hover:bg-brandRed-50 transition-all font-bold text-slate-800 focus:outline-none">O+</button>
+                        <button onclick="selectBloodCompatibility('O-')" class="py-4 text-center border border-slate-200 rounded-slate-200 rounded-xl hover:border-brandRed-500 hover:bg-brandRed-50 transition-all font-bold text-slate-800 focus:outline-none">O-</button>
+                        <button onclick="selectBloodCompatibility('A+')" class="py-4 text-center border border-slate-200 rounded-slate-200 rounded-xl hover:border-brandRed-500 hover:bg-brandRed-50 transition-all font-bold text-slate-800 focus:outline-none">A+</button>
+                        <button onclick="selectBloodCompatibility('A-')" class="py-4 text-center border border-slate-200 rounded-slate-200 rounded-xl hover:border-brandRed-500 hover:bg-brandRed-50 transition-all font-bold text-slate-800 focus:outline-none">A-</button>
+                        <button onclick="selectBloodCompatibility('B+')" class="py-4 text-center border border-slate-200 rounded-slate-200 rounded-xl hover:border-brandRed-500 hover:bg-brandRed-50 transition-all font-bold text-slate-800 focus:outline-none">B+</button>
+                        <button onclick="selectBloodCompatibility('B-')" class="py-4 text-center border border-slate-200 rounded-slate-200 rounded-xl hover:border-brandRed-500 hover:bg-brandRed-50 transition-all font-bold text-slate-800 focus:outline-none">B-</button>
+                        <button onclick="selectBloodCompatibility('AB+')" class="py-4 text-center border border-slate-200 rounded-slate-200 rounded-xl hover:border-brandRed-500 hover:bg-brandRed-50 transition-all font-bold text-slate-800 focus:outline-none">AB+</button>
+                        <button onclick="selectBloodCompatibility('AB-')" class="py-4 text-center border border-slate-200 rounded-slate-200 rounded-xl hover:border-brandRed-500 hover:bg-brandRed-50 transition-all font-bold text-slate-800 focus:outline-none">AB-</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm text-center space-y-4">
+                    <div class="h-12 w-12 rounded-xl bg-brandRed-50 text-brandRed-600 flex items-center justify-center mx-auto">
+                        <i data-lucide="user-check" class="h-6 w-6"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900">1. Register</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Fill out a simple form with your location and blood type to register as a potential donor.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm text-center space-y-4">
+                    <div class="h-12 w-12 rounded-xl bg-brandRed-50 text-brandRed-600 flex items-center justify-center mx-auto">
+                        <i data-lucide="search" class="h-6 w-6"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900">2. Match</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Patients or hospitals search matching blood groups in their city and request donors.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm text-center space-y-4">
+                    <div class="h-12 w-12 rounded-xl bg-brandRed-50 text-brandRed-600 flex items-center justify-center mx-auto">
+                        <i data-lucide="heart-pulse" class="h-6 w-6"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900">3. Save Lives</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Direct Communication and connection save crucial time during emergencies.</p>
+                </div>
+            </section>
+        </main>
+
+        <footer class="mt-auto border-t border-slate-100 bg-slate-100 py-6">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-x-6 text-sm text-slate-400 space-y-2">
+                <p>LifeRed Blood Donation Network &copy; 2026.</p>
+                <div class="space-x-3">
+                    <a href="index.html" class="hover:text-brandRed-600">Home</a>
+                    <span>•</span>
+                    <a href="Register.html" class="hover:text-brandRed-600">Register</a>
+                    <span>•</span>
+                    <a href="Request.html" class="hover:text-brandRed-600">Request Blood</a>
+                    <span>•</span>
+                    <a href="Donors.html" class="hover:text-brandRed-600">Find Donors</a>
+                    <span>•</span>
+                </div>
+            </div>
+        </footer>
+
+        <script src="app.js"></script>
+        <script>
+            lucide.createIcons();
+
+            const COMPATIBILITY = {
+                '0+': {give: 'O+, A+, AB+', get:'O+, O-'},
+                '0-': {give: 'Everyone', get:'O-'},
+                'A+': {give: 'A+, AB+', get:'A+, A-, O+, O-'},
+                'A-': {give: 'A+, A-, AB+, AB-', get:'A-, O-'},
+                'B+': {give: 'B+, AB+', get:'B+, B-, O+, O-'},
+                'B-': {give: 'B+, B-, AB+, AB-', get:'B-, O-'},
+                'AB+': {give: 'AB+', get:'Everyone'},
+                'AB-': {give: 'AB+, AB-', get:'AB-, A-, B-, O-'}
+            };
+
+            function selectBloodCompatibility(group) {
+                const buttons = document.querySelectorAll('#blood-selector button');
+                buttons.forEach(btn => {
+                    if (btn.textContent === group) {
+                        btn.className = "py-4 text-center border bg-brandRed-600 text-white rounded-xl font-bold text-lg focus:outline-none transition-all";
+                    } else {
+                         btn.className = "py-4 text-center border border-slate-200 rounded-xl hover:border-brandRed-500 hover:bg-brandRed-50 transition-all font-bold text-lg text-slate-800 focus:outline-none";
+                    }
+                });
+
+                const info = document.getElementById("compatibility-info");
+                const give = document.getElementById("can-donate-to");
+                const get = document.getElementById("can-receive-form");
+
+                give.textContent = COMPATIBILITY[group].give;
+                get.textContent = COMPATIBILITY[group].get;
+
+                info.classList.remove("hidden");
+            }
+        </script>
+    </body>

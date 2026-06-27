@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Become a Donor - LifeRed</title>
+
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://unpkg.com/lucide@latest"></script>
+
+        <link rel="stylesheet" href="style.css">
+
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            brandRed: {
+                                50: '#fef2f2',
+                                100: '#fee2e2',
+                                200: '#fecaca',
+                                500: '#ef4444',
+                                600: '#dc2626',
+                                700: '#b91c1c',
+                            }
+                        }
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body class="bg-slate-50 text-slatw-900 flex flex-col min-h-full">
+
+        <header class="sticky top-0 z-40 w-full bg-white/80 backdrop-blur-md border-b border-slate-100 shadow-sm">
+            <div class = "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+                <a href="index.html" class="flex items-center space-x-3 group">
+                    <div class="h-10 w-10 rounded-xl bg-gradient-gradient-br from-brandRed-500 to-brandRed-700 flex items-center justify-center shadow-md shadow-brandRed-600/20">
+                        <i data-lucide="droplet" class="h-5 w-5 text-white fill-white"></i>
+                    </div>
+                    <span class="text-xl font-bold tracking-tight text-slate-900">
+                        Life<span class="text-gradient">Red</span>
+                    </span>
+                </a>
+
+                <nav class="flex space-x-3 sm:space-x-6 md:space-x-8 text-xs sm:text-sm font-medium text-slate-600">
+                    <a href="index.html" class="nav-link active text-brandsRed-600">Home</a>
+                    <a href="donors.html" class="nav-link hover:text-slate-900">Find Donors</a>
+                    <a href="register.html" class="nav-link  hover:text-slate-900">Donors</a>
+                    <a href="request.html" class="nav-link  hover:text-slate-900">Request</a>
+                </nav>
+            </div>
+        </header>
+
+        <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+            <section class="w-full max-w-2xl  mx-auto p-6 sm:p-8 rounded-3xl border border-slate-100 shadow-sm space-y-6">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                        <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+                            <i data-lucide="user-plus" class="h-6 w-6 text-brandRed-600"></i>Register as a Blood Donor
+                        </h2>
+                        <span class="text-xs text-brandRed-600 bg-brandRed-50 px-2.5 py-1 rounded-full border border-brandRed-200 font-semibold uppercase tracking-wider">Registration Form</span>
+                    </div>
+
+                    <form id="donor-form" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" novalidate>
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-600">Full Name *</label>
+                            <input type="text" id="reg-name"required
+                                class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-brandRed-500 focus:ring-1 focus:ring-brandRed-500" placeholder="e.g. John Doe">
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-600">Blood Group *</label>
+                            <select id="reg-blood" required
+                                    class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-brandRed-500 focus:ring-1 focus:ring-brandRed-500">
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                            </select>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-600">Age * (Must be 18-65)</label>
+                            <input type="number" id="reg-age"required min="18" max="65"
+                                class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-brandRed-500 focus:ring-1 focus:ring-brandRed-500" placeholder="e.g. 25">
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-600">Gender *</label>
+                            <select id="reg-gender" required
+                                    class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-brandRed-500 focus:ring-1 focus:ring-brandRed-500">
+                                <option value="">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-600">Phone Number * (10 Digits)</label>
+                            <input type="number" id="reg-phone"required pattern="[0-9]{10}"
+                                class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-brandRed-500 focus:ring-1 focus:ring-brandRed-500" placeholder="e.g. 07x xxxx xxx">
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-600">City / Location *</label>
+                            <input type="text" id="reg-city"required 
+                                class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-brandRed-500 focus:ring-1 focus:ring-brandRed-500" placeholder="e.g. Colombo">
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-600">Last Blood Donation Date (if any)</label>
+                            <input type="date" id="reg-date"
+                                class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-brandRed-500 focus:ring-1 focus:ring-brandRed-500" placeholder="e.g. 25">
+                        </div>
+
+                        <div class="hidden md:block"></div>
+
+                        <div class="md:col-span-2 flex items-center gap-2 pt-2">
+                            <input type="checkbox" id="reg-declaration" required 
+                                class="mt-1 h-4 w-4  px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-brandRed-600 focus:ring-brandRed-500 cursor-pointer accent-brandRed-500 transition-all">
+                            <label for="reg-declaration" class="text-xs text-slate-500 leading-normal">
+                                I declare I am in good health, weight over 45 kg, have not had major surgery in the past 6 months, and have no blood-borne diseases. I consent to share my contact details for donation matching. *
+                            </label>
+                        </div>
+
+                        <div class="md:col-span-2 lg:col-span-3 flex justify-end gap-3 pt-4 border-t border-slate-100">
+                            <button type="button" id="reg-cancel" class="px-5 py-2.5 rounded-xl bg-slate-150 text-xs font-semibold text-slate-500 hover:text-slate-700 hover:bg-slate-200 border border-slate-200 transition-colors">
+                                clear Form
+                            </button>
+                            <button type="submit" class="px-6 py-2.5 rounded-xl bg-brandRed-600 text-xs font-semibold text-white hover:bg-brandRed-700 shadow-md shadow-brandRed-600/10 border border-brandRed-500 transition-colors">
+                                Submit Registration
+                            </button>
+                        </div>
+                    </form>
+            </section>
+        </main>
+
+        <footer class="mt-auto border-t border-slate-100 bg-slate-100 py-6">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-x-6 text-sm text-slate-400 space-y-2">
+                <p>LifeRed Blood Donation Network &copy; 2026.</p>
+                <div class="space-x-3">
+                    <a href="index.html" class="hover:text-brandRed-600">Home</a>
+                    <span>•</span>
+                    <a href="register.html" class="hover:text-brandRed-600">Register</a>
+                    <span>•</span>
+                    <a href="request.html" class="hover:text-brandRed-600">Request Blood</a>
+                    <span>•</span>
+                    <a href="donors.html" class="hover:text-brandRed-600">Find Donors</a>
+                    <span>•</span>
+                </div>
+            </div>
+        </footer>
+
+        <script src="app.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                lucide.createIcons();
+
+                const form = document.getElementById("donor-form");
+                const cancelBtn = document.getElementById("reg-cancel");
+
+                form.addEventListener("submit", (e) => {
+                    e.preventDefault();
+
+                    const name = document.getElementById("reg-name").value.trim();
+                    const blood = document.getElementById("reg-blood").value;
+                    const age = parseInt (document.getElementById("reg-age").value);
+                    const gender = document.getElementById("reg-gender").value;
+                    const phone = document.getElementById("reg-phone").value.trim();
+                    const city = document.getElementById("reg-city").value.trim();
+                    const date = document.getElementById("reg-date").value;
+                    const declareChecked = document.getElementById("reg-declaration").checked;
+
+                    let errors = [];
+
+                    if (!name) errors.push("Full Name is required.");
+                    if (!blood) errors.push("Please select a Blood Group.");
+                    if (isNaN(age) || age < 18 || age > 65) errors.push("Age must be between 18 and 65 years.");
+                    if (!gender) errors.push("Gender is required.");
+                    if (!/^[0-9]{10}$/.test(phone)) errors.push("Phone Number must be a valid 10-digit number.");
+                    if (!city) errors.push("City/Location is Required");
+                    if (!declareChecked) errors.push("You must declare you are in good health and accept the terms.");
+
+                    if (errors.length > 0) {
+                        errors.forEach(err => showToast(err, 'error'));
+                        return;
+                    }
+
+                    const newDonor = {
+                    id: "donor-" + (DONORS.length + 1) + "-" + Date.now(),
+                    name: name,
+                    bloodGroup: blood,
+                    city: city,
+                    phone: phone,
+                    lastDonated: date ? date : "Never",
+                    email: name.toLowerCase().replace(/\s+/g, '') + "@example.com"
+                    
+                };
+
+                DONORS.push(newDonor);
+                saveDonors();
+
+                showToast(`Conratulations <strong>${name}</strong>! Registered successfully as a donor!`, 'success');
+                form.reset();
+
+                });
+
+                cancelBtn.addEventListener("click", () => {
+                form.reset();
+                showToast("Form cleared", 'info');
+            });
+
+
+        });
+        </script>
+    </body>
+</html>
