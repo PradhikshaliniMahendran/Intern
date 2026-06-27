@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 addPetForm.reset();
                 uploadedImageBase64 = "";
-                showToast(`Successfully added <strong>${title}</strong> to catalog!`, "success");
+                showToast(`Successfully added <strong>${title}</strong> to catalog!`, 'success');
             });
 
         }
@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
             adminCancelBtn.addEventListener("click", () => {
                 addPetForm.reset();
                 uploadedImageBase64 = "";
-                showToast("Form cleared", "info");
+                showToast("Form cleared", 'info');
             });
         }
 });
