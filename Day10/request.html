@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Become a Donor - LifeRed</title>
+
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://unpkg.com/lucide@latest"></script>
+
+        <link rel="stylesheet" href="style.css">
+
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            brandRed: {
+                                50: '#fef2f2',
+                                100: '#fee2e2',
+                                200: '#fecaca',
+                                500: '#ef4444',
+                                600: '#dc2626',
+                                700: '#b91c1c',
+                            }
+                        }
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body class="bg-slate-50 text-slatw-900 flex flex-col min-h-full">
+
+        <header class="sticky top-0 z-40 w-full bg-white/80 backdrop-blur-md border-b border-slate-100 shadow-sm">
+                <div class = "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+                    <a href="index.html" class="flex items-center space-x-3 group">
+                        <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-brandRed-500 to-brandRed-700 flex items-center justify-center shadow-md shadow-brandRed-600/20">
+                            <i data-lucide="droplet" class="h-5 w-5 text-slate-900 fill-white"></i>
+                        </div>
+                        <span class="text-xl font-bold tracking-tight text-slate-900">
+                            Life<span class="text-gradient">Red</span>
+                        </span>
+                    </a>
+
+                    <nav class="flex space-x-3 sm:space-x-6 md:space-x-8 text-xs sm:text-sm font-medium text-slate-600">
+                        <a href="index.html" class="nav-link text-slate-900">Home</a>
+                        <a href="donors.html" class="nav-link active text-brandRed-600">Find Donors</a>
+                        <a href="register.html" class="nav-link  hover:text-slate-900">Donate</a>
+                        <a href="request.html" class="nav-link  hover:text-slate-900">Request</a>
+                    </nav>
+                </div>
+            </header>
+
+            <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+                <div class="grid grid-colos-1 lg:grid-cols gap-8">
+                    <div class="lg:col-span-2 bg-white p-6 sm:p-8 rounded-3xl border-slate-100 shadow-sm space-y-6">
+                        
+                    </div>
+                </div>

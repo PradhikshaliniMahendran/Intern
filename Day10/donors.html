@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Become a Donor - LifeRed</title>
+
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://unpkg.com/lucide@latest"></script>
+
+        <link rel="stylesheet" href="style.css">
+
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            brandRed: {
+                                50: '#fef2f2',
+                                100: '#fee2e2',
+                                200: '#fecaca',
+                                500: '#ef4444',
+                                600: '#dc2626',
+                                700: '#b91c1c',
+                            }
+                        }
+                    }
+                }
+            }
+        </script>
+    </head>
+
+    <body class="bg-slate-50 text-slate-900 flex flex-col min-h-full">
+
+    <header class="sticky top-0 z-40 w-full bg-white/80 backdrop-blur-md border-b border-slate-100 shadow-sm">
+            <div class = "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+                <a href="index.html" class="flex items-center space-x-3 group">
+                    <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-brandRed-500 to-brandRed-700 flex items-center justify-center shadow-md shadow-brandRed-600/20">
+                        <i data-lucide="droplet" class="h-5 w-5 text-slate-900 fill-white"></i>
+                    </div>
+                    <span class="text-xl font-bold tracking-tight text-slate-900">
+                        Life<span class="text-gradient">Red</span>
+                    </span>
+                </a>
+
+                <nav class="flex space-x-3 sm:space-x-6 md:space-x-8 text-xs sm:text-sm font-medium text-slate-600">
+                    <a href="index.html" class="nav-link text-slate-900">Home</a>
+                    <a href="donors.html" class="nav-link active text-brandRed-600">Find Donors</a>
+                    <a href="register.html" class="nav-link  hover:text-slate-900">Donors</a>
+                    <a href="request.html" class="nav-link  hover:text-slate-900">Request</a>
+                </nav>
+            </div>
+        </header>
+
+        <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+            <div class="space-y-2">
+                <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight">Search Blood Donors</h1>
+                <p class="text-sm text-slate-500">Filter donors by blood group, search by city to find instant compatibility mathches.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-6">
+                <div class="glass-panel p-6 rounded-2xl flex flex-col lg:flex-row gap-4 justify-between items-stretch lg:items-center">
+
+                        <div class="relative flex-grow max-w-md">
+                            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                                <i data-lucide="search" class="h-5 w-5"></i>
+                            </span>
+                            <input type="text" id="search-city" placeholder="search by city/location" class="w-full pl-11 pr-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 placeholder-slate-400 focus:border-brandRed-500 focus:ring-1 focus:ring-brandRed-500 transition-all">
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-2" id="blood-filters">
+                            <button data-group="all" class="px-4 py-2.5 rounded-xl text-xs font-semibold bg-brandRed-600 text-white shadow-sm border border-brandRed-500 transition-all">
+                                All Groups
+                            </button>
+                            <button data-group="O+" class="px-4 py-2.5 rounded-xl text-xs font-semibold bg-slate-50 border border-slate-200 text-slate-600 hover:text-slate-900 transition-all">O+</button>
+                            <button data-group="O-" class="px-4 py-2.5 rounded-xl text-xs font-semibold bg-slate-50 border border-slate-200 text-slate-600 hover:text-slate-900 transition-all">O-</button>
+                            <button data-group="A+" class="px-4 py-2.5 rounded-xl text-xs font-semibold bg-slate-50 border border-slate-200 text-slate-600 hover:text-slate-900 transition-all">A+</button>
+                            <button data-group="A-" class="px-4 py-2.5 rounded-xl text-xs font-semibold bg-slate-50 border border-slate-200 text-slate-600 hover:text-slate-900 transition-all">A-</button>
+                            <button data-group="B+" class="px-4 py-2.5 rounded-xl text-xs font-semibold bg-slate-50 border border-slate-200 text-slate-600 hover:text-slate-900 transition-all">B+</button>
+                            <button data-group="B-" class="px-4 py-2.5 rounded-xl text-xs font-semibold bg-slate-50 border border-slate-200 text-slate-600 hover:text-slate-900 transition-all">B-</button>
+                            <button data-group="AB+" class="px-4 py-2.5 rounded-xl text-xs font-semibold bg-slate-50 border border-slate-200 text-slate-600 hover:text-slate-900 transition-all">AB+</button>
+                            <button data-group="AB-" class="px-4 py-2.5 rounded-xl text-xs font-semibold bg-slate-50 border border-slate-200 text-slate-600 hover:text-slate-900 transition-all">AB-</button>
+                        </div>
+                    </div>
+            </div>
+                
+            <div id="donor-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            </div>
+            <div id="no-donors-view" class="hidden flex-col items-center justify-center py-16 px-4 text-center space-y-4 glass-panel rounded-2xl">
+                <div class="h-16 w-16 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-400">
+                    <i data-lucide="info" class="h-8 w-8 text-brandRed-600"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-950">No donors found</h3>
+                <p class="text-slate-500 max-w-xs text-sm">We couldn't find any donors matching your criteria. Try refining your query or resetting filters.</p>
+                <button onclick="resetFilters()" class="px-5 py-2.5 bg-slate-900 text-white rounded-xl text-sm font-semibold hover:bg-brandRed-600 transition-colors">
+                    Reset Filters
+                </button> 
+            </div>
+            
+        </main>
+
+        <footer class="mt-auto border-t border-slate-100 bg-slate-100 py-6">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-x-6 text-sm text-slate-400 space-y-2">
+                <p>LifeRed Blood Donation Network &copy; 2026.</p>
+                <div class="space-x-3">
+                    <a href="index.html" class="hover:text-brandRed-600">Home</a>
+                    <span>•</span>
+                    <a href="register.html" class="hover:text-brandRed-600">Register</a>
+                    <span>•</span>
+                    <a href="request.html" class="hover:text-brandRed-600">Request Blood</a>
+                    <span>•</span>
+                    <a href="donors.html" class="hover:text-brandRed-600">Find Donors</a>
+                    <span>•</span>
+                </div>
+            </div>
+        </footer>
+
+        <script src="app.js"></script>
+
+        <script>
+            let selectedGroup = "all";
+            let searchQuery = "";
+
+            const donorGrid = document.getElementById("donor-grid");
+            const noDonorsView = document.getElementById("no-donors-view");
+            const searchInput = document.getElementById("search-city");
+            const filterContainer = document.getElementById("blood-filters");
+
+            document.addEventListener("DOMContentLoaded", () => {
+                renderDonorsList();
+
+                searchInput.addEventListener("input", (e) => {
+                    searchQuery = e.target.value.toLowerCase().trim();
+                    renderDonorsList();
+                });
+
+
+                filterContainer.addEventListener("click", (e) => {
+                    const btn = e.target.closest("button");
+                    if (!btn) return;
+
+                    filterContainer.querySelectorAll("button").forEach(b => {
+                        b.className = "px-4 py-2.5 rounded-xl text-xs font-semibold bg-slate-50 border border-slate-200 text-slate-600 hover:text-white transition-all";
+                    });
+
+                    btn.className = "px-4 py-2.5 rounded-xl text-xs font-semibold bg-brandRed-600 text-white shadow-sm border border-brandRed-500 transition-all";
+
+                    selectedGroup = btn.dataset.group;
+                    renderDonorsList();
+
+                });
+
+                lucide.createIcons();
+
+
+
+            });
+
+            function renderDonorsList() {
+                donorGrid.innerHTML = "";
+
+                let filtered = DONORS.filter(donor => {
+                    const matcheGroup = selectedGroup === "all" || donor.bloodGroup === selectedGroup;
+                    const matcheSearch = donor.city.toLowerCase().includes(searchQuery) || donor.name.toLowerCase().includes(searchQuery);
+                    return matcheGroup && matcheSearch;
+                });
+
+                if (filtered.length === 0) {
+                    donorGrid.classList.add("hidden");
+                    noDonorsView.classList.remove("hidden");
+                    noDonorsView.classList.add("flex");
+                    return;
+                } 
+                donorGrid.classList.remove("hidden");
+                noDonorsView.classList.remove("flex");
+                noDonorsView.classList.add("hidden");
+
+                filtered.forEach(donor => {
+                    const card = document.createElement("div");
+                    card.className = "bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between space-y-4 hover:shadow-md transition-all";
+                    card.innerHTML = `
+                        <div class = "flex items-start justify-between">
+                            <div class="space-y-1">
+                                <h3 class="font-bold text-slate-950 text-base">${donor.name}</h3>
+
+                                <p class="text-xs text-slate-400 flex items-center">
+                                    <i data-lucide="map-pin" class="h-3.5 w-3.5 text-slate-400"></i> ${donor.city}
+                                </p>
+                            </div>
+                            <span class="h-10 w-10 rounded-xl bg-brandRed-50 border border-brandRed-100 flex items-center justify-center font-bold text-brandRed-600 text-sm">
+                                ${donor.bloodGroup}
+                            </span>
+                        </div>
+
+                        <div class= "pt-2 border-t border-slate-100 space-y-1.5 text-xs text-slate-500">
+                            <p class="flex items-center justify-between">
+                                <span>Last Donated:</span>
+                                <span class="font-semibold text-slate-700">${donor.lastDonated ? donor.lastDonated : 'Never'}</span>
+                            </p>
+                            <p class="flex items-center justify-between">
+                                <span>Status:</span>
+                                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium bg-emerald-50 text-emerald-600 border border-emerald-100">
+                                    Available
+                                </span>
+                            </p>
+                        </div>
+
+                        <div class="flex gap-2 pt-2">
+                            <button onclick="contactDonor('${donor.name}', 'call', '${donor.phone}')" class="flex-1 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50 flex items-center justify-center gap-1.5">
+                                <i data-lucide="phone" class="h-3.5 w-3.5 text-slate-400"></i>Call
+                            </button>
+                            <button onclick="contactDonor('${donor.name}', 'Email', '${donor.email}')" class="flex-1 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50 flex items-center justify-center gap-1.5">
+                                <i data-lucide="mail" class="h-3.5 w-3.5"></i>Email
+                            </button>
+                        </div>
+
+                    `;
+                    donorGrid.appendChild(card);
+
+                });
+
+                lucide.createIcons();
+                
+            }
+
+            function contactDonor(name, action, detail) {
+                showToast
+                (`Initiating contact with <strong>${name} </strong> via ${action} (${detail}).`, 'info');
+            }
+
+            function resetFilters(){
+                selectedGroup = "all";
+                searchQuery = "";
+                searchInput.value = "";
+
+                filterContainer.querySelectorAll("button").forEach(b => {
+                    if (b.dataset.group === "all") {
+                        b.className = "px-4 py-2.5 rounded-xl text-xs font-semibold bg-brandRed-600 text-white shadow-sm border border-brandRed-500 transition-all";
+                    } else {
+                        b.className = "px-4 py-2.5 rounded-xl text-xs font-semibold bg-slate-50 border border-slate-200 text-slate-600 hover:text-slate-900 transition-all";
+                    }
+                });
+                renderDonorsList();
+            }
+        </script>
+    </body>
+</html>
+                
