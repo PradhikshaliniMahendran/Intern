@@ -46,7 +46,7 @@
                         <a href="index.html" class="nav-link text-slate-900">Home</a>
                         <a href="donors.html" class="nav-link  hover:text-slate-900">Find Donors</a>
                         <a href="register.html" class="nav-link  hover:text-slate-900">Donate</a>
-                        <a href="request.html" class="nav-link active text-brandRed-600">Request</a>
+                        <a href="request.html" class="nav-link hover:text-slate-900">Request</a>
                         <a href="admin.html" class="nav-link active text-brandRed-600">Admin</a>
                     </nav>
                 </div>
@@ -69,7 +69,7 @@
                     <h3 id="stat-requests" class="text-3xl font-extrabold text-slate-900">0</h3>
                 </div>
                 <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-1">
-                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Registred Volunteers</p>
+                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Registered Volunteers</p>
                     <h3 id="stat-users" class="text-3xl font-extrabold text-slate-900">0</h3>
                 </div>
             </div>
@@ -78,11 +78,11 @@
                 <div class="flex justify-between items-center">
                     <div class="space-y-1">
                         <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
-                            <i data-lucide="sheild-check" class="h-6 w-6 text-brandRed-600"></i>Volunteer Staff Directory
+                            <i data-lucide="shield-check" class="h-6 w-6 text-brandRed-600"></i>Volunteer Staff Directory
                         </h2>
                         <p class="text-xs text-slate-400">Manage volunteer staff rosters, change role sccess controls, or toggle status values.</p>
                     </div>
-                    <button onclick="opeAddModal()" class="px-4 py-2.5 bg-brandRed-600 text-white rounded-xl text-xs font-semibold hover:bg-brandRed-700 shadow-sm transition-colors flex items-center gap-1.5">
+                    <button onclick="openAddModal()" class="px-4 py-2.5 bg-brandRed-600 text-white rounded-xl text-xs font-semibold hover:bg-brandRed-700 shadow-sm transition-colors flex items-center gap-1.5">
                         <i data-lucide="plus-circle" class="h-4 w-4"></i> Add Volunteer
                     </button>
                 </div>
@@ -110,7 +110,7 @@
         </main>
 
         <div id="user-modal" class="fixed inset-0 z-50 hidden bg-black/40 items-center justify-center p-4">
-            <div class="bg-white rounded-3xl p-6 max-w-full border border-slate-100 shadow-lg space-lg space-y-4 animate-fade-in">
+            <div class="bg-white rounded-3xl p-6 max-w-md w-full border border-slate-100 shadow-lg space-lg space-y-4 animate-fade-in">
                 <h3 id="user-modal-title" class="font-bold text-lg text-slate-900">Register Staff / Volunteer</h3>
 
                 <form id="user-form" class="space-y-4">

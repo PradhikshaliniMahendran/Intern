@@ -1,5 +1,5 @@
 let DONORS = JSON.parse(localStorage.getItem("blood_donors")) || [];
-let REQUESTS = JSON.parse(localStorage.getItem("blood-requests")) || [];
+let REQUESTS = JSON.parse(localStorage.getItem("blood_requests")) || [];
 
 function saveDonors() {
     localStorage.setItem("blood_donors",JSON.stringify(DONORS));
@@ -19,20 +19,20 @@ function showToast(message, type = 'success') {
     }
 
     const toast = document.createElement("div");
-    toast.className = `flex items-center gap-3 p-4 rounded-xl shadow-lg border bg-white textslate-800 pointer-events-auto max-w-sm w-full transition-all duration-300 transform translate-y-2 opacity-0`;
+    toast.className = `flex items-center gap-3 p-4 rounded-xl shadow-lg border bg-white text-slate-800 pointer-events-auto max-w-sm w-full transition-all duration-300 transform translate-y-2 opacity-0`;
 
     let borderClass = 'border-emerald-200 bg-emerald-50/50';
-    let iconHtml = '<i data-lucide = "check-circle" class= "h-5 w-5 text-emerald-600 flex-shrink-0"></i>';
+    let iconHtml = '<i data-lucide="check-circle" class= "h-5 w-5 text-emerald-600 flex-shrink-0"></i>';
 
     if (type === 'error') {
         borderClass = 'border-red-200 bg-red-50/50';
         iconHtml = '<i data-lucide = "x-circle" class= "h-5 w-5 text-red-600 flex-shrink-0"></i>';
     } else if (type === 'info') {
         borderClass = 'border-blue-200 bg-blue-50/50';
-        iconHtml = '<i data-lucide = "x-circle" class= "h-5 w-5 text-blue-600 flex-shrink-0"></i>';
+        iconHtml = '<i data-lucide = "info" class= "h-5 w-5 text-blue-600 flex-shrink-0"></i>';
     }
 
-    toast.className += `${borderClass}`;
+    toast.className += ` ${borderClass}`;
     toast.innerHTML = `
         ${iconHtml}
         <div class = "flex-grow text-sm font-medium">${message}</div>

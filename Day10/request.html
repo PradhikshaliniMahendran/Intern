@@ -207,7 +207,7 @@
                     const patient = document.getElementById("req-patient").value.trim();
                     const blood = document.getElementById("req-blood").value;
                     const units = parseInt (document.getElementById("req-units").value);
-                    const urgeny = document.getElementById("req-urgency").value;
+                    const urgency = document.getElementById("req-urgency").value;
                     const hospital = document.getElementById("req-hospital").value.trim();
                     const city = document.getElementById("req-city").value.trim();
                     const phone = document.getElementById("req-phone").value.trim();
@@ -215,7 +215,7 @@
 
                     let errors = [];
 
-                    if (!name) errors.push("Patient Name is required.");
+                    if (!patient) errors.push("Patient Name is required.");
                     if (!blood) errors.push("Please select a Blood Group.");
                     if (isNaN(units) || units < 1 ) errors.push("Units required must be at least 1 bag.");
                     if (!hospital) errors.push("Hospital name is required.");
@@ -237,7 +237,7 @@
                     units: units,
                     hospital: hospital,
                     reason: reason,
-                    urgeny: urgeny,
+                    urgency: urgency,
                     dateSubmitted: new Date().toLocaleDateString()
                     
                 };
@@ -292,12 +292,12 @@
                         </thead>
                         <tbody class="divide-y divide-slate-100">
                             ${REQUESTS.map(req => {
-                                let badgeColor = "bg-blue-50 ext-blue-600 border-blue-100";
+                                let badgeColor = "bg-blue-50 text-blue-600 border-blue-100";
                                 let animClass = "";
-                                if (req.urgeny === "Critical") {
+                                if (req.urgency === "Critical") {
                                     badgeColor = "bg-red-50 text-red-600 border-red-100 font-bold";
                                     animClass = "animate-pulse-red";
-                                } else if (req.urgeny === "Urgent"){
+                                } else if (req.urgency === "Urgent"){
                                     badgeColor = "bg-amber-50 text-amber-600 border-amber-100";
                                 }
 

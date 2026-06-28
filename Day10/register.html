@@ -29,7 +29,7 @@
             }
         </script>
     </head>
-    <body class="bg-slate-50 text-slatw-900 flex flex-col min-h-full">
+    <body class="bg-slate-50 text-slate-900 flex flex-col min-h-full">
 
         <header class="sticky top-0 z-40 w-full bg-white/80 backdrop-blur-md border-b border-slate-100 shadow-sm">
             <div class = "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
@@ -43,11 +43,11 @@
                 </a>
 
                 <nav class="flex space-x-3 sm:space-x-6 md:space-x-8 text-xs sm:text-sm font-medium text-slate-600">
-                    <a href="index.html" class="nav-link active text-brandsRed-600">Home</a>
+                    <a href="index.html" class="nav-link  hover:text-slate-900">Home</a>
                     <a href="donors.html" class="nav-link hover:text-slate-900">Find Donors</a>
-                    <a href="register.html" class="nav-link  hover:text-slate-900">Donors</a>
+                    <a href="register.html" class="nav-link active text-brandRed-600">Donate</a>
                     <a href="request.html" class="nav-link  hover:text-slate-900">Request</a>
-                    <a href="admin.html" class="nav-link active text-brandRed-600">Admin</a>
+                    <a href="admin.html" class="nav-link  text-slate-900">Admin</a>
                 </nav>
             </div>
         </header>
@@ -205,7 +205,7 @@
                 DONORS.push(newDonor);
                 saveDonors();
 
-                showToast(`Conratulations <strong>${name}</strong>! Registered successfully as a donor!`, 'success');
+                showToast(`Congratulations <strong>${name}</strong>! Registered successfully as a donor!`, 'success');
                 form.reset();
 
                 });
