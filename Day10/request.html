@@ -29,13 +29,13 @@
             }
         </script>
     </head>
-    <body class="bg-slate-50 text-slatw-900 flex flex-col min-h-full">
+    <body class="bg-slate-50 text-slate-900 flex flex-col min-h-full">
 
         <header class="sticky top-0 z-40 w-full bg-white/80 backdrop-blur-md border-b border-slate-100 shadow-sm">
                 <div class = "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
                     <a href="index.html" class="flex items-center space-x-3 group">
                         <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-brandRed-500 to-brandRed-700 flex items-center justify-center shadow-md shadow-brandRed-600/20">
-                            <i data-lucide="droplet" class="h-5 w-5 text-slate-900 fill-white"></i>
+                            <i data-lucide="droplet" class="h-5 w-5 text-white fill-white"></i>
                         </div>
                         <span class="text-xl font-bold tracking-tight text-slate-900">
                             Life<span class="text-gradient">Red</span>
@@ -44,17 +44,301 @@
 
                     <nav class="flex space-x-3 sm:space-x-6 md:space-x-8 text-xs sm:text-sm font-medium text-slate-600">
                         <a href="index.html" class="nav-link text-slate-900">Home</a>
-                        <a href="donors.html" class="nav-link active text-brandRed-600">Find Donors</a>
+                        <a href="donors.html" class="nav-link  hover:text-slate-900">Find Donors</a>
                         <a href="register.html" class="nav-link  hover:text-slate-900">Donate</a>
-                        <a href="request.html" class="nav-link  hover:text-slate-900">Request</a>
+                        <a href="request.html" class="nav-link active text-brandRed-600">Request</a>
+                        <a href="admin.html" class="nav-link active text-brandRed-600">Admin</a>
                     </nav>
                 </div>
             </header>
 
             <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
 
-                <div class="grid grid-colos-1 lg:grid-cols gap-8">
-                    <div class="lg:col-span-2 bg-white p-6 sm:p-8 rounded-3xl border-slate-100 shadow-sm space-y-6">
-                        
-                    </div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-2 bg-white p-6 sm:p-8 rounded-3xl border border-slate-100 shadow-sm space-y-6">
+                        <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                            <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+                                <i data-lucide="heart-plus" class="h-6 w-6 text-brandRed-600"></i>Request Blood Donation
+                            </h2>
+                            <span class="text-xs text-brandRed-600 bg-brandRed-50 px-2.5 py-1 rounded-full border border-brandRed-200 font-semibold uppercase tracking-wider">Emergency Form</span>
+                        </div>
+                    
+                        <form id="request-form" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" novalidate>
+
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-600">Patient Name *</label>
+                            <input type="text" id="req-patient" required
+                                   class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-brandRed-500 focus:ring-1 focus:ring-brandRed-500 transition-colors" placeholder="e.g. John Doe">
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-600">Blood Group Needed *</label>
+                            <select id="req-blood" required
+                                    class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-brandRed-500 focus:ring-1 focus:ring-brandRed-500 transition-colors">
+                                <option value="">Select Blood Group</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                            </select>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-600">Required Units * (Bags)</label>
+                            <input type="number" id="req-units" required min="1" max="10"
+                                class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-brandRed-500 focus:ring-1 focus:ring-brandRed-500 transition-colors" placeholder="e.g. 2">
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-600">Urgency Level *</label>
+                            <select id="req-urgency" required
+                                    class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-brandRed-500 focus:ring-1 focus:ring-brandRed-500 cursor-pointer transition-colors">
+                                <option value="Normal">Normal</option>
+                                <option value="Urgent">Urgent</option>
+                                <option value="Critical">Critical</option>
+                            </select>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-600">Hospital Name *</label>
+                            <input type="text" id="req-hospital" required
+                                   class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-brandRed-500 focus:ring-1 focus:ring-brandRed-500" placeholder="e.g. Nawaloka Hospital, Colombo">
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-600">City / Location *</label>
+                            <input type="text" id="req-city"required 
+                                class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-brandRed-500 focus:ring-1 focus:ring-brandRed-500 transition-colors" placeholder="e.g. Colombo">
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-600">Contact Number * (10 Digits)</label>
+                            <input type="number" id="reg-phone"required pattern="[0-9]{10}"
+                                class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-brandRed-500 focus:ring-1 focus:ring-brandRed-500 transition-colors" placeholder="e.g. 07x xxxx xxx">
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-slate-600">Reason / Medical Condition</label>
+                            <textarea id="req-reason" rows="2" required 
+                                class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-brandRed-500 focus:ring-1 focus:ring-brandRed-500" placeholder="e.g. Emergency surgery, Thalasemia transfution..."></textarea>
+                        </div>
+
+                        <div class="md:col-span-2 lg:col-span-3 flex justify-end gap-3 pt-4 border-t border-slate-100">
+                            <button type="button" id="req-cancel" class="px-5 py-2.5 rounded-xl bg-slate-150 text-xs font-semibold text-slate-500 hover:text-slate-700 hover:bg-slate-200 border border-slate-200 transition-colors">
+                                clear Form
+                            </button>
+                            <button type="submit" class="px-6 py-2.5 rounded-xl bg-brandRed-600 text-xs font-semibold text-white hover:bg-brandRed-700 shadow-md shadow-brandRed-600/10 border border-brandRed-500 transition-colors">
+                                Submit Request
+                            </button>
+                        </div>
+                    </form>
                 </div>
+
+                <div class="bg-gradient-to-br from-brandRed-50 to-white p-6 rounded-3xl border border-brandRed-100/50 shadow-sm space-y-4 h-fit">
+                    <div class="h-10 w-10 rounded-xl bg-brandRed-600 flex items-center justify-center text-white">
+                        <i data-lucide="alert-triangle" class="h-5 w-5"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900">Urgency Guidelines</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Please submit blood requests only for **genuine medical requirements**. Once submitted, matching donors in our city will receive an alert.
+                    </p>
+
+                    <div class="space-y-2 pt-2">
+                        <span class="flex items-center gap-2 text-xs font-semibold text-slate-700">
+                            <span class="h-2 w-2 rounded-full bg-red-600 animate-ping"></span> Critical: Needs matching within 2 hours.
+                        </span>
+                        <span class="flex items-center gap-2 text-xs font-semibold text-slate-700">
+                            <span class="h-2 w-2 rounded-full bg-amber-500 animate-ping"></span> Urgent: Required within 12-24 hours.
+                        </span>
+                        <span class="flex items-center gap-2 text-xs font-semibold text-slate-700">
+                            <span class="h-2 w-2 rounded-full bg-blue-500 animate-ping"></span> Normal: Planned surgeries or routine requirements.
+                        </span>
+                    </div>
+                </div>  
+            </div>
+
+            <section class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-100 shadow-sm space-y-6">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+                        <i data-lucide="activity" class="h-6 w-6 text-brandRed-600"></i> Active Blood Requests 
+                    </h2>
+                    <span id="requests-count" class="text-xs text-brandRed-600 bg-brandRed-50 px-2.5 py-1 rounded-full border border-brandRed-200 font-semibold"></span>
+                </div>
+
+                <div id="requests-table-container">
+
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="mt-auto border-t border-slate-100 bg-slate-100 py-6">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-x-6 text-sm text-slate-400 space-y-2">
+                <p>LifeRed Blood Donation Network &copy; 2026.</p>
+                <div class="space-x-3">
+                    <a href="index.html" class="hover:text-brandRed-600">Home</a>
+                    <span>•</span>
+                    <a href="register.html" class="hover:text-brandRed-600">Register</a>
+                    <span>•</span>
+                    <a href="request.html" class="hover:text-brandRed-600">Request Blood</a>
+                    <span>•</span>
+                    <a href="donors.html" class="hover:text-brandRed-600">Find Donors</a>
+                    <span>•</span>
+                </div>
+            </div>
+        </footer>
+
+        <script src="app.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                lucide.createIcons();
+                renderRequestsTable();
+
+                const form = document.getElementById("request-form");
+                const cancelBtn = document.getElementById("req-cancel");
+
+                form.addEventListener("submit", (e) => {
+                    e.preventDefault();
+
+                    const patient = document.getElementById("req-patient").value.trim();
+                    const blood = document.getElementById("req-blood").value;
+                    const units = parseInt (document.getElementById("req-units").value);
+                    const urgeny = document.getElementById("req-urgency").value;
+                    const hospital = document.getElementById("req-hospital").value.trim();
+                    const city = document.getElementById("req-city").value.trim();
+                    const phone = document.getElementById("req-phone").value.trim();
+                    const reason = document.getElementById("req-reason").value.trim();
+
+                    let errors = [];
+
+                    if (!name) errors.push("Patient Name is required.");
+                    if (!blood) errors.push("Please select a Blood Group.");
+                    if (isNaN(units) || units < 1 ) errors.push("Units required must be at least 1 bag.");
+                    if (!hospital) errors.push("Hospital name is required.");
+                    if (!/^[0-9]{10}$/.test(phone)) errors.push("Phone Number must be a valid 10-digit number.");
+                    if (!city) errors.push("City/Location is Required");
+                    if (!reason) errors.push("Reason or medical condition is required.");
+
+                    if (errors.length > 0) {
+                        errors.forEach(err => showToast(err, 'error'));
+                        return;
+                    }
+
+                    const newRequest = {
+                    id: "req-" + (REQUESTS.length + 1) + "-" + Date.now(),
+                    patient: patient,
+                    bloodGroup: blood,
+                    city: city,
+                    phone: phone,
+                    units: units,
+                    hospital: hospital,
+                    reason: reason,
+                    urgeny: urgeny,
+                    dateSubmitted: new Date().toLocaleDateString()
+                    
+                };
+
+                REQUESTS.push(newRequest);
+                saveRequests();
+
+                showToast(`Emergency request for <strong>${patient}</strong> (${blood}) submitted successfully!`, 'success');
+                form.reset();
+                renderRequestsTable();
+
+                });
+
+                cancelBtn.addEventListener("click", () => {
+                form.reset();
+                showToast("Form cleared", 'info');
+            });
+        });
+
+        function renderRequestsTable() {
+            const container = document.getElementById("requests-table-container");
+            const countBadge = document.getElementById("request-count");
+            if (!container) return;
+
+            countBadge.textContent = `${REQUESTS.length} requests${REQUESTS.length !== 1 ? 's' : ''}`;
+
+            if (REQUESTS.length === 0) {
+                container.innerHTML = `
+                    <div class = "flex flex-col items-center justify-center py-12 text-center space-y-3">
+                        <div class = "h-14 w-14 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-between text-slate-400">
+                            <i data-lucide= "activity" class="h-7 w-7 text-brandRed-600"></i>
+                        </div>
+                        <p class="text-slate-500 text-sm">No blood requests active right now. </p>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            container.innerHTML = `
+                <div class= "overflow-x-auto rounded-xl border border-slate-100">
+                    <table class= "w-full text-sm">
+                        <thead>
+                            <tr class="bg-slate-50 text-left border-b border-slate-200">
+                                <th class="px-4 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Patient Name</th>
+                                <th class="px-4 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Blood Need</th>
+                                <th class="px-4 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Qty / Hospital</th>
+                                <th class="px-4 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Urgency</th>
+                                <th class="px-4 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Date</th>
+                                <th class="px-4 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wider text-right">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            ${REQUESTS.map(req => {
+                                let badgeColor = "bg-blue-50 ext-blue-600 border-blue-100";
+                                let animClass = "";
+                                if (req.urgeny === "Critical") {
+                                    badgeColor = "bg-red-50 text-red-600 border-red-100 font-bold";
+                                    animClass = "animate-pulse-red";
+                                } else if (req.urgeny === "Urgent"){
+                                    badgeColor = "bg-amber-50 text-amber-600 border-amber-100";
+                                }
+
+                                return `
+                                    <tr class= "hover:bg-slate-50/50 transition-colors">
+                                        <td class = "px-4 py-3 font-semibold text-slate-900">${req.patient}</td>
+                                        <td class="px-4 py-3">
+                                            <span class="inline-flex items-center justify-center h-8 w-8 rounded-lg bg-brandRed-50 textbrandRed-600 border border-brandred-100 font-bold text-xs">
+                                                ${req.bloodGroup}
+                                            </span>
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            <p class= "font-medium text-slate-700 text-xs">${req.units} Units </p>
+                                            <p class= "text-[10px] text-slate-400">${req.hospital}, ${req.city}</p>
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-semibold border ${badgeColor} ${animClass}">
+                                                ${req.urgency}
+                                            </span>
+                                        </td>
+                                        <td class = "px-4 py-3 text-xs text-slate-500">${req.patient}</td>
+                                        <td class="px-4 py-3 text-right">
+                                            <button onclick="respondToRequest('${req.patient}', '${req.phone}')" class="px-3.5 py-1.5 bg-brandRed-600 hover:bg-brandRed-700 text-white rounded-lg text-xs font-semibold shadow-md shadow-brandRed-600/10 transition-colors">
+                                                Donate
+                                            </button>
+                                        </td>
+                                    </tr>
+                                `;
+                            }).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        function respondToRequest(name, phone) {
+            showToast(`Contacting request handler for <strong>${name}</strong> at ${phone}. Thank you!`, 'success');
+        }
+        
+        window.respondToRequest = respondToRequest;
+        </script>
+    </body>
+</html>

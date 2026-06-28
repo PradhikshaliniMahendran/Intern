@@ -34,7 +34,7 @@
         <header class="sticky top-0 z-40 w-full bg-white/80 backdrop-blur-md border-b border-slate-100 shadow-sm">
             <div class = "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
                 <a href="index.html" class="flex items-center space-x-3 group">
-                    <div class="h-10 w-10 rounded-xl bg-gradient-gradient-br from-brandRed-500 to-brandRed-700 flex items-center justify-center shadow-md shadow-brandRed-600/20">
+                    <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-brandRed-500 to-brandRed-700 flex items-center justify-center shadow-md shadow-brandRed-600/20">
                         <i data-lucide="droplet" class="h-5 w-5 text-white fill-white"></i>
                     </div>
                     <span class="text-xl font-bold tracking-tight text-slate-900">
@@ -47,6 +47,7 @@
                     <a href="donors.html" class="nav-link hover:text-slate-900">Find Donors</a>
                     <a href="register.html" class="nav-link  hover:text-slate-900">Donors</a>
                     <a href="request.html" class="nav-link  hover:text-slate-900">Request</a>
+                    <a href="admin.html" class="nav-link active text-brandRed-600">Admin</a>
                 </nav>
             </div>
         </header>
@@ -84,7 +85,7 @@
 
                         <div class="space-y-1.5">
                             <label class="text-xs font-semibold text-slate-600">Age * (Must be 18-65)</label>
-                            <input type="number" id="reg-age"required min="18" max="65"
+                            <input type="number" id="reg-age" required min="18" max="65"
                                 class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-brandRed-500 focus:ring-1 focus:ring-brandRed-500" placeholder="e.g. 25">
                         </div>
 
@@ -101,13 +102,13 @@
 
                         <div class="space-y-1.5">
                             <label class="text-xs font-semibold text-slate-600">Phone Number * (10 Digits)</label>
-                            <input type="number" id="reg-phone"required pattern="[0-9]{10}"
+                            <input type="number" id="reg-phone" required pattern="[0-9]{10}"
                                 class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-brandRed-500 focus:ring-1 focus:ring-brandRed-500" placeholder="e.g. 07x xxxx xxx">
                         </div>
 
                         <div class="space-y-1.5">
                             <label class="text-xs font-semibold text-slate-600">City / Location *</label>
-                            <input type="text" id="reg-city"required 
+                            <input type="text" id="reg-city" required 
                                 class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-brandRed-500 focus:ring-1 focus:ring-brandRed-500" placeholder="e.g. Colombo">
                         </div>
 

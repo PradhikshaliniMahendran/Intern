@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Become a Donor - LifeRed</title>
+
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://unpkg.com/lucide@latest"></script>
+
+        <link rel="stylesheet" href="style.css">
+
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            brandRed: {
+                                50: '#fef2f2',
+                                100: '#fee2e2',
+                                200: '#fecaca',
+                                500: '#ef4444',
+                                600: '#dc2626',
+                                700: '#b91c1c',
+                            }
+                        }
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body class="bg-slate-50 text-slate-900 flex flex-col min-h-full">
+
+        <header class="sticky top-0 z-40 w-full bg-white/80 backdrop-blur-md border-b border-slate-100 shadow-sm">
+                <div class = "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+                    <a href="index.html" class="flex items-center space-x-3 group">
+                        <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-brandRed-500 to-brandRed-700 flex items-center justify-center shadow-md shadow-brandRed-600/20">
+                            <i data-lucide="droplet" class="h-5 w-5 text-white fill-white"></i>
+                        </div>
+                        <span class="text-xl font-bold tracking-tight text-slate-900">
+                            Life<span class="text-gradient">Red</span>
+                        </span>
+                    </a>
+
+                    <nav class="flex space-x-3 sm:space-x-6 md:space-x-8 text-xs sm:text-sm font-medium text-slate-600">
+                        <a href="index.html" class="nav-link text-slate-900">Home</a>
+                        <a href="donors.html" class="nav-link  hover:text-slate-900">Find Donors</a>
+                        <a href="register.html" class="nav-link  hover:text-slate-900">Donate</a>
+                        <a href="request.html" class="nav-link active text-brandRed-600">Request</a>
+                        <a href="admin.html" class="nav-link active text-brandRed-600">Admin</a>
+                    </nav>
+                </div>
+        </header>
+
+        <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+            <div class="space-y-2">
+                <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight">Admin Portal</h1>
+                <p class="text-sm text-slate-500">Monitor donation networks and manage database directories.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-1">
+                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Total Donors</p>
+                    <h3 id="stat-donors" class="text-3xl font-extrabold text-slate-900">0</h3>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-1">
+                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Active Requests</p>
+                    <h3 id="stat-requests" class="text-3xl font-extrabold text-slate-900">0</h3>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-1">
+                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Registred Volunteers</p>
+                    <h3 id="stat-users" class="text-3xl font-extrabold text-slate-900">0</h3>
+                </div>
+            </div>
+
+            <section class="space-y-6">
+                <div class="flex justify-between items-center">
+                    <div class="space-y-1">
+                        <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+                            <i data-lucide="sheild-check" class="h-6 w-6 text-brandRed-600"></i>Volunteer Staff Directory
+                        </h2>
+                        <p class="text-xs text-slate-400">Manage volunteer staff rosters, change role sccess controls, or toggle status values.</p>
+                    </div>
+                    <button onclick="opeAddModal()" class="px-4 py-2.5 bg-brandRed-600 text-white rounded-xl text-xs font-semibold hover:bg-brandRed-700 shadow-sm transition-colors flex items-center gap-1.5">
+                        <i data-lucide="plus-circle" class="h-4 w-4"></i> Add Volunteer
+                    </button>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-left">
+                            <thead class="bg-slate-50 border-b border-slate-200 text-xs text-slate-500 uppercase font-semibold">
+                                <tr>
+                                    <th class="px-6 py-3.5">Volunteer Name</th>
+                                    <th class="px-6 py-3.5">Email Address</th>
+                                    <th class="px-6 py-3.5">Assigned City</th>
+                                    <th class="px-6 py-3.5">Role</th>
+                                    <th class="px-6 py-3.5">Status</th>
+                                    <th class="px-6 py-3.5 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="users-tbody" class="divide-y divide-slate-100">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <div id="user-modal" class="fixed inset-0 z-50 hidden bg-black/40 items-center justify-center p-4">
+            <div class="bg-white rounded-3xl p-6 max-w-full border border-slate-100 shadow-lg space-lg space-y-4 animate-fade-in">
+                <h3 id="user-modal-title" class="font-bold text-lg text-slate-900">Register Staff / Volunteer</h3>
+
+                <form id="user-form" class="space-y-4">
+                    <div class="space-y-1">
+                        <label class="text-xs font-semibold text-slate-600">Staff Name *</label>
+                        <input type="text" id="user-name" required placeholder=" e.g. Rahul"
+                                class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-brandRed-500 focus:ring-1 focus:ring-brandRed-500">
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-xs font-semibold text-slate-600">Email Address *</label>
+                        <input type="email" id="user-email" required placeholder="e.g. rahul@lifered.org"
+                                class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-brandRed-500 focus:ring-1 focus:ring-brandRed-500">
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-xs font-semibold text-slate-600">Assigned City *</label>
+                        <input type="text" id="user-city" required placeholder="Colombo"
+                                class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-brandRed-500 focus:ring-1 focus:ring-brandRed-500">
+                    </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-1">
+                        <label class="text-xs font-semibold text-slate-600">Role *</label>
+                        <select id="user-role" required
+                                class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-brandRed-500 focus:ring-1 focus:ring-brandRed-500 cursor-pointer transition-colors">
+                            <option value="Volunteer">Volunteer</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-xs font-semibold text-slate-600">Status *</label>
+                        <select id="user-status" required
+                                class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-brandRed-500 focus:ring-1 focus:ring-brandRed-500 cursor-pointer transition-colors">
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="flex justify-end gap-2 pt-2 border-t border-slate-100">
+                    <button type="button" onclick="closeModal()" class="px-4 py-2 text-xs font-semibold text-slate-500 bg-slate-200 hover:bg-slate-200 rounded-xl">Cancel</button>
+                    <button type="submit" class="px-4 py-2 text-xs font-semibold text-white bg-brandRed-600 hover:bg-brandRed-700 rounded-xl">Save</button>
+                </div>
+                </form>
+            </div>
+        </div>
+
+        <footer class="mt-auto border-t border-slate-100 bg-slate-100 py-6">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-x-6 text-sm text-slate-400 space-y-2">
+                <p>LifeRed Blood Donation Network &copy; 2026.</p>
+                <div class="space-x-3">
+                    <a href="index.html" class="hover:text-brandRed-600">Home</a>
+                    <span>•</span>
+                    <a href="register.html" class="hover:text-brandRed-600">Register</a>
+                    <span>•</span>
+                    <a href="request.html" class="hover:text-brandRed-600">Request Blood</a>
+                    <span>•</span>
+                    <a href="donors.html" class="hover:text-brandRed-600">Find Donors</a>
+                    <span>•</span>
+                </div>
+            </div>
+        </footer>
+
+        <script src="app.js"></script>
+        <script src="admin.js"></script>
+    </body>
+</html>

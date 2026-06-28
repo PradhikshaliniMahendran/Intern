@@ -1,0 +1,1 @@
+let USERS = JSON.parse(localStorage.getItem("blood-users")) || [];
