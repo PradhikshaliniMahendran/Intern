@@ -1,32 +1,73 @@
-let USERS = JSON.parse(localStorage.getItem("blood_users")) || [];
+let USERS = [];
+try {
+    USERS = JSON.parse(localStorage.getItem("blood_users")) || [];
+} catch (e) {
+    console.error("Currupted blood_users data in localStorage, resetting database...", e);
+    localStorage.setItem("blood_users",JSON.stringify([]));
+}
 
-let DONORS = JSON.parse(localStorage.getItem("blood_donors")) || [];
-let REQUESTS = JSON.parse(localStorage.getItem("blood_requests")) || [];
+
 
 function saveUsers() {
-    localStorage.setItem("blood_users",JSON.stringify(USERS));
+    try{
+        localStorage.setItem("blood_users",JSON.stringify(USERS));
+    } catch (e) {
+        console.error("Failed to save uers to localStorage:", e)
+    }
+    
 }
 
 let editTargetId = null;
 
 document.addEventListener("DOMContentLoaded", () => {
-    lucide.createIcons();
+    try{
+        if (window.lucide) {
+            lucide.createIcons();
+        } else {
+            console.error("Lucide library not loaded. check internet connection or unpkg link.");
+        }
+    } catch (e) {
+        console.error("Error creating Lucide icons:", e);
+    }
+    
+    try{
     renderStats();
     renderUsersTable();
+    } catch (e) {
+        console.error("Error rensering dashboard stats or table:", e);
+    }
 
-    document.getElementById("user-form").addEventListener("submit", handleUserSubmit);
+    const formElement = document.getElementById("user-form");
+    if (formElement) {
+        formElement.addEventListener("submit", handleUserSubmit);
+    } else {
+        console.error("Form 'user-form' not found in HTML.")
+    }
+
+    
 
 });
 
 function renderStats() {
-    document.getElementById("stat-donors").textContent = DONORS.length;
-    document.getElementById("stat-requests").textContent = REQUESTS.length;
+    const donorsBadge = document.getElementById("stat-donors");
+    const requestsBadge = document.getElementById("stat-requests");
+    const usersBadge = document.getElementById("stat-users");
+
+    const donorsList = window.DONORS || [];
+    const requestsList = window.REQUESTS || []; 
+
+    document.getElementById("stat-donors").textContent = donorsList.length;
+    document.getElementById("stat-requests").textContent = requestsList.length;
     document.getElementById("stat-users").textContent = USERS.length;
 
 }
 
 function renderUsersTable() {
     const tbody = document.getElementById("users-tbody");
+    if (!tbody) {
+        console.error("Table body 'users-tbody' not found in HTML.");
+        return;
+    }
     tbody.innerHTML= "";
 
     if (USERS.length === 0) {
