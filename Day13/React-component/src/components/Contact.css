@@ -44,7 +44,7 @@
 .detail-icon {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    color: #fb7185;
+    color: #fc6c4b;
     padding: 12px;
     border-radius: 12px;
     display: flex;
@@ -115,20 +115,20 @@
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #f43f5e;
+    border-color: #f96533;
     box-shadow: 0 0 0 2px rgba(244, 63, 94, 0.2);
     background: rgba(15, 23, 42, 0.8);
 }
 
 .btn-send {
-    background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+    background: linear-gradient(135deg, #f96533 0%, #f02a2a 100%);
     border: none;
     color: #ffffff;
     font-weight: 700;
     padding: 14px;
     border-radius: 12px;
     cursor: pointer;
-    box-shadow: 0 4px 14px rgba(244, 63, 94, 0.3);
+    box-shadow: 0 4px 14px rgba(244, 45, 78, 0.3);
     transition: all 0.3s ease;
     font-size: 0.9rem;
 }

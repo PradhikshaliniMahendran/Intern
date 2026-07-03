@@ -24,7 +24,7 @@
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
-    color: #fb7185;
+    color: #f8774c;
     background: rgba(244, 63, 94, 0.1);
     padding: 6px 14px;
     border-radius: 9999px;
@@ -51,6 +51,13 @@
 .hero-actions {
     display: flex;
     gap: 16px;
+    
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, #f96533 0%, #f02a2a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .hero-visual {
@@ -62,6 +69,12 @@
     height: 500px;
     z-index: 1;
     pointer-events: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #f96533 0%, #f02a2a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .glow-sphere {

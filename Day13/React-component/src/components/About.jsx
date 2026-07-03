@@ -1,5 +1,6 @@
 import React from 'react';
 import './About.css';
+import tech from '../assets/tech.png';
 
 function About() {
     return (
@@ -7,7 +8,7 @@ function About() {
             <div className="about-container">
                 <div className="about-image-wrapper">
                     <img
-                      src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=600&h=450"
+                      src={tech}
                       alt="Apptron Solutions Team Working"
                       className="about-image"
                     />

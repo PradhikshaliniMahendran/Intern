@@ -44,8 +44,8 @@
 }
 
 .social-icons a:hover {
-    background: #f43f5e;
-    border-color: #f43f5e;
+    background: #f96533;
+    border-color: #f96533;
     color: #ffffff;
     transform: translateY(-2px);
 }
@@ -76,7 +76,7 @@
 }
 
 .footer-linksa:hover {
-    color: #f43f5e;
+    color: #f96533;
 }
 
 .footer-bottom {
