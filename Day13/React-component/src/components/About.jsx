@@ -1,0 +1,32 @@
+import React from 'react';
+import './About.css';
+
+function About() {
+    return (
+        <section id="about" className='about-section'>
+            <div className="about-container">
+                <div className="about-image-wrapper">
+                    <img
+                      src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=600&h=450"
+                      alt="Apptron Solutions Team Working"
+                      className="about-image"
+                    />
+                    <div className="image-overlay-card">
+                        <h4>100% Client Satisfaction</h4>
+                        <p>Industry-leading digital development agency.</p>
+                    </div>
+                </div>
+                <div className="about-content">
+                    <span className="sub-title">Who are we</span>
+                    <h2 className="section-title">We engineering digital solutions for fast growing companies</h2>
+                    <p className="about-description">
+                        Founded with a vision automate and accelerate business growth, Apptron solutions brings together world-class software engineering, intuitive user experience design, and cloud-native solutions under one roof. We partner with visionaries to turn complex ideas into robust software products.
+                    </p>
+                    <button className="btn-readmore">Read More</button>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export default About;
