@@ -1,0 +1,136 @@
+.employee-card {
+    background: rgba(255, 255, 255, 0.7);
+    background-image: url(./cardbg.jpg);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
+    padding: 24px;
+    width: 100%;
+    max-width: 320px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+}
+
+.employee-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px 0 rgba(31, 38, 135, 0.15);
+}
+
+.card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+}
+
+.image-wrapper {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.employee-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 60%;
+    object-fit: cover;
+    border: 3px solid #ef4444;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+    object-position: center 20%;
+}
+
+.status-badge {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 9999px;
+    border: 1px solid;
+}
+
+.status-badge.active {
+    background: #ecfdf5;
+    color: #059669;
+    border-color: #a7f3d0;
+}
+
+.status-badge.inactive {
+    background: #f1f5f9;
+    color: #f7d30a;
+    border-color: #cbd5e1;
+}
+
+.employee-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+.emp-id {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #94a3b8;
+    letter-spacing: 0.05em;
+}
+
+.emp-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+}
+
+.emp-designation {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #ef4444;
+    background: #fef2f2;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    width: fit-content;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex-grow: 1;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed #e2e8f0;
+    gap: 12px;
+}
+
+.detail-label {
+    color: #64748b;
+    font-weight: 500;
+}
+
+.detail-value {
+    color: #334155;
+    font-weight: 600;
+}
+
+.detail-value.font-highlight {
+    color: #0f172a;
+    font-weight: 700;
+}
+
+.detail-value.text.link {
+    color: #ef4444;
+    word-break: break-all;
+    text-align: right;
+}
