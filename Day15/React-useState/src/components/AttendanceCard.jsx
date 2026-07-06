@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './AttendaceCard.css';
+import './AttendanceCard.css';
 
 function AttendanceCard({ image, name, id, course, initialPresent, initialAbsent}) {
 
@@ -9,7 +9,7 @@ function AttendanceCard({ image, name, id, course, initialPresent, initialAbsent
 
     const handleMarkPresent = () => {
         if (status !== "Present") {
-            setPresentDays(prsentDays + 1);
+            setPresentDays(presentDays + 1);
 
             if (status === "Absent") {
                 setAbsentDays(absentDays - 1);
@@ -23,15 +23,15 @@ function AttendanceCard({ image, name, id, course, initialPresent, initialAbsent
         if (status !== "Absent") {
             setAbsentDays(absentDays + 1);
 
-            if (status === "Absent") {
-                setPrsentDays(prsentDays - 1);
+            if (status === "Present") {
+                setPresentDays(presentDays - 1);
             }
 
             setStatus("Absent");
         }
     };
 
-    let statusClass = "status-badge";
+    let statusClass = "status-badge ";
     if (status === "Present") statusClass += "status-present";
     else if (status === "Absent") statusClass += "status-absent";
     else statusClass += "status-pending";
