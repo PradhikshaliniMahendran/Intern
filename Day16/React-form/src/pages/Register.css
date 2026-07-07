@@ -1,0 +1,172 @@
+.register-page {
+    background-image: url('./form.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    min-height: 100vh;
+    padding: 60px 20px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+}
+
+.register-header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #193105;
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    padding: 5px 14px;
+    border-radius: 20px;
+}
+
+.main-title {
+    font-size: 3rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #063401 0%, #ed8225 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.03em;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: #8b8664;
+}
+
+.register-body {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: flex-start;
+}
+
+.form-container {
+    position: sticky;
+    top: 20px;
+}
+
+.form-card {
+    background: rgba(111, 112, 101, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 24px;
+    padding: 32px;
+}
+
+.form-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.form-card-header h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #f8a827;
+}
+
+.add-more-btn {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #f6a523;
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    padding: 6px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+}
+
+.add-more-btn:hover {
+    background: rgba(59, 130, 246, 0.2);
+}
+
+.add-more-btn.wide {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+}
+
+.success-message {
+    text-align: center;
+    padding: 48px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.success-icon {
+    font-size: 3rem;
+    color: #175e03;
+    width: 80px;
+    height: 80px;
+    background: rgba(16, 185, 129, 0.1);
+    border: 2px solid rgba(16, 185, 129, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.success-message p {
+    font-size: 1.1rem;
+    color: #253a02;
+}
+
+.cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cards-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fa8c05;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.count-badge {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #f8a520;
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    padding: 2px 10px;
+    border-radius: 20px;
+}
+
+.register-footer {
+    font-size: 0.85rem;
+    color: #475569;
+}
+
+@media (max-width: 768px) {
+    .register-body {
+        grid-template-columns: 1fr;
+    }
+    .main-title {
+        font-size: 2rem;
+    }
+}
