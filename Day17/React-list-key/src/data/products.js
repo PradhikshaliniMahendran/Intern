@@ -8,7 +8,7 @@ const products = [
         rating: 4.9,
         stock: 12,
         available: true,
-        image:"./mac.png"
+        image:"./images/mac.jpg"
     },
     {
         id: "PRD002",
@@ -19,7 +19,7 @@ const products = [
         rating: 4.5,
         stock: 34,
         available: true,
-        image:""
+        image:"./images/S24.jpg"
     },
     {
         id: "PRD003",
@@ -30,7 +30,7 @@ const products = [
         rating: 4.1,
         stock: 0,
         available: false,
-        image:""
+        image:"./images/WH.jpg"
     },
     {
         id: "PRD004",
@@ -41,7 +41,7 @@ const products = [
         rating: 4.8,
         stock: 8,
         available: true,
-        image:""
+        image:"./images/ipad.jpg"
     },
     {
         id: "PRD005",
@@ -52,7 +52,7 @@ const products = [
         rating: 4.6,
         stock: 0,
         available: false,
-        image:""
+        image:"./images/monitor.jpg"
     },
     {
         id: "PRD006",
@@ -63,7 +63,7 @@ const products = [
         rating: 4.7,
         stock: 50,
         available: true,
-        image:""
+        image:"./images/acc.jpg"
     },
     {
         id: "PRD007",
@@ -74,7 +74,7 @@ const products = [
         rating: 4.0,
         stock: 5,
         available: true,
-        image:""
+        image:"./images/asus.jpg"
     },
     {
         id: "PRD008",
@@ -85,7 +85,7 @@ const products = [
         rating: 3.7,
         stock: 30,
         available: true,
-        image:""
+        image:"./images/one.jpg"
     },
     {
         id: "PRD009",
@@ -96,7 +96,7 @@ const products = [
         rating: 4.4,
         stock: 0,
         available: false,
-        image:""
+        image:"./images/airpod.jpg"
     },
     {
         id: "PRD010",
@@ -107,18 +107,18 @@ const products = [
         rating: 4.6,
         stock: 18,
         available: true,
-        image:""
+        image:"./images/key.jpg"
     },
     {
         id: "PRD011",
-        name: "Apple MacBook Pro 14",
+        name: "Apple MacBook Pro 12",
         category: "Laptops",
         brand:"Apple",
-        price: 79999,
+        price: 579999,
         rating: 4.4,
         stock: 7,
         available: true,
-        image:""
+        image:"./images/12.jpg"
     },
     {
         id: "PRD012",
@@ -129,19 +129,9 @@ const products = [
         rating: 4.6,
         stock: 0,
         available: false,
-        image:""
-    },
-    {
-        id: "PRD012",
-        name: "GoPro Hero 12 Black",
-        category: "Cameras",
-        brand:"GoPro",
-        price: 40000,
-        rating: 4.6,
-        stock: 0,
-        available: false,
-        image:""
+        image:"./images/cam.jpg"
     }
+   
 ];
 
 export default products;
