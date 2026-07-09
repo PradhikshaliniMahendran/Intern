@@ -1,10 +1,73 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import ProductCard from '../components/ProductCard';
-import products from '../data/products';
+import manualProducts from '../data/products';
+import { fetchProducts } from '../services/api';
 import './Products.css';
 
 function Products() {
+    const [products, setProducts] = useState([]);
+
+    const [loading, setLoading] = useState(true);
+
+    const [error, setError] = useState(null);
+
     const [activeFilter, setActiveFilter] = useState('All');
+
+
+    useEffect(() => {
+        const loadProducts = async () => {
+            try {
+                setLoading(true);
+                setError(null);
+
+                const apiData = await fetchProducts();
+
+                const transformedApiData = apiData.map(item => ({
+                    id: item.id,
+                    name: item.title,
+                    category: item.category,
+                    brand: item.brand,
+                    price: item.price,
+                    rating:item.rating,
+                    stock: item.stock,
+                    available: item.stock > 0,
+                    image: item.thumbnail,
+                    description: item.description,
+                    discountPercentage: item.discountPercentage,
+                    source: 'API'
+
+                }));
+
+                const transformedManualData = manualProducts.map(item => ({
+                    ...item,
+                    source: 'Manual'
+                }));
+
+                const combinedProducts = [
+                    ...transformedApiData,
+                    ...transformedManualData
+                ];
+
+                setProducts(combinedProducts);
+                console.log(`✅ Loaded ${transformedApiData.length} APIproducts + ${transformedManualData.length} manual product = ${combinedProducts.length} total`);
+            } catch (err) {
+                console.warn('Api failed, using only manual data:', err);
+
+                const manualData = manualProducts.map(item => ({
+                    ...item,
+                    source: 'Manual'
+                }));
+                setProducts(manualData);
+                setError('API unavailable. Showing manual products only.');
+
+            } finally {
+                setLoading(false);
+            }
+        
+        };
+
+        loadProducts();
+    }, []);
 
     const categories = ['All', ...new Set(products.map((p) => p.category))];
 
@@ -16,12 +79,51 @@ function Products() {
     const availableCount = products.filter((p) => p.available).length;
     const outOfStockCount = products.filter((p) => !p.available).length;
 
+
+    if (loading) {
+        return (
+            <div className="products-page">
+                <div className="loader-container">
+                    <div className="loader-spinner"></div>
+                    <p className="loader-text">Loading Products...</p>
+                </div>
+            </div>
+        );
+    }
+
+    if (error && products.length === 0) {
+        return (
+            <div className="products-page">
+                <div className="error-container">
+                    <div className="error-icon">⚠️</div>
+                    <h2 className="error-title">Something went wrong</h2>
+                    <p className="error-message">{error}</p>
+                    <button className="retry-btn" onClick={() => window.location.reload()}>
+                        Try Again
+                    </button>
+                </div>
+            </div>
+        );
+    }
+
+
     return (
         <div className="products-page">
 
             <header className="products-header">
                 <span className="badge">React Lists, Keys & Conditional Rendering</span>
                 <h1 className="main-title">Product Store</h1>
+                <p className="subtitle">
+                    Showing {products.length} products
+                    ({products.filter(p => p.source === 'API').length} from API +
+                    {products.filter(p => p.source === 'Manual').length} from Manual)
+                </p>
+
+                <div className="data-source-indicator">
+                    <span className="source-badge combined">
+                        🌐 API + 📁 Manual Data
+                    </span>
+                </div>
         
 
                 <div className="stats-row">
@@ -60,15 +162,7 @@ function Products() {
                     {filteredProducts.map((product) => (
                         <ProductCard
                             key={product.id}
-                            id={product.id}
-                            name={product.name}
-                            category={product.category}
-                            brand={product.brand}
-                            price={product.price}
-                            rating={product.rating}
-                            stock={product.stock}
-                            available={product.available}
-                            image={product.image}
+                            product={product}
                         />
                     ))}
                 </main>
