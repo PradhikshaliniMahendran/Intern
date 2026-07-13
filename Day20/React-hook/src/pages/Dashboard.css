@@ -1,0 +1,132 @@
+.dashboard {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 60px;
+}
+
+.dashboard-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #f8fafc;
+    margin-top: 50px;
+    align-content: center;
+    
+
+}
+
+.dashboard-subtitle {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(249, 101, 51, 0.2);
+}
+
+.stat-icon {
+    font-size: 2rem;
+}
+
+.stat-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-number {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #f8fafc;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
+.stat-card.green .stat-number {color: #10b981;}
+.stat-card.red .stat-number {color: #f43f5e;}
+.stat-card.purple .stat-number {color: #818cf8;}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.empty-state {
+    text-align: center;
+    color: #94a3b8;
+    padding: 60px;
+    font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+    .dashboard {
+        padding: 20px 16px;
+    }
+
+    .dashboard-title {
+        font-size: 1.5rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .stat-card {
+        padding: 16px;
+    }
+
+    .stat-number {
+        font-size: 1.4rem;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+}
