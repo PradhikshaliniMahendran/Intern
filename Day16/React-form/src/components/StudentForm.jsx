@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect } from 'react';
 import './StudentForm.css';
 
-function StudentForm({onRegister}) {
+function StudentForm({onRegister, initialData, isEditing, onCancel}) {
     const [formData, setFormData] = useState({
         imageUrl:         '',
         fullName:         '',
@@ -18,6 +18,27 @@ function StudentForm({onRegister}) {
 
     const [errors, setErrors] = useState({});
 
+    const [previewUrl, setPreviewUrl] = useState('');
+
+    useEffect(() => {
+        if (initialData) {
+            setFormData({
+                imageUrl: initialData.imageUrl || '',
+                fullName: initialData.fullName || '',
+                studentId: initialData.studentId || '',
+                email: initialData.email || '',
+                phone: initialData.phone || '',
+                course: initialData.course || '',
+                age: initialData.age || '',
+                gender: initialData.gender || '',
+                address: initialData.address || '',
+                password: initialData.password || '',
+                confirmPassword: initialData.confirmPassword || '',
+    
+            });
+        }
+    }, [initialData]);
+
     const handleChange = (e) => {
         const { name, value} = e.target;
         setFormData((prev) => ({
@@ -27,6 +48,22 @@ function StudentForm({onRegister}) {
 
         if (errors[name]) {
             setErrors((prev) => ({...prev, [name]: ''}));
+        }
+    };
+
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                const base64String = reader.result;
+                setPreviewUrl(base64String);
+                setFormData(prev => ({
+                    ...prev,
+                    imageUrl: base64String
+                }));
+            };
+            reader.readAsDataURL(file);
         }
     };
 
@@ -91,16 +128,28 @@ return (
         <div className="form-section-title">Personal Information</div>
 
         <div className="form-group">
-            <label htmlFor="imageUrl">Student Image URL</label>
+            <label htmlFor="imageUpload">Student Image</label>
             <input
-                type="url"
-                id="imageUrl"
-                name="imageUrl"
-                placeholder="https://example.com/photo.jpg"
-                value={formData.imageUrl}
-                onChange={handleChange}
+                type="file"
+                id="imageUpload"
+                name="image/*"
+                onChange={handleFileChange}
+                className="file-input"
             />
+            {previewUrl && (
+                <img
+                    src={previewUrl}
+                    alt="preview"
+                    className="image-preview"
+                />
+            )}
         </div>
+
+        <input
+            type="hidden"
+            name="imageUrl"
+            value={formData.imageUrl}
+        />
 
             <div className="form-group">
                 <label htmlFor="fullName">Full Name <span className="required">*</span></label>
@@ -126,6 +175,7 @@ return (
                     value={formData.studentId}
                     onChange={handleChange}
                     className={errors.studentId ? 'input-error' : ''}
+                    disabled={isEditing}
                 />
                 {errors.studentId && <p className="error-msg">{errors.studentId}</p>}
             </div>
@@ -260,8 +310,14 @@ return (
             </div>
 
             <button type="submit" className="submit-btn">
-                Register Student
+                {isEditing ? 'Update Student': 'Register Student'}
             </button>
+
+            {isEditing && (
+                <button type="button" className="cancel-btn" onClick={onCancel}>
+                    Cancel
+                </button>
+            )}
         </form>
     );
 }

@@ -9,7 +9,7 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #7b553a;
+    color: #7d451e;
     padding-bottom: 8px;
     border-bottom: 1px solid rgba(96, 165, 250, 0.15);
 }
@@ -29,7 +29,7 @@
 .form-group label {
     font-size: 0.85rem;
     font-weight: 600;
-    color: #f0ddb4;
+    color: #eae8e3;
 }
 
 .required {
@@ -40,7 +40,7 @@
 .form-group input,
 .form-group select,
 .form-group textarea {
-    background: rgba(221, 214, 135, 0.6);
+    background: rgba(236, 236, 232, 0.6);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 10px;
     padding: 10px 14px;
@@ -107,10 +107,16 @@
     min-height: 80px;
 }
 
+.form-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+
 .submit-btn {
     width: 100%;
     padding: 14px;
-    background: linear-gradient(135deg, #a35304, #0a2901);
+    background: linear-gradient(135deg, #5065c3, #9198cf);
     color: white;
     font-family: 'Outfit', sans-serif;
     font-size: 1rem;
@@ -132,8 +138,55 @@
     transform: translateY(0);
 }
 
+.cancel-btn {
+    width: 100%;
+    padding: 14px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #94a3b8;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 8px;
+    letter-spacing: 0.02em;
+}
+
+.file-input {
+    padding: 10px;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    color: #f8fafc;
+    cursor: pointer;
+}
+
+.image-preview {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-top: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cancel-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #f8fafc;
+}
+
 @media (max-width: 640px) {
     .form-row {
         grid-template-columns: 1fr;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .radio-group {
+        gap: 12px;
     }
 }

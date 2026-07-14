@@ -1,7 +1,7 @@
 import React from 'react';
 import './StudentCard.css';
 
-function StudentCard({ student }) {
+function StudentCard({ student, onEdit, onDelete }) {
     const defaultImage = 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=150&h=150';
 
     return (
@@ -41,6 +41,11 @@ function StudentCard({ student }) {
                     <span className="detail-label">📍 Address</span>
                     <span className="detail-value">{student.address}</span>
                 </div>
+            </div>
+
+            <div className="student-actions">
+                <button className="btn-edit" onClick={() => onEdit(student)}>✏️</button>
+                <button className="btn-delete" onClick={() => onDelete(student.studentId)}>🗑️</button>
             </div>
 
             <div className="card-footer">
