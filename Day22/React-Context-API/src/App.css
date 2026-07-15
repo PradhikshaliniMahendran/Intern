@@ -1,0 +1,236 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Outfit',  -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #0f172a;
+  color: #f8fafc;
+  min-height: 100vh;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  padding-top: 0px;
+  overflow-y: auto;
+  height: 100vh;
+  margin-left: 0px;
+}
+
+.app-container-with-sidebar {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-top: 0px;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.app-container-full {
+  width: 100%;
+  min-height: calc(100vh - 72px) ;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 72px;
+}
+
+.dashboard-home {
+  width: 100%;
+  padding: 20px;
+  max-width: 900px;
+  margin: 40px auto;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.stat-card h3 {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #38bdf8;
+}
+
+.stat-number.active {
+  color: #34d399;
+}
+
+.stat-number.inactive {
+  color: #f87171;
+}
+
+.profile-overview {
+  text-align: left;
+}
+
+.profile-overview h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, #f43f5e 0%, #be123c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.profile-details-card {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.profile-card-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid #38bdf8;
+  object-fit: cover;
+}
+
+.profile-card-info h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.profile-card-role {
+  color: #38bdf8;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+}
+
+.profile-card-dept {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+}
+
+.profile-card-email {
+  color: #cbd5e1;
+  font-size: 0.85rem;
+}
+
+.welcome-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #f43f5e 0%, #be123c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 12px;
+}
+
+.welcome-subtitle {
+  font-size: 1.1rem;
+  color: #94a3b8;
+  line-height: 1.6;
+}
+body.light-theme .stat-card {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.body-light-theme .stat-number {
+    color: #010c12;
+}
+
+.stat.light-theme .stat-card h3 {
+    color: #d1d8e2;
+}
+
+.body-light-theme .welcome-subtitle {
+    background: linear-gradient(135deg, #f43f5e 0%, #be123c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.body-light-theme .profile-details-card {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    color: #0f172a;
+}
+
+.body-light-theme .profile-card-info h3 {
+  color: #0f172a;
+}
+
+.body-light-theme .profile-card-dept {
+
+  color: #64748b;
+}
+
+.body-light-theme .profile-card-email {
+  color: #334155;
+}
+
+@media (max-width: 768px) {
+  .app-container-with-sidebar {
+    flex-direction: column;
+  }
+
+  .main-content {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 16px;
+  }
+
+  .welcome-title {
+    font-size: 2rem;
+  }
+
+  .profile-details-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    gap: 16px;
+  }
+
+  .profile-card-avatar {
+    width: 70px;
+    height: 70px;
+  }
+
+  @media (max-width: 480px){
+    .welcome-title {
+      font-size: 1.6rem;
+    }
+  }
+}

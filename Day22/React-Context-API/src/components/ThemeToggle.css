@@ -1,0 +1,20 @@
+.theme-toggle {
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    color: #23272b;
+}
+
+.theme-toggle.light {
+    background: rgba(0, 0, 0, 0.05);
+    color: #060b16;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle:hover {
+    transform: scale(1.05);
+}

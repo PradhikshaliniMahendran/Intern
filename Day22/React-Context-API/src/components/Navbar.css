@@ -1,0 +1,162 @@
+.navbar {
+     position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background: rgba(7, 9, 19, 0.7);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+    height: 72px;
+}
+
+.navbar.dark {
+    background: rgba(15, 23, 42, 0.95);
+    color: #f8fafc;
+}
+
+.navbar.light {
+    background: rgba(255, 255, 255, 0.95);
+    color: #0f172a;
+}
+
+.nav-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #f8fafc;
+    letter-spacing: -0.03em;
+    margin-right: 20px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
+.nav-link {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #94a3b8;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 8px 4px;
+}
+
+.nav-link:hover {
+    color: #210568;
+
+}
+
+.nav-link.active {
+    color: #c1b1b7;
+    border-bottom: 2px solid #042f4e;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: 12px;
+    margin-right: 8px;
+}
+
+.nav-username {
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.logo-img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+
+
+@media (max-width: 768px) {
+    .nav-username {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .logo {
+        font-size: 1.1rem;
+        margin-right: 10px;
+    }
+
+    .nav-links {
+        gap: 16px;
+    }
+
+    .nav-link {
+        font-size: 0.85rem;
+    }
+
+    .nav-right {
+        gap: 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hamburger-btn {
+        display: flex;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: rgba(7, 9, 19, 0.7);
+        backdrop-filter: blur(12px);
+        padding: 20px;
+        gap: 4px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        display: none;
+        max-height: calc(100vh - 72px);
+        overflow-y: auto;
+    }
+
+    .nav-links-open {
+        display: flex;
+    }
+
+    .nav-link {
+        padding: 12px 16px;
+        width: 100%;
+        font-size: 1rem;
+    }
+
+    .logout-btn {
+        display: none;
+    }
+}

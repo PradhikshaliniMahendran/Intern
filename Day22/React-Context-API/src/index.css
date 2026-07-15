@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Outfit',  -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #0f172a;
+  color: #f8fafc;
+  min-height: 100vh;
+}
+
+body.light-theme {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+body.dark-theme {
+  background: #0f172a;
+  color: #f8fafc;
+}
+
+html, body {
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-width: 200%;
+}
