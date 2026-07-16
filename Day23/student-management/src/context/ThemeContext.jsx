@@ -1,0 +1,1 @@
+export {ThemeProvider, useTheme, default} from 'C:/Users/mahen/OneDrive/Desktop/Intern/Day22/React-Context-API/src/context/ThemeContext.jsx';

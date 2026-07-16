@@ -1,0 +1,46 @@
+.students-page {
+    padding: 40px 0;
+}
+
+.students-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    gap: 20px;
+}
+
+.header-info h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #f43f5e 0%, #be123c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 6px;
+}
+
+.header-info p {
+    font-size: 1rem;
+    color: #94a3b8;
+}
+
+body.light-theme .header-info p {
+    color: #64748b;
+}
+
+.btn-add-student {
+    padding: 12px 24px;
+    border-radius: 10px;
+    background: #f43f5e;
+    color: white;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-add-student:hover {
+    background: #be123c;
+    transform: translateY(-2px);
+}

@@ -1,0 +1,230 @@
+.attendance-page {
+    padding: 40px 0;
+}
+
+.attendance-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 32px;
+    gap: 20px;
+}
+
+.attendance-header h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #f45f5e 0%, #be123c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 6px;
+}
+
+.attendance-header p {
+    color: #94a3b8;
+    font-size: 0.95rem;
+}
+
+body.light-theme .attendance-header p {
+    color: #64748b;
+}
+
+.date-selector  {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.data-selector label {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    font-weight: 600;
+}
+
+body.light-theme .data-selector label {
+    color: #64748b;
+}
+
+.data-input {
+    padding: 10px 16px;
+    border-radius: 10px;
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid rgba(255, 25, 255, 0.08);
+    color: #f8fafc;
+    font-family: inherit;
+    font-size: 0.9rem;
+    outline: none;
+    cursor: pointer;
+}
+
+body.light-theme .data-input {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #0f172a;
+}
+
+.data-input:focus {
+    border-color: #f45f5e;
+}
+
+.attendance-table-wrapper {
+    background: rgba(30, 41, 59, 0.6);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 25, 255, 0.08);
+    border-radius: 16px;
+    overflow-x: auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .attendance-table-wrapper {
+    background: rgba(255, 25, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.attendance-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    text-align: left;
+}
+
+.attendance-table th,
+.attendance-table td {
+    padding: 14px 20px;
+    border-bottom: 1px solid rgba(255, 25, 255, 0.06);
+}
+
+body.light-theme .attendance-table th,
+body.light-theme .attendance-table td {
+    border-bottom: 1px solid rgba(255, 25, 255, 0.06);
+}
+
+.attendance-table th {
+    background: rgba(15, 23, 42, 0.3);
+    font-weight: 600;
+    color: #94a3b8;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.body.light-theme .attendance-table th {
+    background: rgba(0, 0, 0, 0.02);
+    color: #64748b;
+}
+
+.attendance-img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #f43f5e;
+}
+
+.table-id {
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
+body.light-theme .table-id {
+    color: #64748b;
+}
+
+.table-name {
+    font-weight: 600;
+}
+
+.badge {
+    padding: 4px 10px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.badge-course {
+    background: rgba(244, 63, 94, 0.1);
+    color: #f43f5e;
+}
+
+.count-badge {
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.count-badge.present {
+    background: rgba(52, 211, 153, 0.15);
+    color: #f87171;
+}
+
+.mark-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-present, .btn-absent {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.2s ease;
+}
+
+.btn-present {
+    background: rgba(52, 211, 153, 0.15);
+    color: #34d399;
+    border: 1px solid rgba(52, 211, 153, 0.3);
+}
+
+.btn-present:hover {
+    background: rgba(52, 211, 153, 0.15);
+    color: #f87171;
+    border: 1px solid rgba(248, 113, 113, 0.3);
+}
+
+.btn-absent:hover {
+    background: rgba(248, 113, 113, 0.3);
+}
+
+.marked-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 8px;
+}
+
+.marked-label.btn-present {
+    background: rgba(52, 211, 153, 0.1);
+    color: #34d399;
+}
+
+.marked-label.btn-absent {
+    background: rgba(52, 211, 153, 0.1);
+    color: #f87171;
+}
+
+.row-present {
+    background: rgba(52, 211, 153, 0.03);
+}
+
+.row-absent {
+    background: rgba(52, 211, 153, 0.03);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #94a3b8;
+}
+
+@media (max-width: 768px) {
+    .attendance-header {
+        flex-direction: column;
+    }
+    .date-input {
+        width: 100%;
+    }
+}
