@@ -21,10 +21,11 @@ function Sidebar() {
 
     return (
         <>
-
+        {!isOpen && (
         <button className="sidebar-toggle" onClick={toggleSidebar}>
             ☰
         </button>
+        )}
 
         <div className={`sidebar-overlay ${isOpen ? 'open' : ''}`} onClick={closeSidebar} />
         <div className={`sidebar ${theme} ${isOpen ? 'open' : ''}`}>
@@ -36,9 +37,6 @@ function Sidebar() {
                 <p className="sidebar-dept">{user.department}</p>
             </div>
 
-            <div className="sidebar-toggle-wrapper">
-                <ThemeToggle />
-            </div>
 
             <nav className="sidebar-nav">
                 <ul>
@@ -54,7 +52,7 @@ function Sidebar() {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/calendar" className="sidebar-link" onClick={closeSidebar}>
+                        <NavLink to="/attendance" className="sidebar-link" onClick={closeSidebar}>
                             <span className="sidebar-icon">📅</span> Attendace
                         </NavLink>
                     </li>

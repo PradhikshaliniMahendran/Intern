@@ -1,1 +1,53 @@
 @import "C:/Users/mahen/OneDrive/Desktop/Intern/Day22/React-Context-API/src/components/Sidebar.css";
+
+.sidebar-log {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    margin-bottom: 20px;
+}
+
+.logo-img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+}
+
+.logo-text {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #f96533;
+}
+
+@media (max-width: 768px) {
+    .sidebar-toggle {
+        display: block !important;
+        position: fixed;
+        top: 16px !important;
+        left: 16px;
+        z-index: 200;
+        background: rgba(15, 23, 42, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #f8fafc;
+        padding: 10px 14px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-size: 1.2rem;
+    }
+
+    .sidebar-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 140;
+        cursor: pointer;
+    }
+
+    .sidebar-overlay.open {
+        display: block;
+    }
+    
+}

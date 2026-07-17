@@ -16,21 +16,17 @@ import Settings from './pages/Settings';
 
 import './App.css';
 
-const SIDEBAR_PATHS = ['/students', '/attendance', '/reports', '/profile', '/settings', '/add-student', '/add'];
 
 function App() {
-  const location = useLocation();
-  const isSidebarPage = SIDEBAR_PATHS.includes(location.pathname);
 
   return (
     <ThemeProvider>
       <UserProvider>
         <StudentProvider>
           <div className="app">
-            {!isSidebarPage && <Navbar />}
+            <Sidebar />
 
-          <div className={isSidebarPage ? "app-container-with-sidebar" : "app-container-full"}>
-            {isSidebarPage && <Sidebar />}
+          <div className= "app-container-with-sidebar">
 
             <div className="main-content">
               <Routes>

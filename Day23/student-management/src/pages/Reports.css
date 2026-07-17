@@ -1,0 +1,42 @@
+.reports-page {
+    padding: 40px;
+    color: #f8fafc;
+}
+
+.reports-page h1 {
+    color: #f44f5e;
+    margin-bottom: 20px;
+}
+
+.reports-cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.rcard {
+    padding: 20px;
+    background: rgba(30, 41, 59, 0.6);
+    border-radius: 12px;
+    flex: 1;
+    min-width: 150px;
+}
+
+.rcard h3 {
+    color: #94a3b8;
+    font-size: 1rem;
+}
+
+rval {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.rval.blue {
+    color: #38bdf8;
+}
+
+.rval.green {
+    color: 34d399;
+}
