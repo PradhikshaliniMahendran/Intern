@@ -49,9 +49,9 @@ function AttendanceDashboard() {
   return (
         <div className="dashboard-page">
             <header className="dashboard-header">
-                <span className="badge">Admin Portal</span>
+                
                 <h1 className="main-title">Student Attendance</h1>
-                <p className="subtitle">Manage daily attendance records using React State</p>
+                
             </header>
 
             <main className="dashboard-grid">
