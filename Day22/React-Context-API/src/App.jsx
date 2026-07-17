@@ -4,7 +4,7 @@ import { ThemeProvider } from './context/ThemeContext';
 import {UserProvider, useUser} from './context/UserContext'
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
-import Employees from './pages/Employee';
+import Employee from './pages/Employee';
 
 
 import './App.css';
@@ -61,15 +61,14 @@ function App() {
     <ThemeProvider>
       <UserProvider>
         <div className="app">
-          {!isEmployeePage && <Navbar />}
 
-          <div className={isEmployeePage ? "app-container-with-sidebar" : "app-container-full"}>
-            {isEmployeePage && <Sidebar />}
+          <div className="app-container-with-sidebar">
+            <Sidebar />
           
           <div className="main-content">
             <Routes>
               <Route path="/" element={<HomeDashboard />} />
-              <Route path="/employees" element={<Employees />} />
+              <Route path="/employees" element={<Employee />} />
             </Routes>
           </div>
         </div>

@@ -8,7 +8,9 @@
     background-position: center;
     background-attachment: fixed;
     color: #a7bee4;
-    padding: 40px 20px;
+    padding: 20px;
+    margin: 0 auto;
+    justify-items: center;
 }
 
 .page-header {
@@ -48,14 +50,13 @@
 
 .employees-grid {
     flex: 1;
-    max-width: 1200px;
+    max-width: 100%;
     width: 100%;
-    margin:0 auto;
+    margin:0;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 32px;
-    justify-items: center;
-    align-items: stretch;
+    gap: 24px;
+    
 }
 
 .page-footer {
@@ -63,4 +64,58 @@
     margin-top: 64px;
     font-size: 0.8rem;
     color:#64748b;
+}
+
+@media (max-width: 1024px) {
+    .employees-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .employees-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        justify-items: center;
+    }
+
+    .main-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .employees-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        justify-items: center;
+        align-content: start;
+
+    }
+
+    .employees-page {
+        padding: 20px;
+    }
+
+    .main-title {
+        font-size: 1.6rem;
+    }
+
+    .subtitle {
+        font-size: 0.9rem;
+    }
+
+    .employees-page {
+        padding: 16px 12px;
+    }
+
+    .page-footer {
+        margin-top: 40px;
+    }
+
+    .main-content {
+        margin-left: 0 !important;
+        padding: 16px;
+    }
 }

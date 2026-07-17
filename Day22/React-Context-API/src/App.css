@@ -18,20 +18,18 @@ body {
 }
 
 .main-content {
-  flex: 1;
-  padding-top: 0px;
+  margin-left: 260px;
+  width: calc(100% - 260px);
+  overflow-x: hidden;
+  min-height: 100vh;
   overflow-y: auto;
-  height: 100vh;
-  margin-left: 0px;
 }
 
 .app-container-with-sidebar {
   display: flex;
   flex-direction: row;
-  width: 100%;
-  margin-top: 0px;
   height: 100vh;
-  overflow: hidden;
+  width: 100%;
 }
 
 .app-container-full {
@@ -48,6 +46,11 @@ body {
   padding: 20px;
   max-width: 900px;
   margin: 40px auto;
+}
+
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
 }
 
 .stats-grid {
@@ -167,7 +170,7 @@ body.light-theme .stat-card {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
-.body-light-theme .stat-number {
+body.light-theme .stat-number {
     color: #010c12;
 }
 
@@ -175,41 +178,42 @@ body.light-theme .stat-card {
     color: #d1d8e2;
 }
 
-.body-light-theme .welcome-subtitle {
+body.light-theme .welcome-subtitle {
     background: linear-gradient(135deg, #f43f5e 0%, #be123c 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.body-light-theme .profile-details-card {
+body.light-theme .profile-details-card {
     background: rgba(255, 255, 255, 0.9);
     border: 1px solid rgba(0, 0, 0, 0.08);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     color: #0f172a;
 }
 
-.body-light-theme .profile-card-info h3 {
+body.light-theme .profile-card-info h3 {
   color: #0f172a;
 }
 
-.body-light-theme .profile-card-dept {
+body.light-theme .profile-card-dept {
 
   color: #64748b;
 }
 
-.body-light-theme .profile-card-email {
+body.light-theme .profile-card-email {
   color: #334155;
 }
 
 @media (max-width: 768px) {
   .app-container-with-sidebar {
     flex-direction: column;
+    width: 100% !important;
   }
 
   .main-content {
-    padding-left: 16px;
-    padding-right: 16px;
-    padding-top: 16px;
+    margin-left: 0px !important;
+    width: 100%;
+    padding: 16px;
   }
 
   .welcome-title {
