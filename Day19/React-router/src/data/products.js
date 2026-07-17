@@ -130,6 +130,17 @@ const products = [
         stock: 0,
         available: false,
         image:"./images/cam.jpg"
+    },
+    {
+        id: "PRD012",
+        name: "GoPro Hero 12 Black",
+        category: "Cameras",
+        brand:"GoPro",
+        price: 40000,
+        rating: 4.6,
+        stock: 0,
+        available: false,
+        image:"./images/cam.jpg"
     }
    
 ];

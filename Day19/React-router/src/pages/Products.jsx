@@ -20,6 +20,8 @@ function Products() {
         <div className="products-page">
 
             <header className="products-header">
+                <h1 className="page-title">📦 All Products</h1>
+                <p className="page-subtitle">Browse all products in your inventory</p>
                 
                 <div className="stats-row">
                     <div className="stat-chip">
@@ -55,47 +57,7 @@ function Products() {
 
                 <main className="products-grid">
                     {filteredProducts.map((product) => (
-                        <div key={product.id} className="product-card">
-                            <div className="card-image-wrapper">
-                                <img
-                                    src={product.image}
-                                    alt={product.name}
-                                    className="card-image"
-                                />
-                                {product.available ? (
-                                    <span className="stock-badge badge-in">✓ In Stock</span>
-                                ) : (
-                                    <span className="stock-badge badge-out">✕ Out of Stock</span>
-                                )}
-
-                                <span className="category-tag">{product.category}</span>
-                            </div>
-
-                            <div className="card-body">
-                                <p className="card-brand">{product.brand}</p>
-                                <h3 className="card-name">{product.name}</h3>
-                                <p className="card-id">ID:{product.id}</p>
-
-                                <div className="card-rating">
-                                    <span className="stars">{'★'.repeat(Math.floor(product.rating))}</span>
-                                    <span className="rating-value">{product.rating}</span>
-                                </div>
-
-                                <p className="card-price">LKR {product.price.toLocaleString()}</p>
-
-                                {product.available && product.stock > 0 && (
-                                    <p className="stock-count">{product.stock} units left</p>
-                                )}
-                            </div>
-
-                            <div className="card-footer">
-                                {product.available ? (
-                                    <button className="btn-cart">🛒 Add to Cart</button>
-                                ) : (
-                                    <button className="btn-notify">🔔 Notify Me</button>
-                                )}
-                            </div>
-                        </div>
+                        <productCard key={product.id} product={product} />
                     ))}
                 </main>
             )}
