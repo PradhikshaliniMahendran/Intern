@@ -37,7 +37,7 @@
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 32px;
     justify-items: center;
-    align-items: start;
+    align-items: stretch;
 }
 
 .app-footer {
