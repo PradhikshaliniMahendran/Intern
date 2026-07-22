@@ -35,7 +35,7 @@ function Cart() {
                                 src={item.thumbnail || item.image}
                                 alt={item.title}
                                 className="cart-item-img"
-                                onClick={() => navigate(`/product/$${item.id}`)}
+                                onClick={() => navigate(`/product/${item.id}`)}
                             />
                             <div className="cart-item-details">
                                 <h3 className="cart-item-title" onClick={() => navigate(`/product/${item.id}`)}>

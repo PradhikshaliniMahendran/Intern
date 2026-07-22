@@ -5,6 +5,7 @@ import { useWishlist } from '../context/WishlistContext';
 import { useTheme } from '../context/ThemeContext';
 import ThemeToggle from './ThemeToggle';
 import SearchBar from './SearchBar';
+import './Navbar.css'
 
 function Navbar({ products = [] }) {
     const { cartCount } = useCart();

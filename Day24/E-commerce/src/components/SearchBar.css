@@ -1,0 +1,21 @@
+.search-bar-wrapper { position: relative; flex: 1; max-width: 400px; }
+.search-input { width: 100%; padding: 12px 16px 12px 40px; border-radius: 99px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: inherit; font-family: inherit; font-size: 0.95rem; outline: none; transition: all 0.2s; }
+body.light-theme .search-input { background: rgba(0,0,0,0.03); border-color: rgba(0,0,0,0.1); }
+.search-input:focus { background: rgba(30,41,59,0.8); border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,0.2); }
+body.light-theme .search-input:focus { background: #fff; }
+.search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); opacity: 0.5; }
+.search-clear-btn { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); background: transparent; border: none; color: inherit; opacity: 0.5; cursor: pointer; }
+.search-suggestions-dropdown { position: absolute; top: 110%; left: 0; right: 0; background: rgba(30,41,59,0.95); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 12px; z-index: 50; box-shadow: 0 10px 40px rgba(0,0,0,0.3); max-height: 400px; overflow-y: auto; }
+body.light-theme .search-suggestions-dropdown { background: rgba(255,255,255,0.95); border-color: rgba(0,0,0,0.08); box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+.suggestion-header { font-size: 0.8rem; font-weight: 700; color: #94a3b8; margin-bottom: 12px; padding-left: 8px; text-transform: uppercase; letter-spacing: 1px; }
+.suggestion-item { display: flex; gap: 12px; padding: 8px; border-radius: 10px; cursor: pointer; transition: background 0.2s; align-items: center; }
+.suggestion-item:hover { background: rgba(255,255,255,0.05); }
+body.light-theme .suggestion-item:hover { background: rgba(0,0,0,0.03); }
+.suggestion-img { width: 44px; height: 44px; border-radius: 8px; object-fit: cover; }
+.suggestion-info { display: flex; flex-direction: column; }
+.suggestion-title { font-weight: 600; font-size: 0.95rem; }
+.suggestion-meta { display: flex; gap: 8px; font-size: 0.8rem; color: #94a3b8; margin-top: 4px; }
+.suggestion-price { color: #10b981; font-weight: 700; }
+@media (max-width: 768px) {
+    .search-bar-wrapper { max-width: 100%; margin-top: 10px; }
+}

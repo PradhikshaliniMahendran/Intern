@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
+import './ProductCard.css'
 
 function ProductCard({ product }) {
     const navigate = useNavigate();

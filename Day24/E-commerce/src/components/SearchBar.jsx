@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNvigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './SearchBar.css';
 
 function SearchBar({ products = [], onSearch }) {
@@ -78,7 +78,7 @@ function SearchBar({ products = [], onSearch }) {
 
             {isOpen && suggestions.length > 0 && (
                 <div className="search-suggestions-dropdown">
-                    <div className="suggetion-header">Search SUggestions ({suggestions.length})</div>
+                    <div className="suggestion-header">Search SUggestions ({suggestions.length})</div>
                     {suggestions.map(item => (
                         <div
                             key={item.id}

@@ -1,22 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ProductCard from '../components/ProductCard';
 import SearchBar from '../components/SearchBar';
-import { fetchProduct } from '../services.api';
-import './ProductDetails.css';
+import { fetchProducts } from '../services/api';
+import './ProductList.css';
 
 function ProductList() {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [sctiveCategory, setActiveCategory] = useState('All');
+    const [activeCategory, setActiveCategory] = useState('All');
     const [searchQuery, setSearchQuery] = useState('');
     const [sortBy, setSortBy] = useState('default');
 
     useEffect(() => {
-        const loat = async () => {
+        const load = async () => {
             try {
                 setLoading(true);
-                const data = await fetchProduct();
+                const data = await fetchProducts();
                 setProducts(data);
             } catch (err) {
                 setError(err.message);
@@ -35,7 +35,7 @@ function ProductList() {
 
     if (searchQuery.trim()) {
         filtered = filtered.filter(p =>
-            p.title.toLowercase().includes(searchQuery.toLowerCase()) ||
+            p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
             (p.brand && p.brand.toLowerCase().includes(searchQuery.toLowerCase()))
         );
     }

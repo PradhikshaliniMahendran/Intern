@@ -1,0 +1,3 @@
+.icon-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 8px 12px; border-radius: 10px; cursor: pointer; color: inherit; position: relative; transition: all 0.2s; font-size: 1.1rem; }
+body.light-theme .icon-btn { background: rgba(0,0,0,0.03); border-color: rgba(0,0,0,0.05); }
+.icon-btn:hover { background: rgba(99,102,241,0.1); border-color: rgba(99,102,241,0.3); }
