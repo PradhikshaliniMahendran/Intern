@@ -3,19 +3,21 @@ import emailjs from '@emailjs/browser';
 export const sendContactEmail = async (formData) => {
     const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'sevice_gmail';
     const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template-contact';
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'your-public-key';
+    const publicKey = import.meta.env.VITE_EMAILJS_USER_ID || import.meta.env.VITE_EMAILJS_PUBLIC_KEY ||'';
 
     const templateParams = {
         user_name: formData.fullName,
         user_email: formData.email,
         user_phone: formData.phone,
         company_name: formData.companyName,
-        aubject: formData.subject,
+        subject: formData.subject,
         message: formData.message,
+
+        to_email: 'mahendranpradhikshalini@gmail.com'
     };
 
     try {
-        if (publicKey && publicKey !== 'your_public_key') {
+        if (publicKey) {
             const response = await emailjs.send(serviceId, templateId, templateParams, publicKey);
             return { success: true, response};
         } else {
@@ -25,6 +27,7 @@ export const sendContactEmail = async (formData) => {
         }
     }  catch (error) {
         console.error('EmailJS Error:', error);
-        throw new Error(error?.text || error?.message || 'Failed to send email via EmailJS');
-    };
+        const msg = err?.text ?? err?.message ?? 'Failed to send email via EmailJS';
+        throw new Error(msg);
+    }
 };

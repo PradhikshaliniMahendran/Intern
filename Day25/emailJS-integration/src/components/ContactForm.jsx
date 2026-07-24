@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { useForm } from '../hooks/useForm.js';
+import { useForm } from '../hooks/useForm';
 import { sendContactEmail } from '../services/emailService';
 import SuccessMessage from './SuccessMessage';
 import ErrorMessage from './ErrorMessage';
+import './ContactForm.css';
 
 
 const initialValues = {
     fullName: '',
     email: '',
     phone: '',
+    companyName: '',
     subject: '',
     message: '',
 };
@@ -76,7 +78,7 @@ const ContactForm = () => {
                 <SuccessMessage onDismiss={() => setStatus(null)} />
             )}
 
-            {status === 'success' && (
+            {status === 'error' && (
                 <ErrorMessage message={errorMessage} onDismiss={() => setStatus(null)} />
             )}
 
@@ -87,6 +89,7 @@ const ContactForm = () => {
                         <input
                             type="text"
                             id="fullName"
+                            name="fullName"
                             placeholder="e.g Pradhikshalini"
                             value={values.fullName}
                             onChange={handleChange}
@@ -126,7 +129,7 @@ const ContactForm = () => {
                         <label htmlFor="companyName">Company Name</label>
                         <input
                             type="text"
-                            id="CompanyName"
+                            id="companyName"
                             name="companyName"
                             placeholder="Acme Corp"
                             value={values.companyName}
@@ -153,13 +156,14 @@ const ContactForm = () => {
                     <label htmlFor="message">Message <span className="req">*</span></label>
                     <textarea
                         id="message"
+                        name="message"
                         rows="5"
                         placeholder="Please detail your request or technical support needs..."
                         value={values.message}
                         onChange={handleChange}
                         className={errors.message ? 'input-error' : ''}
                     ></textarea>
-                    {errors.message && <span className="field-err">{errors.message}</span>}
+                    
                 </div>
 
                 <button type="submit" className="submit-btn" disabled={loading}>
