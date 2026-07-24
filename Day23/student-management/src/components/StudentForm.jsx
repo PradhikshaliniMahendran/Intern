@@ -1,1 +1,1 @@
-export { default } from 'C:Users/mahen/OneDrive/Desktop/Intern/Day16/React-form/src/components/StudentForm.jsx';
+export { default } from 'C:/Users/mahen/OneDrive/Desktop/Intern/Day16/React-form/src/components/StudentForm.jsx';
