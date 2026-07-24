@@ -1,0 +1,1 @@
+export { ThemeProvider, useTheme, default } from 'C:/Users/mahen/OneDrive/Desktop/Intern/Day23/student-management/src/context/ThemeContext';
