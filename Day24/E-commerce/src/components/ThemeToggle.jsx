@@ -1,1 +1,1 @@
-export { default } from 'C:/Users/mahen/OneDrive/Desktop/Intern/Day22/React-Context-API/src/components/ThemeToggle.jsx'
+export { default } from 'C:/Users/mahen/OneDrive/Desktop/Intern/Day22/React-Context-API/src/components/ThemeToggle.jsx';
