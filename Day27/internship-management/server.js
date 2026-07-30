@@ -14,8 +14,18 @@ app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
+app.get('/health', (req, res) => {
+    res.json({
+        status: 'success',
+        message: 'Server Running Successfully',
+        timestamp: new Date().toISOString()
+    });
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
     console.log(`http://localhost:${PORT}`);
+    console.log(`Health Check: http://localhost:${PORT}/health`);
+    console.log(`Users API: http://localhost:${PORT}/api/users`);
 });
