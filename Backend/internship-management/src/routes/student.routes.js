@@ -1,18 +1,21 @@
 const express = require('express');
 const router = express.Router();
+const {
+    getStudents,
+    addStudent,
+    getStudentById,
+    updateStudent,
+    deleteStudent
+} = require('../controllers/student.controller');
 
-router.get('/', (req, res) => {
-    router.json({
-        message: 'Student Route Working Successfully'
-    });
-});
+router.get('/', getStudents);
 
-router.get('/:id', (req, res) => {
-    const studentId = req.params.id;
-    res.json({
-        message: `Student Route Working Successfully`,
-        studentId: studentId
-    });
-});
+router.get('/:id', getStudentById);
+
+router.post('/', addStudent);
+
+router.put('/:id', updateStudent);
+
+router.delete('/', deleteStudent);
 
 module.exports = router;

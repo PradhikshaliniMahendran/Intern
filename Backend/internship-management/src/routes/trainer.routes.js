@@ -1,18 +1,21 @@
 const express = require('express');
 const router = express.Router();
+const {
+    getTrainers,
+    addTrainer,
+    getTrainerById,
+    updateTrainer,
+    deleteTrainer
+} = require('../controllers/trainer.controller');
 
-router.get('/', (req, res) => {
-    router.json({
-        message: 'Trainer Route Working Successfully'
-    });
-});
+router.get('/', getTrainers);
 
-router.get('/:id', (req, res) => {
-    const trainertId = req.params.id;
-    res.json({
-        message: `Trainer Route Working Successfully`,
-        trainerId: trainerId
-    });
-});
+router.get('/:id', getTrainerById);
+
+router.post('/', addTrainer);
+
+router.put('/:id', updateTrainer);
+
+router.delete('/', deleteTrainer);
 
 module.exports = router;
