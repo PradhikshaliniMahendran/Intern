@@ -4,8 +4,13 @@ const app = express();
 
 dotenv.config();
 
+const logger = require('./src/middlewares/logger.middleware');
+const { errorHandler, notFound } = require('./src/middlewares/error.middleware');
+
 app.use(express.json());
 app.use(express.urlencoded({ extended:true }));
+
+app.use(logger);
 
 const studentRoutes = require('./src/routes/student.routes');
 const courseRoutes = require('./src/routes/course.routes');
@@ -31,6 +36,10 @@ app.get('/health', (req, res) => {
     });
 });
 
+app.use(notFound);
+
+app.use(errorHandler);
+
 app.use((req, res) => {
     res.status(404).json({
         status: 'error',
@@ -48,4 +57,5 @@ app.listen(PORT, () => {
     console.log(`Users API: http://localhost:${PORT}/api/trainers`);
     console.log(`Users API: http://localhost:${PORT}/api/tasks`);
     console.log(`Users API: http://localhost:${PORT}/api/users`);
+    console.log('\n Middleware is active! Check console for logs.')
 });

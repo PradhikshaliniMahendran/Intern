@@ -54,10 +54,20 @@ const deleteStudent = (req, res) => {
     });
 };
 
+const testError = (req, res, next) => {
+    try {
+
+        throw new Error('This is a test error!');
+    } catch(error) {
+    next(error);
+    }
+};
+
 module.exports = {
     getStudents,
     addStudent,
     getStudentById,
     updateStudent,
-    deleteStudent
+    deleteStudent,
+    testError
 };

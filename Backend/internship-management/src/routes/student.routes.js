@@ -5,8 +5,11 @@ const {
     addStudent,
     getStudentById,
     updateStudent,
-    deleteStudent
+    deleteStudent,
+    testError
 } = require('../controllers/student.controller');
+
+router.get('/test-error', testError);
 
 router.get('/', getStudents);
 
