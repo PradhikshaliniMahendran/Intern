@@ -4,6 +4,9 @@ const app = express();
 
 dotenv.config();
 
+const connectDB = require('./src/config/db');
+connectDB();
+
 const logger = require('./src/middlewares/logger.middleware');
 const { errorHandler, notFound } = require('./src/middlewares/error.middleware');
 
@@ -57,5 +60,4 @@ app.listen(PORT, () => {
     console.log(`Users API: http://localhost:${PORT}/api/trainers`);
     console.log(`Users API: http://localhost:${PORT}/api/tasks`);
     console.log(`Users API: http://localhost:${PORT}/api/users`);
-    console.log('\n Middleware is active! Check console for logs.')
 });

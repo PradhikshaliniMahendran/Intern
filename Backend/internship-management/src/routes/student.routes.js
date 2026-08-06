@@ -9,16 +9,15 @@ const {
     testError
 } = require('../controllers/student.controller');
 
-router.get('/test-error', testError);
-
-router.get('/', getStudents);
 
 router.get('/:id', getStudentById);
 
-router.post('/', addStudent);
-
 router.put('/:id', updateStudent);
 
-router.delete('/', deleteStudent);
+router.delete('/:id',deleteStudent);
+
+router.get('/', getStudents);
+
+router.post('/', addStudent);
 
 module.exports = router;

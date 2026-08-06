@@ -1,65 +1,157 @@
-const getStudents = (req, res) => {
-    res.json({
-        success: true,
-        message: 'Students fetched successfully',
-        data: [
-            {id: 1, name: 'John Doe', course: 'Computer Science'},
-            {id: 2, name: 'Jane Smith', course: 'Mathematics'},
-        ]
+const Student = require('../models/student.model');
+
+const getStudents = async (req, res) => {
+    try {
+        const students = await Student.find();
+        res.json({
+            success: true,
+            count: students.length,
+            message: 'Students fetched successfully',
+            data: students
     });
-};
-
-const addStudent = (req, res) => {
-    const { name, course } = req.body;
-
-    if (!name || !course) {
-        return res.status(400).json({
+    } catch (error) {
+        res.status(500).json({
             success: false,
-            message: 'Name and course are required'
+            message: 'Error fetching students',
+            error: error.message
         });
     }
-
-    res.json({
-        success: true,
-        message: 'Student Added Successfully',
-        data: { id: 3, name, course }
-    });
 };
 
-const getStudentById = (req, res) => {
-    const { id } = req.params;
-    res.json({
-        success: true,
-        message: `Student with ID ${id} fetched seccessfully`,
-        data: { id, name: 'John Doe', course: 'Computer Science'}
-    });
-};
-
-const updateStudent = (req, res) => {
-    const { id } = req.params;
-    const { name, course } = req.body;
-
-    res.json({
-        success: true,
-        message: `Student with ID ${id} updated successfully`,
-        data: { id, name, course }
-    });
-};
-
-const deleteStudent = (req, res) => {
-    const { id } = req.params;
-    res.json({
-        success: true,
-        message: `Student with ID ${id} deleted successfully`
-    });
-};
-
-const testError = (req, res, next) => {
+const getStudentById = async (req, res) => {
     try {
+        const student = await Student.findById(req.params.id);
 
-        throw new Error('This is a test error!');
-    } catch(error) {
-    next(error);
+        if(!student) {
+            return res.status(404).json({
+                success: false,
+                message: 'Student not found'
+            });
+        }
+
+        res.json({
+            success: true,
+            message: 'Student fetched successfully',
+            data: student
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Error fetching student',
+            error: error.message
+        });
+    }
+};
+
+const addStudent = async (req, res) => {
+    try{
+
+    
+        const { name, email, phone, course, age, status } = req.body;
+
+        const existingStudent = await Student.findOne({ email });
+        if(existingStudent) {
+            return res.status(400).json({
+                success: false,
+                message: 'Student with this email already exists'
+            });
+        }
+
+        const student = await Student.create({
+            name,
+            email,
+            phone,
+            course,
+            age,
+            status
+        });
+
+        res.status(201).json({
+            success: true,
+            message: 'Student Added Successfully',
+            data: student
+        });
+    } catch (error) {
+        if(error.name === 'ValidationError') {
+            const errors = Object.values(error.errors).map(err => err.message);
+            return res.status(400).json({
+                success: false,
+                message: 'Validation Error',
+                errors
+            });
+        }
+
+        res.status(500).json({
+            success: false,
+            message: 'Error adding student',
+            error: error.message
+        });
+    }
+};
+
+const updateStudent = async (req, res) => {
+    try{
+        const student = await Student.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            {
+                new: true,
+                runValidators: true
+            }
+        );
+
+        if (!student) {
+            return res.status(404).json({
+                success: false,
+                message: 'Student not found'
+            });
+        }
+
+        res.json({
+            success: true,
+            message: 'Student updated successfully',
+            data: student
+        });
+    } catch (error) {
+        if (error.name === 'ValidationError') {
+            const errors = Object.values(error.errors).map(err => err.message);
+            return res.status(400).json({
+                success: false,
+                message: 'Validation Error',
+                errors
+            });
+        }
+
+        res.status(500).json({
+            success: false,
+            message: 'Error updating student',
+            error: error.message
+        });
+    }
+};
+
+const deleteStudent = async (req, res) => {
+    try {
+        const student = await Student.findByIdAndDelete(req.params.id);
+
+        if (!student) {
+            return res.status(404).json({
+                success: true,
+                message: 'Student not found'
+            });
+        }
+
+        res.json({
+            success: true,
+            message: 'Student deleted successfully',
+            data: student
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Error deleting student',
+            error: error.message
+        });
     }
 };
 
@@ -68,6 +160,6 @@ module.exports = {
     addStudent,
     getStudentById,
     updateStudent,
-    deleteStudent,
-    testError
+    deleteStudent
+    
 };
