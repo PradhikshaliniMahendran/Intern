@@ -139,7 +139,7 @@ const deleteStudent = async (req, res) => {
                 success: true,
                 message: 'Student not found'
             });
-        }
+        } 
 
         res.json({
             success: true,
