@@ -56,6 +56,7 @@ const addStudent = async (req, res) => {
                 message: 'Student with this email already exists'
             });
         }
+        
 
         const student = await Student.create({
             name,
