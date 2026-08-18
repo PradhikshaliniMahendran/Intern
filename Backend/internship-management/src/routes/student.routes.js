@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const authMiddleware = require('../middlewares/auth.middleware');
+const roleMiddleware = require('../middlewares/role.middleware');
 const {
     getStudents,
     addStudent,
@@ -10,15 +11,15 @@ const {
     testError
 } = require('../controllers/student.controller');
 
+router.get('/', authMiddleware, getStudents);
 
 router.get('/:id',authMiddleware, getStudentById);
 
-router.put('/:id',authMiddleware, updateStudent);
+router.post('/', authMiddleware, roleMiddleware('Admin', 'Trainer'),addStudent);
 
-router.delete('/:id', authMiddleware, deleteStudent);
+router.put('/:id',authMiddleware,roleMiddleware('Admin', 'Trainer'), updateStudent);
 
-router.get('/', authMiddleware, getStudents);
+router.delete('/:id', authMiddleware, roleMiddleware('Admin'), deleteStudent);
 
-router.post('/', authMiddleware, addStudent);
 
 module.exports = router;
