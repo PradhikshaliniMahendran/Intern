@@ -21,6 +21,7 @@ const trainerRoutes = require('./src/routes/trainer.routes');
 const taskRoutes = require('./src/routes/task.routes');
 const userRoutes = require('./src/routes/userRoutes');
 const authRoutes = require('./src/routes/auth.routes');
+const attendanceRoutes = require('./src/routes/attendance.routes');
 
 app.use('/api/students', studentRoutes);
 app.use('/api/courses', courseRoutes);
@@ -28,6 +29,7 @@ app.use('/api/trainers', trainerRoutes);
 app.use('/api/tasks', taskRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/attendance', attendanceRoutes);
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
