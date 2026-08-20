@@ -31,6 +31,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/attendance', attendanceRoutes);
 
+
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
