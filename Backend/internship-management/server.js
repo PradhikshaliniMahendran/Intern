@@ -22,6 +22,7 @@ const taskRoutes = require('./src/routes/task.routes');
 const userRoutes = require('./src/routes/userRoutes');
 const authRoutes = require('./src/routes/auth.routes');
 const attendanceRoutes = require('./src/routes/attendance.routes');
+const meetingRoutes = require('./src/routes/meeting.routes');
 
 app.use('/api/students', studentRoutes);
 app.use('/api/courses', courseRoutes);
@@ -30,6 +31,7 @@ app.use('/api/tasks', taskRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/attendance', attendanceRoutes);
+app.use('/api/meetings', meetingRoutes);
 
 
 app.get('/', (req, res) => {
