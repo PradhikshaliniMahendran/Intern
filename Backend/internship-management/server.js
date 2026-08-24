@@ -23,6 +23,7 @@ const userRoutes = require('./src/routes/userRoutes');
 const authRoutes = require('./src/routes/auth.routes');
 const attendanceRoutes = require('./src/routes/attendance.routes');
 const meetingRoutes = require('./src/routes/meeting.routes');
+const dashboardRoutes = require('./src/routes/dashboard.router');
 
 app.use('/api/students', studentRoutes);
 app.use('/api/courses', courseRoutes);
@@ -32,6 +33,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/attendance', attendanceRoutes);
 app.use('/api/meetings', meetingRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 
 app.get('/', (req, res) => {
