@@ -47,6 +47,17 @@ router.put('/id/status', async (req, res) => {
     }
 });
 
+router.put('/:id/assign', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { volunteer_name } = req.body;
+        const updatedRequest = await BloodRequest.findByIdAndUpdate(id, { assigned_volunteer: volunteer_name }, { new:true });
+        res.json({ message: 'Volunteer assigned successfully!', request_id: id, assigned_volunteer: updatedRequest.assigned_volunteer });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 router.delete('/:id', async (req, res) => {
     try {
         const deletedReq = await BloodRequest.findByIdAndDelete(req.params.id);

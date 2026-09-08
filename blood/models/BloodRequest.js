@@ -7,7 +7,8 @@ const bloodRequestSchema = new mongoose.Schema({
     hospital_name: { type: String, required: true, trim: true},
     city: { type: String, required: true, trim: true},
     contact_number: { type: String, required: true },
-    status: { type: String, enum: ['Pending', 'Fulfilled', 'Cancelled'], default: 'Pending'}
+    status: { type: String, enum: ['Pending', 'Fulfilled', 'Cancelled'], default: 'Pending'},
+    assigned_volunteer: { type: String, default: 'Unassigned'}
 }, {
     timestamps: true
 });

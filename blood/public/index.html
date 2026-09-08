@@ -47,7 +47,12 @@
                     <a href="donors.html" class="nav-link hover:text-slate-900">Find Donors</a>
                     <a href="register.html" class="nav-link  hover:text-slate-900">Register</a>
                     <a href="request.html" class="nav-link  hover:text-slate-900">Request</a>
-                    <a href="admin.html" class="nav-link hover:text-slate-900">Admin</a>
+                    <a href="admin.html" class="nav-link hover:text-slate-900 flex items-center gap-1">
+                        <i data-lucide ="shield" class="h-4 w-4"></i> Admin
+                    </a>
+                    <a href="/download-requirements" class="px-3 py-1.5 rounded-lg border border-emerald-500 text-emerald-500 text-emerald-600 hover:bg-emerald-50 text-xs font-semibold flex items-center gap-1">
+                        <i data-lucide="file-spreadsheet" class="h-4 w-4"></i> Excel Sheet
+                    </a>
                 </nav>
             </div>
         </header>
@@ -66,11 +71,14 @@
                         Connect with real-time blood donors near your location, register yourself to save a life, or request blood for medical emergencies immediately.
                     </p>
                     <div class="flex flex-wrap gap-3 pt-2">
-                        <a href="Register.html" class="px-6 py-3 bg-brandRed-600 text-white rounded-xl text-sm font-semibold hover:bg-brandRed-700 shadow-lg shadow-brandRed-600/20 transition-all flex items-center gap-2">
+                        <a href="register.html" class="px-6 py-3 bg-brandRed-600 text-white rounded-xl text-sm font-semibold hover:bg-brandRed-700 shadow-lg shadow-brandRed-600/20 transition-all flex items-center gap-2">
                             <i data-lucide="user-plus" class="h-4 w-4"></i>Become a Donor
                         </a>
-                        <a href="Donors.html" class="px-6 py-3 bg-white border border-slate-200 text-slate-700 rounded-xl text-sm font-semibold hover:bg-brandRed-50 transition-all flex items-center gap-2">
+                        <a href="donors.html" class="px-6 py-3 bg-white border border-slate-200 text-slate-700 rounded-xl text-sm font-semibold hover:bg-brandRed-50 transition-all flex items-center gap-2">
                             <i data-lucide="search" class="h-4 w-4"></i>Find Donors
+                        </a>
+                        <a href="request.html" class="px-6 py-3 bg-slate-900 text-white rounded-xl text-sm font-semibold hover:bg-slate-800 transition-all flex items-center gap-2 ">
+                            <i data-lucide="alert-circle" class="h-4 w-4 text-brandRed-500"></i>Request Blood
                         </a>
                     </div>
                 </div>
@@ -91,23 +99,28 @@
 
             <section class="grid grid-cols-2 lg:grid-cols-4 gap-6">
                 <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-2">
-                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Donors Registered</p>
-                    <h3 class="text-3xl font-extrabold text-slate-900">4,280+</h3>
+                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Registered Donors</p>
+                    <h3 class="text-3xl font-extrabold text-slate-900">--</h3>
                     <p class="text-xs text-emerald-600 font-medium flex items-center gap-1">
-                        <i data-lucide="trending-up" class="h-3 w-3"></i>+12% this week
+                        <i data-lucide="trending-up" class="h-3 w-3"></i> Verified Profiles
                     </p>
                 </div>
                 <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-2">
-                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Active Requests</p>
-                    <h3 class="text-3xl font-extrabold text-brandRed-600">18</h3>
+                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Ready to Donate</p>
+                    <h3 class="text-3xl font-extrabold text-brandRed-600">--</h3>
                     <p class="text-xs text-emerald-600 font-medium flex items-center gap-1">
-                        <i data-lucide="trending-up" class="h-3 w-3"></i> Across 14 Districts
+                        <i data-lucide="trending-up" class="h-3 w-3"></i> Available Now
                     </p>
                 </div>
                 <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-2">
-                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Partner Hospitals</p>
-                    <h3 class="text-3xl font-extrabold text-slate-900">85+</h3>
-                    <p class="text-xs text-slate-500">Emergency tie-ups</p>
+                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Lives Saved</p>
+                    <h3 class="text-3xl font-extrabold text-slate-900">--</h3>
+                    <p class="text-xs text-slate-500">Fulfilled Requests</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-2">
+                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Response Time</p>
+                    <h3 class="text-3xl font-extrabold text-slate-900">&lt; 15 mins</h3>
+                    <p class="text-xs text-slate-500">Direct Contact</p>
                 </div>
             </section>
 
@@ -127,6 +140,17 @@
                         <button onclick="selectBloodCompatibility('B-')" class="py-4 text-center border border-slate-200 rounded-slate-200 rounded-xl hover:border-brandRed-500 hover:bg-brandRed-50 transition-all font-bold text-slate-800 focus:outline-none">B-</button>
                         <button onclick="selectBloodCompatibility('AB+')" class="py-4 text-center border border-slate-200 rounded-slate-200 rounded-xl hover:border-brandRed-500 hover:bg-brandRed-50 transition-all font-bold text-slate-800 focus:outline-none">AB+</button>
                         <button onclick="selectBloodCompatibility('AB-')" class="py-4 text-center border border-slate-200 rounded-slate-200 rounded-xl hover:border-brandRed-500 hover:bg-brandRed-50 transition-all font-bold text-slate-800 focus:outline-none">AB-</button>
+                    </div>
+
+                    <div id="compatibility-info" class="hidden bg-slate-50 border border-slate-200 rounded-2xl p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm">
+                            <span class="text-xs font-semibold text-brandRed-600 uppercase tracking-wider block mb-1">🎁 Can Donate Blood To:</span>
+                            <p id="can-donate-to" class="text-base font-extrabold text-slate-900">--</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm">
+                            <span class="text-xs font-semibold text-brandRed-600 uppercase tracking-wider block mb-1">🩸 Can Receive Blood From:</span>
+                            <p id="can-receive-from" class="text-base font-extrabold text-slate-900">--</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -177,8 +201,8 @@
             lucide.createIcons();
 
             const COMPATIBILITY = {
-                '0+': {give: 'O+, A+, AB+', get:'O+, O-'},
-                '0-': {give: 'Everyone', get:'O-'},
+                'O+': {give: 'O+, A+, AB+', get:'O+, O-'},
+                'O-': {give: 'Everyone', get:'O-'},
                 'A+': {give: 'A+, AB+', get:'A+, A-, O+, O-'},
                 'A-': {give: 'A+, A-, AB+, AB-', get:'A-, O-'},
                 'B+': {give: 'B+, AB+', get:'B+, B-, O+, O-'},
@@ -199,7 +223,7 @@
 
                 const info = document.getElementById("compatibility-info");
                 const give = document.getElementById("can-donate-to");
-                const get = document.getElementById("can-receive-form");
+                const get = document.getElementById("can-receive-from");
 
                 give.textContent = COMPATIBILITY[group].give;
                 get.textContent = COMPATIBILITY[group].get;

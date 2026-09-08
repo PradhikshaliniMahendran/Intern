@@ -7,7 +7,7 @@ const connectDB = require('./database');
 const authRoutes = require('./routes/authRoutes');
 const donorRoutes = require('./routes/donorRoutes');
 const requestRoutes = require('./routes/requestRoutes');
-const { register } = require('module');
+
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -29,6 +29,24 @@ app.get('/download-requirements', (req, res) => {
 
         }
     });
+});
+
+const User = require('./models/User');
+const BloodRequest = require('./models/BloodRequest');
+
+app.get('/api/admin/stats', async (req, res) => {
+    try {
+        const totalDonors = await User.countDocuments({ role: 'donor'});
+        const availableDonors = await User.countDocuments({ role: 'donor', is_available: true });
+        const pendingRequests = await BloodRequest.countDocuments({ status: 'Pending'});
+        const fullfilledRequests = await BloodRequest.countDocuments({status: 'Fulfilled' });
+
+        res.json({ totalDonors, availableDonors, pendingRequests, fullfilledRequests});
+    } catch (err) {
+        res.status(500).json({
+            error: err.message
+        });
+    }
 });
 
 app.use('/api/auth', authRoutes);
