@@ -49,3 +49,67 @@ body {
     width: 100%;
 }
 
+#toastContainer {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-width: 380px;
+    width: calc(100% - 3rem);
+    pointer-events: none;
+}
+
+#toastContainer > * {
+    pointer-events: auto;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: none;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.75rem;
+}
+.btn-sm {
+    padding: 0.25rem 0.6rem;
+    font-size: 0.7rem;
+}
+.btn-success {
+    background-color: #059669;
+    color: #ffffff;
+}
+.btn-success:hover {
+    background-color: #047857;
+}
+.btn-warning {
+    background-color: #d97706;
+    color: #ffffff;
+}
+.btn-warning:hover {
+    background-color: #b45309;
+}
+.btn-danger {
+    background-color: #dc2626;
+    color: #ffffff;
+}
+.btn-danger:hover {
+    background-color: #b91c1c;
+}
+.btn-outline {
+    background-color: #f8fafc;
+    border: 1px solid #cbd5e1;
+    color: #334155;
+}
+.btn-outline:hover {
+    background-color: #f1f5f9;
+    border-color: #94a3b8;
+}
+

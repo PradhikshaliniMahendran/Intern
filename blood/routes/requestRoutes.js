@@ -5,14 +5,16 @@ const router = express.Router();
 
 router.post('/', async (req, res) => {
     try {
-        const { patient_name, blood_group, units_needed, hospital_name, city, contact_number} = req.body;
+        const { patient_name, blood_group, units_needed, urgency, hospital_name, city, contact_number, reason } = req.body;
         const newRequest = await BloodRequest.create({ 
             patient_name, 
             blood_group, 
             units_needed: units_needed || 1, 
+            urgency,
             hospital_name, 
             city, 
-            contact_number
+            contact_number,
+            reason
         });
         res.status(201).json({ message: 'Blood Request submitted successfully', request_id: newRequest._id });
     } catch (err) {
@@ -36,7 +38,7 @@ router.get('/', async (req,res) => {
     }
 });
 
-router.put('/id/status', async (req, res) => {
+router.put('/:id/status', async (req, res) => {
     try {
         const { id } = req.params;
         const { status } = req.body;

@@ -71,3 +71,4 @@ app.get('/api-status', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server & UI is running on: http://localhost:${PORT}`);
 });
+module.exports = app;

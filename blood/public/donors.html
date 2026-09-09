@@ -46,7 +46,7 @@
                 <nav class="flex space-x-3 sm:space-x-6 md:space-x-8 text-xs sm:text-sm font-medium text-slate-600">
                     <a href="index.html" class="nav-link text-slate-900">Home</a>
                     <a href="donors.html" class="nav-link active text-brandRed-600">Find Donors</a>
-                    <a href="register.html" class="nav-link  hover:text-slate-900">Donors</a>
+                    <a href="register.html" class="nav-link  hover:text-slate-900">Donate</a>
                     <a href="request.html" class="nav-link  hover:text-slate-900">Request</a>
                     <a href="admin.html" class="nav-link text-slate-900">Admin</a>
                 </nav>
@@ -130,13 +130,13 @@
             const filterContainer = document.getElementById("blood-filters");
 
             document.addEventListener("DOMContentLoaded", () => {
+                if (window.lucide) lucide.createIcons();
                 renderDonorsList();
 
                 searchInput.addEventListener("input", (e) => {
                     searchQuery = e.target.value.toLowerCase().trim();
                     renderDonorsList();
                 });
-
 
                 filterContainer.addEventListener("click", (e) => {
                     const btn = e.target.closest("button");
@@ -150,80 +150,78 @@
 
                     selectedGroup = btn.dataset.group;
                     renderDonorsList();
-
                 });
-
-                lucide.createIcons();
-
-
-
             });
 
-            function renderDonorsList() {
+            async function renderDonorsList() {
                 donorGrid.innerHTML = "";
+                let donorsList = [];
+                try {
+                    let url = '/api/donors?';
+                    if (selectedGroup !== 'all') url += `blood_group=${encodeURIComponent(selectedGroup)}&`;
+                    if (searchQuery) url += `city=${encodeURIComponent(searchQuery)}`;
+                    const res = await fetch(url);
+                    const data = await res.json();
+                    donorsList = data.donors || [];
+                } catch(err) {
+                    donorsList = [];
+                }
 
-                let filtered = DONORS.filter(donor => {
-                    const matcheGroup = selectedGroup === "all" || donor.bloodGroup === selectedGroup;
-                    const matcheSearch = donor.city.toLowerCase().includes(searchQuery) || donor.name.toLowerCase().includes(searchQuery);
-                    return matcheGroup && matcheSearch;
-                });
-
-                if (filtered.length === 0) {
+                if (donorsList.length === 0) {
                     donorGrid.classList.add("hidden");
                     noDonorsView.classList.remove("hidden");
                     noDonorsView.classList.add("flex");
+                    if (window.lucide) lucide.createIcons();
                     return;
                 } 
                 donorGrid.classList.remove("hidden");
                 noDonorsView.classList.remove("flex");
                 noDonorsView.classList.add("hidden");
 
-                filtered.forEach(donor => {
+                donorsList.forEach(donor => {
                     const card = document.createElement("div");
                     card.className = "bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between space-y-4 hover:shadow-md transition-all";
+                    const bloodGrp = donor.blood_group || donor.bloodGroup || '';
+                    const lastDonatedStr = donor.last_donation_date ? new Date(donor.last_donation_date).toLocaleDateString() : (donor.lastDonated ? donor.lastDonated : 'Never');
                     card.innerHTML = `
-                        <div class = "flex items-start justify-between">
+                        <div class="flex items-start justify-between">
                             <div class="space-y-1">
                                 <h3 class="font-bold text-slate-950 text-base">${donor.name}</h3>
-
-                                <p class="text-xs text-slate-400 flex items-center">
+                                <p class="text-xs text-slate-400 flex items-center gap-1">
                                     <i data-lucide="map-pin" class="h-3.5 w-3.5 text-slate-400"></i> ${donor.city}
                                 </p>
                             </div>
                             <span class="h-10 w-10 rounded-xl bg-brandRed-50 border border-brandRed-100 flex items-center justify-center font-bold text-brandRed-600 text-sm">
-                                ${donor.bloodGroup}
+                                ${bloodGrp}
                             </span>
                         </div>
 
-                        <div class= "pt-2 border-t border-slate-100 space-y-1.5 text-xs text-slate-500">
+                        <div class="pt-2 border-t border-slate-100 space-y-1.5 text-xs text-slate-500">
                             <p class="flex items-center justify-between">
                                 <span>Last Donated:</span>
-                                <span class="font-semibold text-slate-700">${donor.lastDonated ? donor.lastDonated : 'Never'}</span>
+                                <span class="font-semibold text-slate-700">${lastDonatedStr}</span>
                             </p>
                             <p class="flex items-center justify-between">
                                 <span>Status:</span>
-                                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium bg-emerald-50 text-emerald-600 border border-emerald-100">
-                                    Available
+                                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium ${donor.is_available !== false ? 'bg-emerald-50 text-emerald-600 border border-emerald-100' : 'bg-amber-50 text-amber-600 border border-amber-100'}">
+                                    ${donor.is_available !== false ? '● Available' : '○ Unavailable'}
                                 </span>
                             </p>
                         </div>
 
                         <div class="flex gap-2 pt-2">
-                            <button onclick="contactDonor('${donor.name}', 'call', '${donor.phone}')" class="flex-1 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50 flex items-center justify-center gap-1.5">
+                            <a href="tel:${donor.phone}" class="flex-1 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50 flex items-center justify-center gap-1.5">
                                 <i data-lucide="phone" class="h-3.5 w-3.5 text-slate-400"></i>Call
-                            </button>
-                            <button onclick="contactDonor('${donor.name}', 'Email', '${donor.email}')" class="flex-1 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50 flex items-center justify-center gap-1.5">
+                            </a>
+                            <a href="mailto:${donor.email}" class="flex-1 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50 flex items-center justify-center gap-1.5">
                                 <i data-lucide="mail" class="h-3.5 w-3.5"></i>Email
-                            </button>
+                            </a>
                         </div>
-
                     `;
                     donorGrid.appendChild(card);
-
                 });
 
-                lucide.createIcons();
-                
+                if (window.lucide) lucide.createIcons();
             }
 
             function contactDonor(name, action, detail) {

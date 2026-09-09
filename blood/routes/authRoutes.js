@@ -1,14 +1,14 @@
-const expess = require('express');
+const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
-const router = expess.Router();
+const router = express.Router();
 const JWT_SECRET = process.env.JWT_SECRET || 'blood_donation_super_secret_key_123';
 
 router.post('/register', async (req, res) => {
     try {
-        const { name, email, password, phone, blood_group, city, role} = req.body;
+        const { name, email, password, phone, blood_group, city, role, age, gender, last_donation_date } = req.body;
 
         if (!name || !email || !password || !phone || !blood_group || !city) {
             return res.status(400).json({ error: 'All fields (name, email, password, phone, blood_group, city) are required.'});
@@ -17,7 +17,7 @@ router.post('/register', async (req, res) => {
 
         const existingUser = await User.findOne({ email: email.toLowerCase() });
         if (existingUser) {
-            return res.satus(400).json({ error: 'Email address is already registered.'});
+            return res.status(400).json({ error: 'Email address is already registered.'});
         }
 
         const salt = bcrypt.genSaltSync(10);
@@ -30,6 +30,9 @@ router.post('/register', async (req, res) => {
             phone,
             blood_group,
             city,
+            age,
+            gender,
+            last_donation_date,
             role: role || 'donor'
         });
 
@@ -65,29 +68,29 @@ router.post('/login', async (req, res) => {
 
         const user = await User.findOne({ email: email.toLowerCase() });
         if (!user) {
-            return res.satus(400).json({ error: 'Invalid email or password.'});
+            return res.status(400).json({ error: 'Invalid email or password.'});
         }
 
         const isMatch = bcrypt.compareSync(password, user.password_hash);
         if (!isMatch) {
-            return res.satus(400).json({ error: 'Invalid email or password.'});
+            return res.status(400).json({ error: 'Invalid email or password.'});
         }
 
         const token = jwt.sign({ id: user._id, email: user.email, blood_group: user.blood_group}, JWT_SECRET, { expiresIn: '7d' });
         
 
-        re.json({
+        res.json({
             message: 'Login successful!',
             token,
             user:{
-                id: newUser._id,
-                name: newUser.name,
-                email: newUser.email,
-                phone: newUser.phone,
-                blood_group: newUser.blood_group,
-                city: newUser.city,
-                role: newUser.role,
-                is_available: newUser.is_available
+                id: user._id,
+                name: user.name,
+                email: user.email,
+                phone: user.phone,
+                blood_group: user.blood_group,
+                city: user.city,
+                role: user.role,
+                is_available: user.is_available
             }
             
         });

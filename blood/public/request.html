@@ -117,7 +117,7 @@
 
                         <div class="space-y-1.5">
                             <label class="text-xs font-semibold text-slate-600">Contact Number * (10 Digits)</label>
-                            <input type="number" id="req-phone"required pattern="[0-9]{10}"
+                            <input type="tel" id="req-phone" required pattern="[0-9]{10}"
                                 class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-900 focus:outline-none focus:border-brandRed-500 focus:ring-1 focus:ring-brandRed-500 transition-colors" placeholder="e.g. 07x xxxx xxx">
                         </div>
 
@@ -229,16 +229,18 @@
                     }
 
                 try {
-                    const response =await fetch('http://localhost:5000/api/requests', {
+                    const response =await fetch('/api/requests', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json'},
                         body: JSON.stringify({
                             patient_name: patient,
                             blood_group: blood,
                             units_needed: units,
+                            urgency: urgency,
                             hospital_name: hospital,
                             city: city,
-                            contact_number: phone
+                            contact_number: phone,
+                            reason: reason
                         })
                     });
 
@@ -270,7 +272,7 @@
             if (!container) return;
 
 
-            const res = await fetch('http://localhost:5000/api/requests');
+            const res = await fetch('/api/requests');
             const data = await res.json();
             const requestsList = data.requests || [];
 

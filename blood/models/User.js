@@ -7,6 +7,9 @@ const userSchema = new mongoose.Schema({
     password_hash: { type:String, required: true},
     phone: { type: String, required: true},
     city: { type: String, required: true, trim: true},
+    age: { type: Number },
+    gender: { type: String },
+    last_donation_date: { type: Date },
     is_available: { type: Boolean, default: true },
     role: { type: String, enum: ['donor', 'recipent', 'admin'], default: 'donor'}
 }, {
