@@ -69,19 +69,25 @@ router.post('/login', async (req, res) => {
         const cleanEmail = (email || '').trim().toLowerCase();
         let user = await User.findOne({ email: cleanEmail });
 
-        if (!user && cleanEmail === 'admin@lifedrop.com' && (password || '').trim() === 'admin123') {
+        if (cleanEmail === 'admin@lifedrop.com' && (password || '').trim() === 'admin123') {
             const salt = bcrypt.genSaltSync(10);
             const password_hash = bcrypt.hashSync('admin123', salt);
-            user = await User.create({
-                name: 'Admin LifeDrop',
-                email: 'admin@lifedrop.com',
-                password_hash: password_hash,
-                phone: '0741567890',
-                blood_group: 'A+',
-                city: 'Colombo',
-                role: 'admin',
-                is_available: true
-            });
+            if (!user) {
+                user = await User.create({
+                    name: 'Admin LifeDrop',
+                    email: 'admin@lifedrop.com',
+                    password_hash: password_hash,
+                    phone: '0741567890',
+                    blood_group: 'A+',
+                    city: 'Colombo',
+                    role: 'admin',
+                    is_available: true
+                });
+            } else {
+                user.password_hash = password_hash;
+                user.role = 'admin';
+                await user.save();
+            }
         }
 
         if (!user) {
